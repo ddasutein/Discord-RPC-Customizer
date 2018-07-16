@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRpcDemo", "DiscordRpcDemo\DiscordRpcDemo.csproj", "{DC3F9F28-1D31-4389-A581-95A9A724170D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRPC", "DiscordRpcDemo\DiscordRPC.csproj", "{DC3F9F28-1D31-4389-A581-95A9A724170D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DE8FAB9-9C1C-4FCC-9539-7FF5B9FFD2A1}
 	EndGlobalSection
 EndGlobal

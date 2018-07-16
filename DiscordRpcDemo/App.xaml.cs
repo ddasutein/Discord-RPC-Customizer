@@ -15,7 +15,7 @@ namespace DiscordRpcDemo
 			if (!System.IO.File.Exists(DLL + ".dll")) {
 				MessageBox.Show(
 					"Missing " + DLL + ".dll\n\n" +
-					"Grab it from the release on GitHub or from the DiscordRpcDemo/lib/ folder in the repo then put it alongside DiscordRpcDemo.exe.\n\n" +
+					"Grab it from the release on GitHub or from the Dasutein/lib/ folder in the repo then put it alongside Dasutein.exe.\n\n" +
 					"https://github.com/nostrenz/cshap-discord-rpc-demo"
 				);
 
