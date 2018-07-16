@@ -11,7 +11,7 @@ A quick demontration of the Discord RPC feature with a simple C# WPF app, made f
 
 Download a release and run `DiscordRpcDemo.exe` **or** build the app from source by cloning this repo, opening `DiscordRpcDemo.sln` in Visual Studio and runing the solution.
 
-![Main window](https://raw.githubusercontent.com/nostrenz/cshap-discord-rpc-demo/master/screenshots/window.png)
+![Main window](https://raw.githubusercontent.com/ddasutein/csharp-discord-rpc-demo/master/screenshots/window.PNG)
 
 ### 2 - Add it as a game in Discord
 
@@ -31,3 +31,7 @@ Click "**Initialize**" then "**Update**" and you should see this below your user
 
 Of couse you can change what's in each fields, press "**Update**" and you'll see it changed on Discord after a few seconds.
 Also, hitting **RunCallbacks** should tells you about errors or disconnections if any.
+
+## Credits
+
+Icon made by [freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
