@@ -1,9 +1,10 @@
-﻿<Window x:Class="DiscordRpcDemo.MainWindow"
+﻿<src:PerMonitorDPIWindow x:Class="DiscordRpcDemo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscordRpcDemo"
+        xmlns:src="clr-namespace:NativeHelpers;assembly=NativeHelpers"
         mc:Ignorable="d"
         Title="Discord RPC" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Margin="7,7,-7,-7">
@@ -70,4 +71,4 @@
             </TabControl>
         </Grid>
     </Grid>
-</Window>
+</src:PerMonitorDPIWindow>

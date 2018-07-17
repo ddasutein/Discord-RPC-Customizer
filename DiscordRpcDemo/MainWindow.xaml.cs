@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Diagnostics;
+using NativeHelpers;
 
 namespace DiscordRpcDemo
 {
@@ -8,7 +9,7 @@ namespace DiscordRpcDemo
     /// Interaction logic for MainWindow.xaml
     /// https://github.com/discordapp/discord-rpc/blob/master/examples/button-clicker/Assets/DiscordController.cs
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : PerMonitorDPIWindow
     {
         private DiscordRpc.RichPresence presence;
 
@@ -16,6 +17,14 @@ namespace DiscordRpcDemo
 
         public MainWindow()
         {
+            // If application version is updated, move user settings to new version
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
             InitializeComponent();
             this.TextBox_clientId.Text = Properties.Settings.Default.discord_client_id;
             this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;
@@ -247,9 +256,15 @@ namespace DiscordRpcDemo
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+
+        private bool isButtonUpdateClicked = false;
+
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
             this.UpdatePresence();
+
+            MessageBox.Show("Hi", "Hello WOrld");
         }
 
         /// <summary>
