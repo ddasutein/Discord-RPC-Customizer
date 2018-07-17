@@ -263,8 +263,6 @@ namespace DiscordRpcDemo
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
             this.UpdatePresence();
-
-            MessageBox.Show("Hi", "Hello WOrld");
         }
 
         /// <summary>
