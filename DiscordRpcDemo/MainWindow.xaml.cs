@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Diagnostics;
+using System.Windows.Threading;
 using NativeHelpers;
+using System.Threading.Tasks;
 
 namespace DiscordRpcDemo
 {
@@ -9,11 +11,23 @@ namespace DiscordRpcDemo
     /// Interaction logic for MainWindow.xaml
     /// https://github.com/discordapp/discord-rpc/blob/master/examples/button-clicker/Assets/DiscordController.cs
     /// </summary>
-    public partial class MainWindow : PerMonitorDPIWindow
+    public partial class MainWindow : PerMonitorDPIWindow 
     {
         private DiscordRpc.RichPresence presence;
 
         DiscordRpc.EventHandlers handlers;
+
+        public bool isDiscordOpen(string name)
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.Contains(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public MainWindow()
         {
@@ -25,24 +39,36 @@ namespace DiscordRpcDemo
                 Properties.Settings.Default.Save();
             }
 
-            InitializeComponent();
-            this.TextBox_clientId.Text = Properties.Settings.Default.discord_client_id;
-            this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;
-            this.TextBox_details.Text = Properties.Settings.Default.discord_details_status;
-            this.TextBox_startTimestamp.Text = Properties.Settings.Default.discord_startTimeStamp;
-            this.TextBox_endTimestamp.Text = Properties.Settings.Default.discord_endTimeStamp;
-            this.TextBox_largeImageKey.Text = Properties.Settings.Default.discord_largeImageKey;
-            this.TextBox_largeImageText.Text = Properties.Settings.Default.discord_largeImageText;
-            this.TextBox_smallImageKey.Text = Properties.Settings.Default.discord_smallImageKey;
-            this.TextBox_smallImageText.Text = Properties.Settings.Default.discord_smallImageText;
-            this.TextBox_startTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow).ToString();
-            //this.TextBox_endTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow.AddHours(1)).ToString();
+            // Get Discord process then check if application is opened or not
+            Process[] getDiscordProcess = Process.GetProcessesByName("Discord");
+            if (getDiscordProcess.Length > 0)
+            {
 
-            startApp();
-            beginUpdatePresence();
+                InitializeComponent();
+                this.TextBox_clientId.Text = Properties.Settings.Default.discord_client_id;
+                this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;
+                this.TextBox_details.Text = Properties.Settings.Default.discord_details_status;
+                this.TextBox_startTimestamp.Text = Properties.Settings.Default.discord_startTimeStamp;
+                this.TextBox_endTimestamp.Text = Properties.Settings.Default.discord_endTimeStamp;
+                this.TextBox_largeImageKey.Text = Properties.Settings.Default.discord_largeImageKey;
+                this.TextBox_largeImageText.Text = Properties.Settings.Default.discord_largeImageText;
+                this.TextBox_smallImageKey.Text = Properties.Settings.Default.discord_smallImageKey;
+                this.TextBox_smallImageText.Text = Properties.Settings.Default.discord_smallImageText;
+                this.TextBox_startTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow).ToString();
+                //this.TextBox_endTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow.AddHours(1)).ToString();
 
-            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            textBlockVersionNumber.Text = "Version: " + version;
+                startApp();
+                beginUpdatePresence();
+
+                string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                textBlockVersionNumber.Text = "Version: " + version;
+            }
+            else
+            {
+                MessageBox.Show("Discord is not running.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+            }
+
 
         }
 
@@ -260,10 +286,16 @@ namespace DiscordRpcDemo
 
         private bool isButtonUpdateClicked = false;
 
+
+
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
             this.UpdatePresence();
+  
+
         }
+
+
 
         /// <summary>
         /// Called by clicking on the "RunCallbacks" button. 

@@ -60,10 +60,35 @@
                         </Grid.ColumnDefinitions>
                         <Button x:Name= "Button_Initialize_Discord"  Content="Initialize" Margin="0,10,18,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="2"/>
                         <TextBox x:Name="TextBox_clientId" Height="42" Margin="10,10,159,0" TextWrapping="Wrap" Text="Client ID" VerticalAlignment="Top" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" Grid.ColumnSpan="3"/>
-                        <Button Content="Manage Discord API" Click="Button_open_discord_api" Margin="10,102,318,0" BorderBrush="{x:Null}" Background="{x:Null}" Height="20" VerticalAlignment="Top" Foreground="White" BorderThickness="0" Grid.ColumnSpan="3"/>
-                        <TextBlock Margin="5,0,5,8" TextWrapping="Wrap" Text="This is a Discord Rich Presence app. Modified by LoveArrowShooto. Forked from GitHub https://github.com/nostrenz/cshap-discord-rpc-demo" VerticalAlignment="Bottom" Foreground="#FF8B8B8B" Grid.ColumnSpan="3" Grid.Row="1"/>
+
+                        <Button 
+                            Click="Button_open_discord_api" 
+                            Margin="10,77,312,0" 
+                            BorderBrush="{x:Null}" 
+                            Height="50" 
+                            VerticalAlignment="Top" 
+                            Foreground="White" 
+                            BorderThickness="0" 
+                            Grid.ColumnSpan="3">
+
+                            <Button.Background>
+                                <ImageBrush 
+                                    ImageSource="pack://application:,,,/Resources/icons8_manage.png" 
+                                    Stretch="Uniform"/>
+                            </Button.Background>
+
+                        </Button>
+
                         <TextBlock x:Name="textBlockVersionNumber" Grid.Column="2" HorizontalAlignment="Left" Margin="117,220,0,24" TextWrapping="Wrap" Text="Version: 1.0.0
                                    " Foreground="#FF72767D" TextAlignment="Center" Width="96"/>
+                        <TextBlock 
+                            HorizontalAlignment="Center"
+                            Margin="8,142,277,102" 
+                            TextWrapping="Wrap" 
+                            Text="Manage Discord API
+                            " 
+                            VerticalAlignment="Center" 
+                            Foreground="White" Width="140" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center"/>
 
                     </Grid>
 
