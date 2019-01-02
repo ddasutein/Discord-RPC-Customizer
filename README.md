@@ -39,3 +39,5 @@ Icon made by [freepik](https://www.flaticon.com/authors/freepik) from www.flatic
 
 * Official documentation: https://discordapp.com/developers/docs/rich-presence/how-to
 * Official SDK repository: https://github.com/discordapp/discord-rpc
+
+"Manage Icon" by [icon8.com](https://icons8.com/icon/set/manage)
