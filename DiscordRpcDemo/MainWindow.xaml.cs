@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Windows.Threading;
 using NativeHelpers;
 using System.Threading.Tasks;
+using DiscordRPC;
 
 namespace DiscordRpcDemo
 {
@@ -13,9 +14,11 @@ namespace DiscordRpcDemo
     /// </summary>
     public partial class MainWindow : PerMonitorDPIWindow 
     {
-        private DiscordRpc.RichPresence presence;
+        //private DiscordRpc.RichPresence presence;
 
-        DiscordRpc.EventHandlers handlers;
+        // DiscordRpc.EventHandlers handlers;
+
+        public DiscordRpcClient client;
 
         public bool isDiscordOpen(string name)
         {
@@ -57,8 +60,9 @@ namespace DiscordRpcDemo
                 this.TextBox_startTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow).ToString();
                 //this.TextBox_endTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow.AddHours(1)).ToString();
 
-                startApp();
-                beginUpdatePresence();
+                Initialize();
+                //startApp();
+               // beginUpdatePresence();
 
                 string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 textBlockVersionNumber.Text = "Version: " + version;
@@ -72,6 +76,44 @@ namespace DiscordRpcDemo
 
         }
 
+        void Initialize()
+        {
+            /*
+            Create a discord client
+            NOTE: 	If you are using Unity3D, you must use the full constructor and define
+                     the pipe connection as DiscordRPC.IO.NativeNamedPipeClient
+            */
+            client = new DiscordRpcClient("my_client_id");
+
+            //Subscribe to events
+            client.OnReady += (sender, e) =>
+            {
+                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+            };
+
+            client.OnPresenceUpdate += (sender, e) =>
+            {
+                Console.WriteLine("Received Update! {0}", e.Presence);
+            };
+
+            //Connect to the RPC
+            client.Initialize();
+
+            //Set the rich presence
+            //Call this as many times as you want and anywhere in your code.
+            client.SetPresence(new RichPresence()
+            {
+                Details = "Example Project",
+                State = "csharp example",
+                Assets = new Assets()
+                {
+                    LargeImageKey = "image_large",
+                    LargeImageText = "Lachee's Discord IPC Library",
+                    SmallImageKey = "image_small"
+                }
+            });
+        }
+
         /*
 		=============================================
 		Private
@@ -82,7 +124,7 @@ namespace DiscordRpcDemo
         /// Initialize the RPC.
         /// </summary>
         /// <param name="clientId"></param>
-        private void Initialize(string clientId)
+        /* private void Initialize(string clientId)
         {
             handlers = new DiscordRpc.EventHandlers();
 
@@ -94,14 +136,14 @@ namespace DiscordRpcDemo
 
             this.SetStatusBarMessage("Initialized.");
 
-        }
+        } */
 
         /// <summary>
         /// Update the presence status from what's in the UI fields.
         /// </summary>
 
 
-        public void beginUpdatePresence()
+        /* public void beginUpdatePresence()
         {
 
             string t_1 = this.TextBox_details.Text;
@@ -128,10 +170,12 @@ namespace DiscordRpcDemo
             DiscordRpc.UpdatePresence(ref presence);
 
             this.SetStatusBarMessage("Presence updated.");
-        }
+        } **/
+
+
         private void UpdatePresence()
         {
-            beginUpdatePresence();
+            //beginUpdatePresence();
 
         }
 
@@ -140,7 +184,7 @@ namespace DiscordRpcDemo
         /// </summary>
         private void RunCallbacks()
         {
-            DiscordRpc.RunCallbacks();
+            //DiscordRpc.RunCallbacks();
 
             this.SetStatusBarMessage("Callbacks run.");
         }
@@ -150,7 +194,7 @@ namespace DiscordRpcDemo
         /// </summary>
         private void Shutdown()
         {
-            DiscordRpc.Shutdown();
+            //DiscordRpc.Shutdown();
 
             this.SetStatusBarMessage("Offline.");
         }
@@ -227,7 +271,7 @@ namespace DiscordRpcDemo
                 return;
             }
 
-            this.Initialize(clientID);
+            //this.Initialize(clientID);
 
             this.Button_Initialize_Discord.IsEnabled = false;
             this.Button_RunCallbacks.IsEnabled = true;
@@ -240,8 +284,9 @@ namespace DiscordRpcDemo
 
         private void Button_Initialize_Click(object sender, RoutedEventArgs e)
         {
-            startApp();
-            beginUpdatePresence();
+            Initialize();
+            //startApp();
+            //beginUpdatePresence();
         }
 
         private void saveAllSettings()

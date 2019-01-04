@@ -1,0 +1,20 @@
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\bin\Debug\DiscordRPC.xml
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\bin\Debug\DiscordRPC.dll
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\bin\Debug\DiscordRPC.pdb
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\obj\Debug\DiscordRPC.Core.csprojAssemblyReference.cache
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\obj\Debug\DiscordRPC.Core.csproj.CoreCompileInputs.cache
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\obj\Debug\DiscordRPC.Core.csproj.CopyComplete
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\obj\Debug\DiscordRPC.dll
+C:\Users\Dasutein\Source\Repos\discord-rpc-csharp\Discord RPC\obj\Debug\DiscordRPC.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\bin\Debug\DiscordRPC.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\bin\Debug\DiscordRPC.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\bin\Debug\DiscordRPC.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\bin\Debug\Newtonsoft.Json.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\bin\Debug\Newtonsoft.Json.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\Debug\DiscordRPC.Core.csprojAssemblyReference.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\Debug\DiscordRPC.Core.csproj.CoreCompileInputs.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\Debug\DiscordRPC.Core.csproj.CopyComplete
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\Debug\DiscordRPC.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\Debug\DiscordRPC.pdb

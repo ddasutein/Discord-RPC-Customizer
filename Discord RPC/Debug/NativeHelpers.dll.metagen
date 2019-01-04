@@ -1,0 +1,40 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly NativeHelpers, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Assembly PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Class NativeHelpers.PerMonitorDPIHelper: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    SetPerMonitorDPIAware(): PrivateScope, Public, Static, HideBySig
+    GetPerMonitorDPIAware(): PrivateScope, Public, Static, HideBySig
+    GetDpiForWindow(IntPtr): PrivateScope, Public, Static, HideBySig
+    GetSystemDPI(): PrivateScope, Public, Static, HideBySig
+Class NativeHelpers.PerMonitorDPIWindow: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Window
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Double ScaleFactor 'get ' : 
+    Double WpfDPI 'get set' : 
+    Double CurrentDPI 'get ' : 
+  Events:
+    System.EventHandler DPIChanged: SpecialName
+  Methods:
+    add_DPIChanged(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    remove_DPIChanged(EventHandler): PrivateScope, Public, HideBySig, SpecialName
+    GetCurrentDpiConfiguration(): PrivateScope, Public, HideBySig
+    get_CurrentDPI(): PrivateScope, Public, HideBySig, SpecialName
+    get_WpfDPI(): PrivateScope, Public, HideBySig, SpecialName
+    set_WpfDPI(Double): PrivateScope, Public, HideBySig, SpecialName
+    get_ScaleFactor(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

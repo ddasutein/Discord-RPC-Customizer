@@ -7,7 +7,7 @@ namespace DiscordRpcDemo
 	/// </summary>
 	public partial class App : Application
 	{
-		// 32bit Discord RPC DLL
+		/** // 32bit Discord RPC DLL
 		public const string DLL = "discord-rpc-w32";
 
 		public App() : base()
@@ -21,6 +21,6 @@ namespace DiscordRpcDemo
 
 				this.Shutdown();
 			}
-		}
+		} **/
 	}
 }
