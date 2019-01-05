@@ -1,0 +1,17 @@
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Debug\WpfApplicationDPI.exe.config
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Debug\WpfApplicationDPI.exe
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Debug\WpfApplicationDPI.pdb
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Debug\NativeHelpers.dll
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Debug\NativeHelpers.pdb
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplication.csprojAssemblyReference.cache
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\PerMonitorAwareWPFWindow.baml
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\PerMonitorAwareWPFWindow.g.cs
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\App.g.cs
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplicationDPI_MarkupCompile.cache
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplicationDPI.g.resources
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplicationDPI.Properties.Resources.resources
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplication.csproj.GenerateResource.cache
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplication.csproj.CoreCompileInputs.cache
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplication.csproj.CopyComplete
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplicationDPI.exe
+F:\Software Development Projects\C# and .NET\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Debug\WpfApplicationDPI.pdb
