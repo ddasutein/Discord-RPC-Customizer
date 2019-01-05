@@ -49,7 +49,7 @@ namespace DiscordRpcDemo
             {
 
                 InitializeComponent();
-                StartDiscordPresence();
+                //StartDiscordPresence();
                 LoadUserSettings();
 
                 string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -416,20 +416,21 @@ namespace DiscordRpcDemo
         private void Button_reset_app(object sender, RoutedEventArgs e)
         {
 
-
             if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
+                // Delete 'Dasutein' folder in Local directory
+                string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string FolderToDelete = Path.Combine(AppDataFolder, "Dasutein");
 
-                string subPath = @"C:/Users/%username%/AppData/Local/Dasutein";
-
-                DirectoryInfo directoryInfo = new DirectoryInfo(subPath);
-
-                foreach (DirectoryInfo folder in directoryInfo.GetDirectories())
+                try
                 {
-                    folder.Delete(true);
+                    Directory.Delete(FolderToDelete, true);
+                    this.Close();
                 }
-
-                this.Close();
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                }
 
             }
             else
