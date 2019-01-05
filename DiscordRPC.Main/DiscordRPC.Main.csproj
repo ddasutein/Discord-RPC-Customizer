@@ -103,7 +103,7 @@
       <Project>{938e65d0-ec9c-4181-87ca-a43d4747610d}</Project>
       <Name>NativeHelpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Discord RPC\DiscordRPC.Core.csproj">
+    <ProjectReference Include="..\DiscordRPC.Core\DiscordRPC.Core.csproj">
       <Project>{819d20d6-8d88-45c1-a4d2-aa21f10abd19}</Project>
       <Name>DiscordRPC.Core</Name>
     </ProjectReference>

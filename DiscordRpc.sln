@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRPC.Legacy", "DiscordRpcDemo\DiscordRPC.Legacy.csproj", "{DC3F9F28-1D31-4389-A581-95A9A724170D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRPC.Legacy", "DiscordRpc.Legacy\DiscordRPC.Legacy.csproj", "{DC3F9F28-1D31-4389-A581-95A9A724170D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication", "..\PerMonitorAwareWPFApplication\WpfApplication\WpfApplication.csproj", "{700F2674-4EA4-4CDB-B2CA-2FC2BD138E2B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NativeHelpers", "..\PerMonitorAwareWPFApplication\NativeHelpers\NativeHelpers.vcxproj", "{938E65D0-EC9C-4181-87CA-A43D4747610D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRPC.Core", "Discord RPC\DiscordRPC.Core.csproj", "{819D20D6-8D88-45C1-A4D2-AA21F10ABD19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRPC.Core", "DiscordRPC.Core\DiscordRPC.Core.csproj", "{819D20D6-8D88-45C1-A4D2-AA21F10ABD19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRPC.Main", "DiscordRPC.Main\DiscordRPC.Main.csproj", "{8DA349C2-410F-4943-B1FD-6A44207CBCA2}"
 EndProject
