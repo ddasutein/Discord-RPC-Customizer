@@ -1,8 +1,3 @@
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main.csprojAssemblyReference.cache
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\MainWindow.g.cs
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\App.g.cs
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main_MarkupCompile.cache
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main_MarkupCompile.lref
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.Main.exe.config
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.Main.exe
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.Main.pdb
@@ -13,6 +8,11 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.pdb
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.xml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\Newtonsoft.Json.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main.csprojAssemblyReference.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\MainWindow.g.cs
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\App.g.cs
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main_MarkupCompile.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main_MarkupCompile.lref
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\MainWindow.baml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main.g.resources
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main.Properties.Resources.resources

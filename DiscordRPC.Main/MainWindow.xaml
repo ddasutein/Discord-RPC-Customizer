@@ -70,26 +70,41 @@
                             Foreground="White" 
                             BorderThickness="0" 
                             Grid.ColumnSpan="3">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/icons8_manage.png" Stretch="Uniform"/>
+                            </Button.Background>
 
                         </Button>
 
-                        <TextBlock x:Name="textBlockVersionNumber" Grid.Column="2" HorizontalAlignment="Left" Margin="117,220,0,24" TextWrapping="Wrap" Text="Version: 1.0.0
-                                   " Foreground="#FF72767D" TextAlignment="Center" Width="96"/>
+                        <TextBlock x:Name="textBlockVersionNumber" HorizontalAlignment="Left" Margin="25,10,0,19" TextWrapping="Wrap" Text="Version: 1.0.0
+                                   " Foreground="#FF72767D" TextAlignment="Center" Width="96" Grid.Row="1" Grid.ColumnSpan="3"/>
                         <TextBlock 
                             HorizontalAlignment="Center"
-                            Margin="8,142,277,102" 
+                            Margin="25,142,288,102" 
                             TextWrapping="Wrap" 
                             Text="Manage Discord API
                             " 
                             VerticalAlignment="Center" 
-                            Foreground="White" Width="140" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center"/>
+                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="3" TextAlignment="Center"/>
                         <Button 
-                            Content="Reset app" 
+                            BorderBrush="{x:Null}"
+                            Content="" 
                             Click="Button_reset_app"
                             Grid.Column="2" 
                             HorizontalAlignment="Left" 
-                            Margin="224,177,0,0"
-                            VerticalAlignment="Top" Width="75"/>
+                            Margin="83,75,0,0"
+                            VerticalAlignment="Top" Width="97" Height="55">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/icons8_reset.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock 
+                            HorizontalAlignment="Center"
+                            Margin="63,142,183,102" 
+                            TextWrapping="Wrap" 
+                            Text="Reset application" 
+                            VerticalAlignment="Center" 
+                            Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="2"/>
 
                     </Grid>
 

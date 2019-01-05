@@ -43,9 +43,13 @@ namespace DiscordRpcDemo
                 Properties.Settings.Default.Save();
             }
 
-            // Check if Discord process is opened or closed
+            // Check if Discord (stable release) process is opened or closed
             Process[] getDiscordProcess = Process.GetProcessesByName("Discord");
-            if (getDiscordProcess.Length > 0)
+
+            // Check if Discord (public test build) process is opened or closed
+            Process[] getDiscordPTBProcess = Process.GetProcessesByName("DiscordPTB");
+
+            if (getDiscordProcess.Length > 0 || getDiscordPTBProcess.Length > 0)
             {
 
                 InitializeComponent();
@@ -100,6 +104,7 @@ namespace DiscordRpcDemo
             {
                 Details = Properties.Settings.Default.discord_details_status,
                 State = Properties.Settings.Default.discord_status_status,
+                Timestamps = Timestamps.Now,
                 
                 Assets = new Assets()
                 {
@@ -127,6 +132,7 @@ namespace DiscordRpcDemo
 
             if (TextBox_clientId.Text.Length == 0)
             {
+                MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 this.Button_Initialize_Discord.IsEnabled = true;
             }
 
@@ -332,7 +338,17 @@ namespace DiscordRpcDemo
 
         private void Button_Initialize_Click(object sender, RoutedEventArgs e)
         {
-            StartDiscordPresence();
+
+            if (TextBox_clientId.Text.Length == 0)
+            {
+                MessageBox.Show("Client ID is empty. Please enter your 'Client ID'.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            else
+            {
+                StartDiscordPresence();
+            }
+
 
         }
 

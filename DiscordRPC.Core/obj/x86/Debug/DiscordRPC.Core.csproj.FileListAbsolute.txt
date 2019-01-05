@@ -7,3 +7,12 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\x86\Debug\DiscordRPC.Core.csproj.CopyComplete
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\x86\Debug\DiscordRPC.dll
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Discord RPC\obj\x86\Debug\DiscordRPC.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\x86\Debug\DiscordRPC.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\x86\Debug\DiscordRPC.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\x86\Debug\DiscordRPC.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\x86\Debug\Newtonsoft.Json.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\x86\Debug\Newtonsoft.Json.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\x86\Debug\DiscordRPC.Core.csproj.CoreCompileInputs.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\x86\Debug\DiscordRPC.Core.csproj.CopyComplete
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\x86\Debug\DiscordRPC.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\x86\Debug\DiscordRPC.pdb

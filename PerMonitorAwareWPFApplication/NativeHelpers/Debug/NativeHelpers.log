@@ -3,7 +3,6 @@
   PerMonitorDPIHelpers.cpp
   PerMonitorDPIWindow.cpp
   Generating Code...
-  .NETFramework,Version=v4.5.AssemblyAttributes.cpp
   AssemblyInfo.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   NativeHelpers.vcxproj -> F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Debug\NativeHelpers.dll
