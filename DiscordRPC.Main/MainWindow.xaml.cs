@@ -6,6 +6,7 @@ using NativeHelpers;
 using System.Threading.Tasks;
 using DiscordRPC;
 using System.IO;
+using System.Reflection;
 
 namespace DiscordRpcDemo
 {
@@ -76,7 +77,7 @@ namespace DiscordRpcDemo
                 }
                 else
                 {
-                    MessageBox.Show("Discord is not running.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
                     Application.Current.Shutdown();
                 }
 
@@ -152,7 +153,7 @@ namespace DiscordRpcDemo
 
             if (TextBox_clientId.Text.Length == 0)
             {
-                MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 this.Button_Initialize_Discord.IsEnabled = true;
             }
 
@@ -261,7 +262,7 @@ namespace DiscordRpcDemo
         {
             //DiscordRpc.Shutdown();
 
-            if (MessageBox.Show("Do you want to shutdown Discord RPC?", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Do you want to shutdown Discord RPC?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 client.Dispose();
                 this.SetStatusBarMessage("Discord RPC is offline.");
@@ -361,7 +362,7 @@ namespace DiscordRpcDemo
 
             if (TextBox_clientId.Text.Length == 0)
             {
-                MessageBox.Show("Client ID is empty. Please enter your 'Client ID'.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Client ID is empty. Please enter your 'Client ID'.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             else
@@ -452,7 +453,7 @@ namespace DiscordRpcDemo
         private void Button_reset_app(object sender, RoutedEventArgs e)
         {
 
-            if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 // Delete 'Dasutein' folder in Local directory
                 string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

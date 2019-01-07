@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +27,7 @@ namespace DiscordRPC.Main
 
             if (!createdNew)
             {
-                MessageBox.Show("Application is already running", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name.ToString(), MessageBoxButton.OK, MessageBoxImage.Hand);
+                MessageBox.Show("Application is already running", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Hand);
                 Application.Current.Shutdown();
             }
             else

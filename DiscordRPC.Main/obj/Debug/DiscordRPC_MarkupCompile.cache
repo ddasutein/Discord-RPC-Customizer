@@ -1,20 +1,20 @@
-﻿DiscordRPC.Main
+﻿DiscordRPC
 
 
 winexe
 C#
 .cs
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\
 DiscordRPC.Main
 none
 false
-TRACE
+DEBUG;TRACE
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\App.xaml
 11151548125
 
 5-2017746502
-16-209780028
+16624453619
 MainWindow.xaml;
 
-False
+True
 

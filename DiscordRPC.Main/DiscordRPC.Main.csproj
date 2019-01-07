@@ -7,7 +7,7 @@
     <ProjectGuid>{8DA349C2-410F-4943-B1FD-6A44207CBCA2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DiscordRPC.Main</RootNamespace>
-    <AssemblyName>DiscordRPC.Main</AssemblyName>
+    <AssemblyName>DiscordRPC</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
