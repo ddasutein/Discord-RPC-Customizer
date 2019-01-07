@@ -3,5 +3,5 @@
   PerMonitorDPIHelpers.cpp
   PerMonitorDPIWindow.cpp
   Generating Code...
-  .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
   NativeHelpers.vcxproj -> F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\Release\NativeHelpers.dll

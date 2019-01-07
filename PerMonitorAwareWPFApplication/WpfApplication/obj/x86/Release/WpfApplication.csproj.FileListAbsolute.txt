@@ -1,0 +1,17 @@
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Release\WpfApplicationDPI.exe.config
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Release\WpfApplicationDPI.exe
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Release\WpfApplicationDPI.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Release\NativeHelpers.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\bin\x86\Release\NativeHelpers.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplication.csprojAssemblyReference.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\PerMonitorAwareWPFWindow.baml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\PerMonitorAwareWPFWindow.g.cs
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\App.g.cs
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplicationDPI_MarkupCompile.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplicationDPI.g.resources
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplicationDPI.Properties.Resources.resources
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplication.csproj.GenerateResource.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplication.csproj.CoreCompileInputs.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplication.csproj.CopyComplete
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplicationDPI.exe
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\x86\Release\WpfApplicationDPI.pdb

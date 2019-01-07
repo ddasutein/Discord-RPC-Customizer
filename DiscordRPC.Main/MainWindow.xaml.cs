@@ -35,6 +35,9 @@ namespace DiscordRpcDemo
 
         public MainWindow()
         {
+
+            InitializeComponent();
+
             // If application version is updated, move user settings to new version
             if (Properties.Settings.Default.UpgradeRequired)
             {
@@ -44,27 +47,44 @@ namespace DiscordRpcDemo
             }
 
             // Check if Discord (stable release) process is opened or closed
-            Process[] getDiscordProcess = Process.GetProcessesByName("Discord");
+            Process[] getDiscordStableProcess = Process.GetProcessesByName("Discord");
 
             // Check if Discord (public test build) process is opened or closed
             Process[] getDiscordPTBProcess = Process.GetProcessesByName("DiscordPTB");
 
-            if (getDiscordProcess.Length > 0 || getDiscordPTBProcess.Length > 0)
-            {
+            try {
 
-                InitializeComponent();
-                //StartDiscordPresence();
-                LoadUserSettings();
+                if (getDiscordStableProcess.Length > 0 || getDiscordPTBProcess.Length > 0)
+                {
 
-                string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                textBlockVersionNumber.Text = "Version: " + version;
+                    if (getDiscordPTBProcess.Length > 0)
+                    {
+                        textBlockDiscordBuildType.Text = "Public Test Beta (PTB)";
+
+                    }
+                    else
+                    {
+                        textBlockDiscordBuildType.Text = "Stable";
+                    }
+
+                    //StartDiscordPresence();
+                    LoadUserSettings();
+
+                    string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                    textBlockVersionNumber.Text = "Version: " + version;
+
+                }
+                else
+                {
+                    MessageBox.Show("Discord is not running.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Application.Current.Shutdown();
+                }
+
             }
-            else
+            catch (Exception exception)
             {
-                MessageBox.Show("Discord is not running.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, MessageBoxButton.OK, MessageBoxImage.Error);
-                Application.Current.Shutdown();
+                MessageBox.Show(exception.ToString());
             }
-
 
         }
 

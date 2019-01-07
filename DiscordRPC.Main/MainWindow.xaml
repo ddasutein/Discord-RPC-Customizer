@@ -76,8 +76,8 @@
 
                         </Button>
 
-                        <TextBlock x:Name="textBlockVersionNumber" HorizontalAlignment="Left" Margin="25,10,0,19" TextWrapping="Wrap" Text="Version: 1.0.0
-                                   " Foreground="#FF72767D" TextAlignment="Center" Width="96" Grid.Row="1" Grid.ColumnSpan="3"/>
+                        <TextBlock x:Name="textBlockVersionNumber" HorizontalAlignment="Left" Margin="1,0,0,29" TextWrapping="Wrap" Text="Version: 1.0.0
+                                   " Foreground="#FF72767D" Width="96" Grid.ColumnSpan="3" Grid.Row="1"/>
                         <TextBlock 
                             HorizontalAlignment="Center"
                             Margin="25,142,288,102" 
@@ -105,6 +105,10 @@
                             Text="Reset application" 
                             VerticalAlignment="Center" 
                             Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="2"/>
+                        <TextBlock Foreground="#FF72767D" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="2,19,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Discord build channel:" VerticalAlignment="Top" TextAlignment="Center"/>
+                        <TextBlock 
+                            x:Name="textBlockDiscordBuildType"
+                            Foreground="#FF72767D" HorizontalAlignment="Left" Margin="56,19,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Stable/PTB" VerticalAlignment="Top" Grid.Column="2"/>
 
                     </Grid>
 

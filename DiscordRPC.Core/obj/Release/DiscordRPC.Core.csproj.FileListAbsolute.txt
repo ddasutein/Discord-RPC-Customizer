@@ -1,0 +1,9 @@
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\Release\DiscordRPC.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\Release\DiscordRPC.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\Release\DiscordRPC.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\Release\Newtonsoft.Json.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\bin\Release\Newtonsoft.Json.xml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.Core.csproj.CoreCompileInputs.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.Core.csproj.CopyComplete
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.dll
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.pdb

@@ -145,12 +145,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\discord.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\discord_Windows_256x256.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\icons8_manage.png" />
   </ItemGroup>
   <ItemGroup>
