@@ -4,11 +4,10 @@ using System.Diagnostics;
 using System.Windows.Threading;
 using NativeHelpers;
 using System.Threading.Tasks;
-using DiscordRPC;
 using System.IO;
 using System.Reflection;
 
-namespace DiscordRpcDemo
+namespace DiscordRPC.Main
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -68,7 +67,7 @@ namespace DiscordRpcDemo
                         textBlockDiscordBuildType.Text = "Stable";
                     }
 
-                    //StartDiscordPresence();
+                    StartDiscordPresence();
                     LoadUserSettings();
 
                     string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();

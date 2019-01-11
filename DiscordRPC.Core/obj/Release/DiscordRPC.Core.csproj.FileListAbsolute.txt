@@ -7,3 +7,4 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.Core.csproj.CopyComplete
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.dll
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Core\obj\Release\DiscordRPC.Core.csprojAssemblyReference.cache
