@@ -72,7 +72,7 @@ namespace DiscordRpcDemo
                     LoadUserSettings();
 
                     string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                    textBlockVersionNumber.Text = "Version: " + version;
+                    textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
 
                 }
                 else
