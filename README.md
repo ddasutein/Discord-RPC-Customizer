@@ -51,7 +51,7 @@ Also, hitting **RunCallbacks** should tells you about errors or disconnections i
 
 ## Known issues
 
-* Does not run on any OS older than the Windows 10 (1803) April 2018 Update. Currently working on a solution to enable backwards compatibility for older versions, including Windows 8.1 and 7. 
+* If you experience the `System.Windows.Markup.XamlParseException` on Windows 8.1 or Windows 10 version 1803 or later, kindly install the [Microsoft Visual C++ Redistributable for Visual Studio 2017 (x86 and x64).](https://visualstudio.microsoft.com/downloads/). I am still currently investigating the issue on Windows 7.
 
 ## Credits
 
