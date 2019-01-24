@@ -13,6 +13,8 @@ namespace DiscordRPC.Main
     /// Interaction logic for MainWindow.xaml
     /// https://github.com/discordapp/discord-rpc/blob/master/examples/button-clicker/Assets/DiscordController.cs
     /// </summary>
+    /// 
+
     public partial class MainWindow : PerMonitorDPIWindow 
     {
         //private DiscordRpc.RichPresence presence;
@@ -20,6 +22,8 @@ namespace DiscordRPC.Main
         // DiscordRpc.EventHandlers handlers;
 
         public DiscordRpcClient client;
+
+        GetDiscordProcess getDiscordProcess = new GetDiscordProcess();
 
         public bool isDiscordOpen(string name)
         {
@@ -46,55 +50,19 @@ namespace DiscordRPC.Main
                 Properties.Settings.Default.Save();
             }
 
-            // Check if Discord (stable release) process is opened or closed
-            Process[] getDiscordStableProcess = Process.GetProcessesByName("Discord");
+            // Check if user is running Stable or PTB channel of Discord app
+            getDiscordProcess.DiscordProcessName();
+            textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
 
-            // Check if Discord (public test build) process is opened or closed
-            Process[] getDiscordPTBProcess = Process.GetProcessesByName("DiscordPTB");
+            LoadUserSettings();
 
-            try {
-
-                if (getDiscordStableProcess.Length > 0 || getDiscordPTBProcess.Length > 0)
-                {
-
-                    if (getDiscordPTBProcess.Length > 0)
-                    {
-                        textBlockDiscordBuildType.Text = "Public Test Beta (PTB)";
-
-                    }
-                    else
-                    {
-                        textBlockDiscordBuildType.Text = "Stable";
-                    }
-
-                    StartDiscordPresence();
-                    LoadUserSettings();
-
-                    string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                    textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
-
-                }
-                else
-                {
-                    MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
-                    Application.Current.Shutdown();
-                }
-
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.ToString());
-            }
+            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
 
         }
 
         void StartDiscordPresence()
         {
-            /*
-            Create a discord client
-            NOTE: 	If you are using Unity3D, you must use the full constructor and define
-                     the pipe connection as DiscordRPC.IO.NativeNamedPipeClient
-            */
 
             client = new DiscordRpcClient(Properties.Settings.Default.discord_client_id);
 
@@ -124,7 +92,6 @@ namespace DiscordRPC.Main
             {
                 Details = Properties.Settings.Default.discord_details_status,
                 State = Properties.Settings.Default.discord_status_status,
-                Timestamps = Timestamps.Now,
                 
                 Assets = new Assets()
                 {
@@ -154,6 +121,10 @@ namespace DiscordRPC.Main
             {
                 MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 this.Button_Initialize_Discord.IsEnabled = true;
+            }
+            else
+            {
+                StartDiscordPresence();
             }
 
         }
@@ -187,21 +158,45 @@ namespace DiscordRPC.Main
         /// </summary>
         /// 
 
+        private bool isTimeStampEnabled = false;
+
         private void updatePresence()
         {
 
-            client.SetPresence(new RichPresence()
+            if (isTimeStampEnabled == true)
             {
-                Details = this.TextBox_details.Text,
-                State = this.TextBox_state.Text,
-                Assets = new Assets()
+                client.SetPresence(new RichPresence()
                 {
-                    LargeImageKey = this.TextBox_largeImageKey.Text,
-                    LargeImageText = this.TextBox_largeImageText.Text,
-                    SmallImageKey = this.TextBox_smallImageKey.Text,
-                    SmallImageText = this.TextBox_smallImageText.Text,
-                }
-            });
+                    Details = this.TextBox_details.Text,
+                    State = this.TextBox_state.Text,
+                    Timestamps = Timestamps.Now,
+
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = this.TextBox_largeImageKey.Text,
+                        LargeImageText = this.TextBox_largeImageText.Text,
+                        SmallImageKey = this.TextBox_smallImageKey.Text,
+                        SmallImageText = this.TextBox_smallImageText.Text,
+                    }
+                });
+            }
+            else if (isTimeStampEnabled == false)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = this.TextBox_details.Text,
+                    State = this.TextBox_state.Text,
+                    Timestamps = null,
+
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = this.TextBox_largeImageKey.Text,
+                        LargeImageText = this.TextBox_largeImageText.Text,
+                        SmallImageKey = this.TextBox_smallImageKey.Text,
+                        SmallImageText = this.TextBox_smallImageText.Text,
+                    }
+                });
+            }
 
             saveAllSettings();
 
@@ -454,20 +449,8 @@ namespace DiscordRPC.Main
 
             if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                // Delete 'Dasutein' folder in Local directory
-                string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                string FolderToDelete = Path.Combine(AppDataFolder, "Dasutein");
-
-                try
-                {
-                    Directory.Delete(FolderToDelete, true);
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.ToString());
-                }
-
+                ResetApplication resetApplication = new ResetApplication();
+                resetApplication.deleteDirectory();
             }
             else
             {
@@ -477,6 +460,15 @@ namespace DiscordRPC.Main
 
         }
 
+        private void checkBoxTimeStamp_Checked(object sender, RoutedEventArgs e)
+        {
+            isTimeStampEnabled = true;
+        }
+
+        private void checkBoxTimeStamp_Unchecked(object sender, RoutedEventArgs e)
+        {
+            isTimeStampEnabled = false;
+        }
     }
 
 }
