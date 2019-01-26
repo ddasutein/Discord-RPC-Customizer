@@ -35,12 +35,12 @@ namespace DiscordRPC.Main
 
                     if (DiscordPTBProcess.Length > 0)
                     {
-                        Debug.WriteLine("User is running Discord STABLE build");
+                        Debug.WriteLine("User is running Discord PTB build");
                         discordBuildInfo = "Public Test Beta (PTB)";
                     }
                     else
                     {
-                        Debug.WriteLine("User is running Discord PTB build");
+                        Debug.WriteLine("User is running Discord STABLE build");
                         discordBuildInfo = "Stable";
                     }
 

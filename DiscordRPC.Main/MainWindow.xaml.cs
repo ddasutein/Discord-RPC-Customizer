@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Diagnostics;
-using System.Windows.Threading;
 using NativeHelpers;
-using System.Threading.Tasks;
-using System.IO;
 using System.Reflection;
+using System.Threading;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace DiscordRPC.Main
 {
@@ -17,13 +18,54 @@ namespace DiscordRPC.Main
 
     public partial class MainWindow : PerMonitorDPIWindow 
     {
-        //private DiscordRpc.RichPresence presence;
 
-        // DiscordRpc.EventHandlers handlers;
+        // Debug only
+        private string TAG = "MainWindow.xaml: ";
 
+        // Global Variables
+
+
+        // DiscordRPC.Core Library
         public DiscordRpcClient client;
 
+        // Classes
         GetDiscordProcess getDiscordProcess = new GetDiscordProcess();
+        GetSpotifyProcess getSpotifyProcess = new GetSpotifyProcess();
+        JumpListManager jumpListManager = new JumpListManager();
+
+        // Threads
+        Thread getSpotifyThread;
+
+        public MainWindow()
+        {
+
+            InitializeComponent();
+            LoadUserSettings();
+            jumpListManager.LoadJumpLists();
+
+            // Start threads
+            getSpotifyThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
+            getSpotifyThread.IsBackground = true;     
+            getSpotifyThread.Start();
+
+            // Run process check
+            getDiscordProcess.DiscordProcessName();
+            textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
+
+            // Show application version in Settings
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
+
+            if (getSpotifyProcess.IsSpotifyOpened == true)
+            {
+                MessageBox.Show("DiscordRPC has detected Spotify is running. Your rich presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                StartDiscordPresence();
+            }
+
+        }
 
         public bool isDiscordOpen(string name)
         {
@@ -37,33 +79,10 @@ namespace DiscordRPC.Main
             return false;
         }
 
-        public MainWindow()
+        private void StartDiscordPresence()
         {
 
-            InitializeComponent();
-
-            // If application version is updated, move user settings to new version
-            if (Properties.Settings.Default.UpgradeRequired)
-            {
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpgradeRequired = false;
-                Properties.Settings.Default.Save();
-            }
-
-            // Check if user is running Stable or PTB channel of Discord app
-            getDiscordProcess.DiscordProcessName();
-            textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
-
-            LoadUserSettings();
-
-            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
-
-        }
-
-        void StartDiscordPresence()
-        {
-
+            Debug.WriteLine(TAG + "Starting Discord Presence");
             client = new DiscordRpcClient(Properties.Settings.Default.discord_client_id);
 
             this.Button_Initialize_Discord.IsEnabled = false;
@@ -74,19 +93,22 @@ namespace DiscordRPC.Main
             //Subscribe to events
             client.OnReady += (sender, e) =>
             {
-                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+                Debug.WriteLine("Received Ready from user {0}", e.User.Username);
             };
 
             client.OnPresenceUpdate += (sender, e) =>
             {
-                Console.WriteLine("Received Update! {0}", e.Presence);
+                Debug.WriteLine("Received Update! {0}", e.Presence);
             };
 
             //Connect to the RPC
+            Debug.WriteLine(TAG + "Connecting to Discord Rich Presence");
             client.Initialize();
 
+            Debug.WriteLine(TAG + "Discord RPC is online");
             this.SetStatusBarMessage("Discord RPC is online");
 
+            Debug.WriteLine(TAG + "Setting client rich presence");
             //Set the rich presence
             client.SetPresence(new RichPresence()
             {
@@ -101,10 +123,22 @@ namespace DiscordRPC.Main
                     SmallImageText = Properties.Settings.Default.discord_smallImageText,
                 }
             });
+
+            statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
         }
 
-        void LoadUserSettings()
+        private void LoadUserSettings()
         {
+
+            // If application version is updated, move user settings to new version
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Debug.WriteLine(TAG + "User settings upgraded");
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
             this.TextBox_clientId.Text = Properties.Settings.Default.discord_client_id;
             this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;
             this.TextBox_details.Text = Properties.Settings.Default.discord_details_status;
@@ -129,30 +163,6 @@ namespace DiscordRPC.Main
 
         }
 
-        /*
-		=============================================
-		Private
-		=============================================
-		*/
-
-        /// <summary>
-        /// Initialize the RPC.
-        /// </summary>
-        /// <param name="clientId"></param>
-        /* private void Initialize(string clientId)
-        {
-            handlers = new DiscordRpc.EventHandlers();
-
-            handlers.readyCallback = ReadyCallback;
-            handlers.disconnectedCallback += DisconnectedCallback;
-            handlers.errorCallback += ErrorCallback;
-
-            DiscordRpc.Initialize(clientId, ref handlers, true, null);
-
-            this.SetStatusBarMessage("Initialized.");
-
-        } */
-
         /// <summary>
         /// Update the presence status from what's in the UI fields.
         /// </summary>
@@ -162,6 +172,20 @@ namespace DiscordRPC.Main
 
         private void updatePresence()
         {
+            // Debug only
+            Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
+            Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
+            Debug.WriteLine(TAG + "LargeImageKey: " + TextBox_largeImageKey.Text);
+            Debug.WriteLine(TAG + "LargeImageText: " + TextBox_largeImageText.Text);
+            Debug.WriteLine(TAG + "SmallImageKey: " + TextBox_smallImageKey.Text);
+            Debug.WriteLine(TAG + "SmallImageText: " + TextBox_smallImageText.Text);
+            Debug.WriteLine(TAG + "Updated presence and settings");
+
+            // Show MessageBox to notify user Spotify client is running
+            if (getSpotifyProcess.IsSpotifyOpened == true)
+            {
+                MessageBox.Show("DiscordRPC has detected Spotify is running. Your rich presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
 
             if (isTimeStampEnabled == true)
             {
@@ -179,6 +203,7 @@ namespace DiscordRPC.Main
                         SmallImageText = this.TextBox_smallImageText.Text,
                     }
                 });
+
             }
             else if (isTimeStampEnabled == false)
             {
@@ -202,43 +227,6 @@ namespace DiscordRPC.Main
 
         }
 
-
-        /* public void beginUpdatePresence()
-        {
-
-            string t_1 = this.TextBox_details.Text;
-
-            presence.details = this.TextBox_details.Text;
-            presence.state = this.TextBox_state.Text;
-
-            if (long.TryParse(this.TextBox_startTimestamp.Text, out long startTimestamp))
-            {
-                presence.startTimestamp = startTimestamp;
-            }
-
-            if (long.TryParse(this.TextBox_endTimestamp.Text, out long endTimestamp))
-            {
-                presence.endTimestamp = endTimestamp;
-            }
-
-            presence.largeImageKey = this.TextBox_largeImageKey.Text;
-            presence.largeImageText = this.TextBox_largeImageText.Text;
-            presence.smallImageKey = this.TextBox_smallImageKey.Text;
-            presence.smallImageText = this.TextBox_smallImageText.Text;
-            saveAllSettings();
-
-            DiscordRpc.UpdatePresence(ref presence);
-
-            this.SetStatusBarMessage("Presence updated.");
-        } **/
-
-
-        private void UpdatePresence()
-        {
-            //beginUpdatePresence();
-
-        }
-
         /// <summary>
         /// Calls ReadyCallback(), DisconnectedCallback(), ErrorCallback().
         /// </summary>
@@ -256,7 +244,7 @@ namespace DiscordRPC.Main
         {
             //DiscordRpc.Shutdown();
 
-            if (MessageBox.Show("Do you want to shutdown Discord RPC?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure you want to shutdown Discord RPC?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 client.Dispose();
                 this.SetStatusBarMessage("Discord RPC is offline.");
@@ -264,6 +252,7 @@ namespace DiscordRPC.Main
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
+                statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_offline.png", UriKind.Relative));
             }
             else
             {
@@ -408,8 +397,6 @@ namespace DiscordRPC.Main
         /// 
 
         private bool isButtonUpdateClicked = false;
-
-
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {

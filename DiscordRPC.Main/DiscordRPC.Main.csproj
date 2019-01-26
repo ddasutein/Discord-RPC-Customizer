@@ -96,6 +96,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GetDiscordProcess.cs" />
+    <Compile Include="GetSpotifyProcess.cs" />
+    <Compile Include="JumpListManager.cs" />
     <Compile Include="ResetApplication.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +169,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8_offline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8_online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\github_light_logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
