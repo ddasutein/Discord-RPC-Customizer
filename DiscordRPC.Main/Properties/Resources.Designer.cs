@@ -71,12 +71,32 @@ namespace DiscordRPC.Main.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap discord_logo {
+            get {
+                object obj = ResourceManager.GetObject("discord_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon github_light_logo {
             get {
                 object obj = ResourceManager.GetObject("github_light_logo", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_about {
+            get {
+                object obj = ResourceManager.GetObject("icons8_about", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

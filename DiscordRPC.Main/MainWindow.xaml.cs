@@ -16,7 +16,7 @@ namespace DiscordRPC.Main
     /// </summary>
     /// 
 
-    public partial class MainWindow : PerMonitorDPIWindow 
+    public partial class MainWindow : Window 
     {
 
         // Debug only
@@ -38,7 +38,7 @@ namespace DiscordRPC.Main
 
         public MainWindow()
         {
-
+            // Load most important stuff here
             InitializeComponent();
             LoadUserSettings();
             jumpListManager.LoadJumpLists();
@@ -48,21 +48,26 @@ namespace DiscordRPC.Main
             getSpotifyThread.IsBackground = true;     
             getSpotifyThread.Start();
 
-            // Run process check
+            // Check Discord process
             getDiscordProcess.DiscordProcessName();
-            textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
 
-            // Show application version in Settings
-            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
-
+            // Check Spotify process
             if (getSpotifyProcess.IsSpotifyOpened == true)
             {
                 MessageBox.Show("DiscordRPC has detected Spotify is running. Your rich presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            else
+
+            // Developer mode flag. Change in Properties > Settings.settings file
+            if (Properties.Settings.Default.developer_mode == false)
             {
+                Debug.WriteLine(TAG + "Developer mode is OFF");
                 StartDiscordPresence();
+                
+            }
+            else if (Properties.Settings.Default.developer_mode == true)
+            {
+                MessageBox.Show("Developer mode is active.");
+                Debug.WriteLine(TAG + "Developer mode is ON");
             }
 
         }
@@ -158,7 +163,7 @@ namespace DiscordRPC.Main
             }
             else
             {
-                StartDiscordPresence();
+                // Do nothing
             }
 
         }
@@ -172,6 +177,7 @@ namespace DiscordRPC.Main
 
         private void updatePresence()
         {
+
             // Debug only
             Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
             Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
@@ -368,6 +374,7 @@ namespace DiscordRPC.Main
             Properties.Settings.Default.discord_smallImageKey = this.TextBox_smallImageKey.Text;
             Properties.Settings.Default.discord_smallImageText = this.TextBox_smallImageText.Text;
             Properties.Settings.Default.Save();
+            Debug.WriteLine(TAG + "Settings saved");
         }
 
         private void Button_save_settings_Click(object sender, RoutedEventArgs e)
@@ -455,6 +462,12 @@ namespace DiscordRPC.Main
         private void checkBoxTimeStamp_Unchecked(object sender, RoutedEventArgs e)
         {
             isTimeStampEnabled = false;
+        }
+
+        private void buttonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
         }
     }
 

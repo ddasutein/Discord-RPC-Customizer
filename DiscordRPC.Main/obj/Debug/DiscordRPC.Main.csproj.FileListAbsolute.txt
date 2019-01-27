@@ -9,10 +9,12 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPCCore.xml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\Newtonsoft.Json.xml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main.csprojAssemblyReference.cache
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\AboutWindow.g.cs
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\MainWindow.g.cs
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\App.g.cs
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC_MarkupCompile.cache
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC_MarkupCompile.lref
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\AboutWindow.baml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\MainWindow.baml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.g.resources
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\DiscordRPC.Main.Properties.Resources.resources

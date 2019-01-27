@@ -12,6 +12,7 @@ namespace DiscordRPC.Main
 
         public void LoadJumpLists()
         {
+
             JumpTask GitHubJumpTask = new JumpTask
             {
                 Title = "Contribute on GitHub",

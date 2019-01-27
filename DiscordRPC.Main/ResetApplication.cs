@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows;
 
 namespace DiscordRPC.Main
@@ -29,6 +26,7 @@ namespace DiscordRPC.Main
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString(), Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title);
                 Debug.WriteLine(ex.ToString());
             }
 

@@ -166,5 +166,17 @@ namespace DiscordRPC.Main.Properties {
                 this["UpgradeRequired"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool developer_mode {
+            get {
+                return ((bool)(this["developer_mode"]));
+            }
+            set {
+                this["developer_mode"] = value;
+            }
+        }
     }
 }
