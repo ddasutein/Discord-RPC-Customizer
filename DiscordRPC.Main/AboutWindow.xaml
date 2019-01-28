@@ -14,16 +14,16 @@
             <ColumnDefinition Width="104*"/>
             <ColumnDefinition Width="140*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="buttonGitHub" Content="Contribute on GitHub" Margin="0,0,10,10" Grid.Column="4" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="125" Click="buttonGitHub_Click"/>
+        <Button x:Name="buttonGitHub" Content="Contribute on GitHub" Margin="0,0,10,10" Grid.Column="3" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133" Click="buttonGitHub_Click" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Grid.ColumnSpan="2"/>
         <Image HorizontalAlignment="Left" Height="50" Margin="5,15,0,0" VerticalAlignment="Top" Width="50" Source="Resources/discord_logo.png" Grid.Column="2" Stretch="UniformToFill"/>
         <Label Content="Discord Rich Presence Customizer for Windows" HorizontalAlignment="Left" Margin="70,15,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25" FontWeight="Bold"/>
         <Label Content="Developed by Dasutein" HorizontalAlignment="Left" Margin="70,35,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25"/>
-        <TextBlock x:Name="textBlockVersionNumber" HorizontalAlignment="Left" Margin="6,89,0,32" TextWrapping="Wrap" Text="Version: 1.0.0                                    " Foreground="#FF72767D" Width="96" Grid.Column="2"/>
-        <TextBlock Foreground="#FF72767D" HorizontalAlignment="Left" Margin="6,115,0,0" TextWrapping="Wrap" Text="Discord build channel:" VerticalAlignment="Top" TextAlignment="Center" Grid.Column="2"/>
+        <TextBlock Foreground="#FF72767D" HorizontalAlignment="Right" Margin="0,115,46,0" TextWrapping="Wrap" Text="Discord build channel:" VerticalAlignment="Top" TextAlignment="Center" Grid.Column="2"/>
         <TextBlock                           
             x:Name="textBlockDiscordBuildType"
             x:FieldModifier="public"
-            Foreground="#FF72767D" HorizontalAlignment="Left" Margin="129,115,0,0" TextWrapping="Wrap" Text="Stable/PTB" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
+            Foreground="#FF72767D" Margin="0,115,87,0" TextWrapping="Wrap" Text="Stable/PTB" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="57"/>
+        <TextBlock x:Name="textBlockVersionNumber" Margin="0,97,67,0" TextWrapping="Wrap" Text="Version: 1.0.0                                    " Foreground="#FF72767D" Grid.Column="2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Right" Width="96"/>
 
     </Grid>
 </Window>

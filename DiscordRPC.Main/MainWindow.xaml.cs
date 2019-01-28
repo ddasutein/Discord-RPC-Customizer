@@ -20,18 +20,19 @@ namespace DiscordRPC.Main
     {
 
         // Debug only
-        private string TAG = "MainWindow.xaml: ";
+        static string TAG = "MainWindow.xaml: ";
 
         // Global Variables
-
+        FirstRunWindow firstRunWindow = new FirstRunWindow();
 
         // DiscordRPC.Core Library
-        public DiscordRpcClient client;
+        static DiscordRpcClient client;
 
         // Classes
         GetDiscordProcess getDiscordProcess = new GetDiscordProcess();
         GetSpotifyProcess getSpotifyProcess = new GetSpotifyProcess();
         JumpListManager jumpListManager = new JumpListManager();
+        ResetApplication resetApplication = new ResetApplication();
 
         // Threads
         Thread getSpotifyThread;
@@ -40,6 +41,7 @@ namespace DiscordRPC.Main
         {
             // Load most important stuff here
             InitializeComponent();
+            this.Closed += ExitApplication;
             LoadUserSettings();
             jumpListManager.LoadJumpLists();
 
@@ -61,13 +63,24 @@ namespace DiscordRPC.Main
             if (Properties.Settings.Default.developer_mode == false)
             {
                 Debug.WriteLine(TAG + "Developer mode is OFF");
-                StartDiscordPresence();
-                
+
+                if (TextBox_clientId.Text.Length == 0)
+                {
+                    MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    this.Button_Initialize_Discord.IsEnabled = true;
+                    return;
+                }
+                else
+                {
+                    StartDiscordPresence();
+                }         
+
             }
             else if (Properties.Settings.Default.developer_mode == true)
             {
                 MessageBox.Show("Developer mode is active.");
                 Debug.WriteLine(TAG + "Developer mode is ON");
+                this.SetStatusBarMessage("Developer mode is active.");
             }
 
         }
@@ -82,6 +95,12 @@ namespace DiscordRPC.Main
                 }
             }
             return false;
+        }
+
+        void ExitApplication(object sender, EventArgs e)
+        {
+            client.Dispose();
+            Application.Current.Shutdown();
         }
 
         private void StartDiscordPresence()
@@ -156,16 +175,21 @@ namespace DiscordRPC.Main
             this.TextBox_startTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow).ToString();
             //this.TextBox_endTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow.AddHours(1)).ToString();
 
-            if (TextBox_clientId.Text.Length == 0)
-            {
-                MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                this.Button_Initialize_Discord.IsEnabled = true;
-            }
-            else
-            {
-                // Do nothing
-            }
+        }
 
+        private void saveAllSettings()
+        {
+            Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Text;
+            Properties.Settings.Default.discord_status_status = this.TextBox_state.Text;
+            Properties.Settings.Default.discord_details_status = this.TextBox_details.Text;
+            Properties.Settings.Default.discord_startTimeStamp = this.TextBox_startTimestamp.Text;
+            Properties.Settings.Default.discord_endTimeStamp = this.TextBox_endTimestamp.Text;
+            Properties.Settings.Default.discord_largeImageKey = this.TextBox_largeImageKey.Text;
+            Properties.Settings.Default.discord_largeImageText = this.TextBox_largeImageText.Text;
+            Properties.Settings.Default.discord_smallImageKey = this.TextBox_smallImageKey.Text;
+            Properties.Settings.Default.discord_smallImageText = this.TextBox_smallImageText.Text;
+            Properties.Settings.Default.Save();
+            Debug.WriteLine(TAG + "Settings saved");
         }
 
         /// <summary>
@@ -330,17 +354,7 @@ namespace DiscordRPC.Main
 
         public void startApp()
         {
-            clientID = this.TextBox_clientId.Text;
-            bool isNumeric = ulong.TryParse(clientID, out ulong n);
 
-            if (!isNumeric)
-            {
-                MessageBox.Show("The client ID is either empty or not a numeric value.", "Client ID Error");
-
-                return;
-            }
-
-            //this.Initialize(clientID);
 
             Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Text;
             Properties.Settings.Default.Save();
@@ -348,52 +362,24 @@ namespace DiscordRPC.Main
 
         private void Button_Initialize_Click(object sender, RoutedEventArgs e)
         {
+            clientID = this.TextBox_clientId.Text;
+            bool isNumeric = ulong.TryParse(clientID, out ulong n);
 
-            if (TextBox_clientId.Text.Length == 0)
+            if (!isNumeric)
             {
-                MessageBox.Show("Client ID is empty. Please enter your 'Client ID'.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
+                MessageBox.Show("The client ID is either empty or not a numeric value.", "Client ID Error");
+
             }
             else
             {
+                saveAllSettings();
                 StartDiscordPresence();
             }
-
-
-        }
-
-        private void saveAllSettings()
-        {
-            Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Text;
-            Properties.Settings.Default.discord_status_status = this.TextBox_state.Text;
-            Properties.Settings.Default.discord_details_status = this.TextBox_details.Text;
-            Properties.Settings.Default.discord_startTimeStamp = this.TextBox_startTimestamp.Text;
-            Properties.Settings.Default.discord_endTimeStamp = this.TextBox_endTimestamp.Text;
-            Properties.Settings.Default.discord_largeImageKey = this.TextBox_largeImageKey.Text;
-            Properties.Settings.Default.discord_largeImageText = this.TextBox_largeImageText.Text;
-            Properties.Settings.Default.discord_smallImageKey = this.TextBox_smallImageKey.Text;
-            Properties.Settings.Default.discord_smallImageText = this.TextBox_smallImageText.Text;
-            Properties.Settings.Default.Save();
-            Debug.WriteLine(TAG + "Settings saved");
         }
 
         private void Button_save_settings_Click(object sender, RoutedEventArgs e)
         {
             saveAllSettings();
-        }
-
-
-        private void OnChecked(object sender, RoutedEventArgs e)
-        {
-            bool chkbox_status = true;
-            Properties.Settings.Default.run_at_startup = chkbox_status;
-            Properties.Settings.Default.Save();
-        }
-
-        private void OnUnChecked(object sender, RoutedEventArgs e)
-        {
-            bool chkbox_status = false;
-            Properties.Settings.Default.run_at_startup = chkbox_status;
         }
 
         /// <summary>
@@ -403,7 +389,9 @@ namespace DiscordRPC.Main
         /// <param name="e"></param>
         /// 
 
+#pragma warning disable CS0414 // The field 'MainWindow.isButtonUpdateClicked' is assigned but its value is never used
         private bool isButtonUpdateClicked = false;
+#pragma warning restore CS0414 // The field 'MainWindow.isButtonUpdateClicked' is assigned but its value is never used
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
@@ -435,7 +423,7 @@ namespace DiscordRPC.Main
         private void Button_open_discord_api(object sender, RoutedEventArgs e)
         {
             // Hyperlink to Discord API page
-            System.Diagnostics.Process.Start("https://discordapp.com/developers/applications/me");
+            Process.Start("https://discordapp.com/developers/applications/me");
         }
 
         private void Button_reset_app(object sender, RoutedEventArgs e)
@@ -443,7 +431,6 @@ namespace DiscordRPC.Main
 
             if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                ResetApplication resetApplication = new ResetApplication();
                 resetApplication.deleteDirectory();
             }
             else

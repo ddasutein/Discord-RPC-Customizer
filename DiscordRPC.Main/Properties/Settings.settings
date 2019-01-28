@@ -5,8 +5,8 @@
     <Setting Name="discord_client_id" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="run_at_startup" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="app_first_run" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="discord_details_status" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

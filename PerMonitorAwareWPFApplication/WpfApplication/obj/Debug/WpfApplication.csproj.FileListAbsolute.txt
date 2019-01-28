@@ -16,3 +16,4 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareW
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\Debug\WpfApplication.csproj.CopyComplete
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\Debug\WpfApplicationDPI.exe
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\Debug\WpfApplicationDPI.pdb
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\PerMonitorAwareWPFApplication\WpfApplication\obj\Debug\WpfApplication.csprojAssemblyReference.cache

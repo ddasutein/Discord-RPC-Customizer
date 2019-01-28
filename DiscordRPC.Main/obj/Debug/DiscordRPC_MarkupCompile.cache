@@ -8,13 +8,13 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\
 DiscordRPC.Main
 none
 false
-DEBUG;TRACE
+CODE_ANALYSIS;DEBUG;TRACE
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\App.xaml
-22112506696
+3-1096401351
 
-10-1312527166
+11-1450696743
 161386102581
-AboutWindow.xaml;MainWindow.xaml;
+AboutWindow.xaml;FirstRunWindow.xaml;MainWindow.xaml;
 
 False
 
