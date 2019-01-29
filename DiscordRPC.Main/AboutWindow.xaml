@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscordRPC.Main"
         mc:Ignorable="d"
-        Title="About DiscodRPC" Height="176" Width="429" ResizeMode="NoResize" Background="#FF36393E" WindowStartupLocation="CenterScreen">
+        Title="About" Height="176" Width="429" ResizeMode="NoResize" Background="#FF36393E" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 
 
@@ -18,6 +19,7 @@ namespace DiscordRPC.Main
         public FirstRunWindow()
         {
             InitializeComponent();
+            this.Closed += ExitApplication;
 
             // If application version is updated, move user settings to new version
             if (Properties.Settings.Default.UpgradeRequired)
@@ -30,6 +32,12 @@ namespace DiscordRPC.Main
 
         }
 
+        private void ExitApplication(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+
+        }
+
         private void ButtonEndTutorial_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -38,7 +46,12 @@ namespace DiscordRPC.Main
             Properties.Settings.Default.app_first_run = setFirstTimeOpenBool;
             Properties.Settings.Default.Save();
 
-            this.Close();
+            this.Hide();
+        }
+
+        private void ButtonDiscordDeveloperPortal_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://discordapp.com/developers/applications/");
         }
     }
 }

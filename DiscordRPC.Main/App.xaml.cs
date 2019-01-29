@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using DiscordRPC.Main.Properties;
 
@@ -14,42 +9,59 @@ namespace DiscordRPC.Main
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    /// 
+
     public partial class App : Application
     {
-
         // Debug only
-#pragma warning disable CS0414 // The field 'App.TAG' is assigned but its value is never used
         static string TAG = "App.xaml.cs: ";
-#pragma warning restore CS0414 // The field 'App.TAG' is assigned but its value is never used
+
+        // Classes
+        GetDiscordProcess getDiscordProcess = new GetDiscordProcess();
 
         private static Mutex mutex = null;
-#pragma warning disable CS0414 // The field 'App.isFirstTimeOpened' is assigned but its value is never used
-        private static bool isFirstTimeOpened = true;
-#pragma warning restore CS0414 // The field 'App.isFirstTimeOpened' is assigned but its value is never used
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            const string app_name = "DiscordRPC.Main";
+            // Perform initial check for Discord process
+            getDiscordProcess.DiscordProcessName();
+
+            string app_name = "DiscordRPC.Main";
             bool createdNew;
 
             mutex = new Mutex(true, app_name, out createdNew);
 
             if (!createdNew)
-            {
+            {       
                 MessageBox.Show("Application is already running", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Hand);
+                Debug.WriteLine(TAG + "Application is already running");
                 Application.Current.Shutdown();
             }
             else
             {
 
-                if (Settings.Default.app_first_run == true)
+                if (getDiscordProcess.IsDiscordRunning == true)
                 {
-                    FirstRunWindow first = new FirstRunWindow();
-                    first.Show();
+                    // If Discord process is running, start application
+                    if (Settings.Default.app_first_run == true)
+                    {
+                        FirstRunWindow first = new FirstRunWindow();
+                        first.Show();
+                        Debug.WriteLine(TAG + "Launching FirstRunWindow.xaml");
+                    }
+                    else if (Settings.Default.app_first_run == false)
+                    {
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        Debug.WriteLine(TAG + "Launching MainWindow.xaml");
+                    }
                 }
-                else if (Settings.Default.app_first_run == false){
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
+                else if (getDiscordProcess.IsDiscordRunning == false)
+                {
+                    // Shutdown application if Discord process is not running
+                    MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Debug.WriteLine(TAG + "Discord is not running. Shutting down application");
+                    Application.Current.Shutdown();
                 }
 
                 base.OnStartup(e);

@@ -16,7 +16,7 @@
         <Label Content="This is an open source application developed by Dasutein. " HorizontalAlignment="Left" Margin="150,66,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="40"/>
         <Label Content="How to setup?" HorizontalAlignment="Left" Margin="20,135,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
         <Label Content="Step 1: Add this program 'Discord Rich Presence' in your Game Activity menu on your Discord client.&#xD;&#xA;&#xD;&#xA;Step 2: Go to the Discord Developer Portal and Create your Application. Your application name will reflect as your&#xD;&#xA;status &quot;Playing -your app name here-&quot;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Step 3: Copy 'Client ID' and paste it in this application's Settings page. DO NOT SHARE YOUR CLIENT ID.&#xD;&#xA;&#xD;&#xA;Step 4: Update your Presence! :)&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,170,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="185" Width="750"/>
-        <Button Content="Discord Developer Portal" Margin="23,256,606,140" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White"/>
+        <Button x:Name="buttonDiscordDeveloperPortal" Content="Discord Developer Portal" Margin="23,256,606,140" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Click="ButtonDiscordDeveloperPortal_Click"/>
         <Button x:Name="buttonEndTutorial" Content="End tutorial" Margin="645,360,0,0" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" HorizontalAlignment="Left" Width="125" Height="45" VerticalAlignment="Top" Click="ButtonEndTutorial_Click"/>
     </Grid>
 </Window>

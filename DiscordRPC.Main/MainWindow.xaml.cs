@@ -5,8 +5,7 @@ using NativeHelpers;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using System.Windows.Shell;
+using System.Threading.Tasks;
 
 namespace DiscordRPC.Main
 {
@@ -23,16 +22,19 @@ namespace DiscordRPC.Main
         static string TAG = "MainWindow.xaml: ";
 
         // Global Variables
-        FirstRunWindow firstRunWindow = new FirstRunWindow();
+        private bool isDiscordPresenceRunning = false;
+        private bool isTimeStampEnabled = false;
 
         // DiscordRPC.Core Library
         static DiscordRpcClient client;
 
         // Classes
-        GetDiscordProcess getDiscordProcess = new GetDiscordProcess();
         GetSpotifyProcess getSpotifyProcess = new GetSpotifyProcess();
         JumpListManager jumpListManager = new JumpListManager();
         ResetApplication resetApplication = new ResetApplication();
+
+        // XAML windows
+        FirstRunWindow firstRunWindow = new FirstRunWindow();
 
         // Threads
         Thread getSpotifyThread;
@@ -49,9 +51,6 @@ namespace DiscordRPC.Main
             getSpotifyThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
             getSpotifyThread.IsBackground = true;     
             getSpotifyThread.Start();
-
-            // Check Discord process
-            getDiscordProcess.DiscordProcessName();
 
             // Check Spotify process
             if (getSpotifyProcess.IsSpotifyOpened == true)
@@ -99,8 +98,17 @@ namespace DiscordRPC.Main
 
         void ExitApplication(object sender, EventArgs e)
         {
-            client.Dispose();
-            Application.Current.Shutdown();
+            // When user closes the application, the application will dispose the Discord RPC client.
+            if (isDiscordPresenceRunning == true)
+            {
+                client.Dispose();
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
+
         }
 
         private void StartDiscordPresence()
@@ -149,6 +157,70 @@ namespace DiscordRPC.Main
             });
 
             statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
+            isDiscordPresenceRunning = true;
+        }
+
+        /// <summary>
+        /// Update the presence status from what's in the UI fields.
+        /// </summary>
+        /// 
+
+        private void updatePresence()
+        {
+
+            // Debug only
+            Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
+            Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
+            Debug.WriteLine(TAG + "LargeImageKey: " + TextBox_largeImageKey.Text);
+            Debug.WriteLine(TAG + "LargeImageText: " + TextBox_largeImageText.Text);
+            Debug.WriteLine(TAG + "SmallImageKey: " + TextBox_smallImageKey.Text);
+            Debug.WriteLine(TAG + "SmallImageText: " + TextBox_smallImageText.Text);
+            Debug.WriteLine(TAG + "Updated presence and settings");
+
+            // Show MessageBox to notify user Spotify client is running
+            if (getSpotifyProcess.IsSpotifyOpened == true)
+            {
+                MessageBox.Show("Spotify is running. Your custom presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+            if (isTimeStampEnabled == true)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = this.TextBox_details.Text,
+                    State = this.TextBox_state.Text,
+                    Timestamps = Timestamps.Now,
+
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = this.TextBox_largeImageKey.Text,
+                        LargeImageText = this.TextBox_largeImageText.Text,
+                        SmallImageKey = this.TextBox_smallImageKey.Text,
+                        SmallImageText = this.TextBox_smallImageText.Text,
+                    }
+                });
+
+            }
+            else if (isTimeStampEnabled == false)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = this.TextBox_details.Text,
+                    State = this.TextBox_state.Text,
+                    Timestamps = null,
+
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = this.TextBox_largeImageKey.Text,
+                        LargeImageText = this.TextBox_largeImageText.Text,
+                        SmallImageKey = this.TextBox_smallImageKey.Text,
+                        SmallImageText = this.TextBox_smallImageText.Text,
+                    }
+                });
+            }
+
+            saveAllSettings();
+
         }
 
         private void LoadUserSettings()
@@ -192,70 +264,6 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "Settings saved");
         }
 
-        /// <summary>
-        /// Update the presence status from what's in the UI fields.
-        /// </summary>
-        /// 
-
-        private bool isTimeStampEnabled = false;
-
-        private void updatePresence()
-        {
-
-            // Debug only
-            Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
-            Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
-            Debug.WriteLine(TAG + "LargeImageKey: " + TextBox_largeImageKey.Text);
-            Debug.WriteLine(TAG + "LargeImageText: " + TextBox_largeImageText.Text);
-            Debug.WriteLine(TAG + "SmallImageKey: " + TextBox_smallImageKey.Text);
-            Debug.WriteLine(TAG + "SmallImageText: " + TextBox_smallImageText.Text);
-            Debug.WriteLine(TAG + "Updated presence and settings");
-
-            // Show MessageBox to notify user Spotify client is running
-            if (getSpotifyProcess.IsSpotifyOpened == true)
-            {
-                MessageBox.Show("DiscordRPC has detected Spotify is running. Your rich presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-
-            if (isTimeStampEnabled == true)
-            {
-                client.SetPresence(new RichPresence()
-                {
-                    Details = this.TextBox_details.Text,
-                    State = this.TextBox_state.Text,
-                    Timestamps = Timestamps.Now,
-
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = this.TextBox_largeImageKey.Text,
-                        LargeImageText = this.TextBox_largeImageText.Text,
-                        SmallImageKey = this.TextBox_smallImageKey.Text,
-                        SmallImageText = this.TextBox_smallImageText.Text,
-                    }
-                });
-
-            }
-            else if (isTimeStampEnabled == false)
-            {
-                client.SetPresence(new RichPresence()
-                {
-                    Details = this.TextBox_details.Text,
-                    State = this.TextBox_state.Text,
-                    Timestamps = null,
-
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = this.TextBox_largeImageKey.Text,
-                        LargeImageText = this.TextBox_largeImageText.Text,
-                        SmallImageKey = this.TextBox_smallImageKey.Text,
-                        SmallImageText = this.TextBox_smallImageText.Text,
-                    }
-                });
-            }
-
-            saveAllSettings();
-
-        }
 
         /// <summary>
         /// Calls ReadyCallback(), DisconnectedCallback(), ErrorCallback().
@@ -272,7 +280,6 @@ namespace DiscordRPC.Main
         /// </summary>
         private void Shutdown()
         {
-            //DiscordRpc.Shutdown();
 
             if (MessageBox.Show("Are you sure you want to shutdown Discord RPC?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
@@ -352,14 +359,6 @@ namespace DiscordRPC.Main
         /// <param name="e"></param>
         String clientID;
 
-        public void startApp()
-        {
-
-
-            Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Text;
-            Properties.Settings.Default.Save();
-        }
-
         private void Button_Initialize_Click(object sender, RoutedEventArgs e)
         {
             clientID = this.TextBox_clientId.Text;
@@ -389,16 +388,10 @@ namespace DiscordRPC.Main
         /// <param name="e"></param>
         /// 
 
-#pragma warning disable CS0414 // The field 'MainWindow.isButtonUpdateClicked' is assigned but its value is never used
-        private bool isButtonUpdateClicked = false;
-#pragma warning restore CS0414 // The field 'MainWindow.isButtonUpdateClicked' is assigned but its value is never used
-
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
             updatePresence();
         }
-
-
 
         /// <summary>
         /// Called by clicking on the "RunCallbacks" button. 

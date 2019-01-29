@@ -44,7 +44,7 @@ namespace DiscordRPC.Main
                         isSpotifyOpened = false;
                     }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                 }
             }
             catch (ThreadAbortException ate)

@@ -26,5 +26,3 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\FirstRunWindow.g.cs
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\FirstRunWindow.baml
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Debug\App.baml
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.exe.CodeAnalysisLog.xml
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\bin\Debug\DiscordRPC.exe.lastcodeanalysissucceeded
