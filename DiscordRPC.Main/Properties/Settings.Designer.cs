@@ -12,7 +12,7 @@ namespace DiscordRPC.Main.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,13 +37,13 @@ namespace DiscordRPC.Main.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool run_at_startup {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool app_first_run {
             get {
-                return ((bool)(this["run_at_startup"]));
+                return ((bool)(this["app_first_run"]));
             }
             set {
-                this["run_at_startup"] = value;
+                this["app_first_run"] = value;
             }
         }
         
@@ -164,6 +164,18 @@ namespace DiscordRPC.Main.Properties {
             }
             set {
                 this["UpgradeRequired"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool developer_mode {
+            get {
+                return ((bool)(this["developer_mode"]));
+            }
+            set {
+                this["developer_mode"] = value;
             }
         }
     }

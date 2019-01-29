@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DiscordRPC.Main
@@ -12,6 +8,12 @@ namespace DiscordRPC.Main
     class GetDiscordProcess
     {
         private string discordBuildInfo;
+        private bool isDiscordRunning = false;
+
+        public bool IsDiscordRunning
+        {
+            get { return isDiscordRunning; }
+        }
 
         public string DiscordBuildInfo
         {
@@ -35,27 +37,27 @@ namespace DiscordRPC.Main
 
                     if (DiscordPTBProcess.Length > 0)
                     {
-                        Debug.WriteLine("User is running Discord STABLE build");
+                        Debug.WriteLine("User is running Discord PTB build");
                         discordBuildInfo = "Public Test Beta (PTB)";
+                        isDiscordRunning = true;
                     }
                     else
                     {
-                        Debug.WriteLine("User is running Discord PTB build");
+                        Debug.WriteLine("User is running Discord STABLE build");
                         discordBuildInfo = "Stable";
+                        isDiscordRunning = true;
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
-                    Debug.WriteLine("Discord is not running. Shutting down application");
-                    Application.Current.Shutdown();
+                    isDiscordRunning = false;
                 }
 
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.ToString(), Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title);
                 Debug.WriteLine(exception.ToString());
             }
         }
