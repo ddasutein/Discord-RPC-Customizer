@@ -23,3 +23,6 @@ F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\DiscordRPC.pdb
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\AboutWindow.g.cs
 F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\AboutWindow.baml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\FirstRunWindow.g.cs
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\App.baml
+F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRPC.Main\obj\Release\FirstRunWindow.baml
