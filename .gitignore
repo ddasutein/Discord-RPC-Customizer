@@ -1,3 +1,8 @@
 .vs/
 DiscordRpcDemo/obj/
 DiscordRpcDemo/bin/
+/DiscordRPC.Main/bin
+/DiscordRPC.Main/obj/Release
+/DiscordRPC.Core/bin/
+/DiscordRPC.Core/obj/
+/DiscordRPC.Legacy/
