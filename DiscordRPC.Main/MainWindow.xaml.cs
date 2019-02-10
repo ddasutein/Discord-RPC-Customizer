@@ -226,14 +226,6 @@ namespace DiscordRPC.Main
         private void LoadUserSettings()
         {
 
-            // If application version is updated, move user settings to new version
-            if (Properties.Settings.Default.UpgradeRequired)
-            {
-                Debug.WriteLine(TAG + "User settings upgraded");
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpgradeRequired = false;
-                Properties.Settings.Default.Save();
-            }
 
             this.TextBox_clientId.Text = Properties.Settings.Default.discord_client_id;
             this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;

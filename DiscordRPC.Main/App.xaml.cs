@@ -31,6 +31,17 @@ namespace DiscordRPC.Main
 
             mutex = new Mutex(true, app_name, out createdNew);
 
+
+            // If application version is updated, move user settings to new version
+            if (Settings.Default.UpgradeRequired)
+            {
+                Debug.WriteLine(TAG + "User settings upgraded");
+                Settings.Default.Upgrade();
+                Settings.Default.UpgradeRequired = false;
+                Settings.Default.Save();
+            }
+
+
             if (!createdNew)
             {       
                 MessageBox.Show("Application is already running", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Hand);

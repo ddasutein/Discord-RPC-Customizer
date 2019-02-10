@@ -15,7 +15,7 @@
         <Button x:Name="Button_RunCallbacks" Content="Run Callbacks" Margin="10,0,0,56" Click="Button_RunCallbacks_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="145" Background="#FFF57F08" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.ColumnSpan="2" FontFamily="Roboto" Visibility="Hidden"/>
         <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8">
             <Image x:Name="statusIconImage" Height="25" Width="32" Source="Resources/icons8_online.png"/>
-            <Label x:Name="Label_Status" Content="Enter your client ID then press the Initialize button in 'Settings'." Foreground="#FF72767D"/>
+            <Label x:Name="Label_Status" Content="Enter your client ID then press the 'Go online' button in 'Settings'." Foreground="#FF72767D"/>
 
         </StatusBar>
         <Grid HorizontalAlignment="Left" Height="287" Margin="52,40,0,0" VerticalAlignment="Top" Width="337" Grid.ColumnSpan="2">
@@ -46,7 +46,7 @@
                         <Label Content="Small Image Text" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
                         <CheckBox x:Name="checkBoxTimeStamp" Content="Enable" HorizontalAlignment="Left" Margin="111,72,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="95" Foreground="#FFD1D1D1" Checked="checkBoxTimeStamp_Checked" Unchecked="checkBoxTimeStamp_Unchecked"/>
                         <Button x:Name="Button_Update" Content="Update" Margin="110,0,245,28" Click="Button_Update_Click" Height="30" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Background="#FF1A71DA" Grid.ColumnSpan="3"/>
-                        <Button x:Name="Button_Shutdown" Content="Shutdown" Margin="0,0,143,28" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.Column="2"/>
+                        <Button x:Name="Button_Shutdown" Content="Offline" Margin="0,0,143,28" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.Column="2"/>
                         <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save all" Margin="0,0,24,28" FontSize="14" HorizontalAlignment="Right" Width="109" Height="30" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2"/>
 
                     </Grid>
@@ -63,7 +63,7 @@
                             <ColumnDefinition Width="39*"/>
                             <ColumnDefinition Width="386*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name= "Button_Initialize_Discord"  Content="Initialize" Margin="0,10,18,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="3"/>
+                        <Button x:Name= "Button_Initialize_Discord"  Content="Go online" Margin="0,10,18,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="3"/>
                         <TextBox x:Name="TextBox_clientId" Height="42" Margin="10,10,159,0" TextWrapping="Wrap" Text="Client ID" VerticalAlignment="Top" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" Grid.ColumnSpan="4"/>
 
                         <Button 
