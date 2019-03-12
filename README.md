@@ -8,7 +8,7 @@ Want to have a custom Rich Presence on your Discord profile? This simple app can
 
 * Visual Studio 2017
 
-* .NET Framework 4.6.1 (*will be upgraded to .NET Core in the future*)
+* .NET Framework 4.7.2 (*will be upgraded to .NET Core 3.0 in the future*)
 
 * Newtonsoft.Json
 
@@ -20,7 +20,7 @@ Within the Visual Studio solution, you will be presented with 5 project files
 
 * `DiscordRPC.Legacy/DiscordRPC.Legacy.csproj` contains the old codebase from the original fork before moving the codebase to the new directory `DiscordRPC.Main`. This may be removed in the future.
 
-* `NativeHelpers` and `WpfApplication` is a library for Per Monitor DPI scaling. You can read the documentation on [Microsoft's website](https://docs.microsoft.com/en-us/windows/desktop/hidpi/declaring-managed-apps-dpi-aware). This is very useful for Windows 10 users where scaling is very problematic with non-UWP applications. Please do note that I have only tested the scaling on Windows 10 Version 1803 and later.
+~~`NativeHelpers` and `WpfApplication` is a library for Per Monitor DPI scaling. You can read the documentation on [Microsoft's website](https://docs.microsoft.com/en-us/windows/desktop/hidpi/declaring-managed-apps-dpi-aware). This is very useful for Windows 10 users where scaling is very problematic with non-UWP applications. Please do note that I have only tested the scaling on Windows 10 Version 1803 and later.~~ Deprecated as of version 2.1.
 
 ### 1 - Download solution and build.
 
@@ -36,7 +36,7 @@ Open the settings panel in the Discord Desktop app, go to **Games**, click "**Ad
 
 ### 3 - Obtain a Client ID
 
-Now you will need a Client ID. To obtain it just go to [the Discord developper applications panel](https://discordapp.com/developers/applications/me) and click "**New App**".
+Now you will need a Client ID. To obtain it just go to [the Discord developer applications panel](https://discordapp.com/developers/applications/me) and click "**New App**".
 Give it a nice App name, click the "**Create app**" button, then the "**Enable Rich Presence**" button.
 
 ### 4 - Update your presence
@@ -50,10 +50,6 @@ Of couse you can change what's in each fields, press "**Update**" and you'll see
 
 Version 1.13 and older: Hitting **RunCallbacks** should tells you about errors or disconnections if any.
 
-## Known issues
-
-* If you experience the `System.Windows.Markup.XamlParseException` on Windows 8.1 or Windows 10 version 1803 or later, kindly install the [Microsoft Visual C++ Redistributable for Visual Studio 2017 (x86 and x64).](https://visualstudio.microsoft.com/downloads/). I am still currently investigating the issue on Windows 7.
-
 ## Credits
 
 Icon made by [freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
@@ -61,5 +57,5 @@ Icon made by [freepik](https://www.flaticon.com/authors/freepik) from www.flatic
 * Official documentation: https://discordapp.com/developers/docs/rich-presence/how-to
 * Official SDK repository: https://github.com/discordapp/discord-rpc
 
-"Manage Icon" by [icon8.com](https://icons8.com/icon/set/manage)
+All UI icons by [icon8.com]
 
