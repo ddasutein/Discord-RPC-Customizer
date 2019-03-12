@@ -6,21 +6,19 @@ Want to have a custom Rich Presence on your Discord profile? This simple app can
 
 **Dependencies:**
 
-* Visual Studio 2017
+* Visual Studio 2017 or Visual Studio 2019
 
 * .NET Framework 4.7.2 (*will be upgraded to .NET Core 3.0 in the future*)
 
 * Newtonsoft.Json
 
-Within the Visual Studio solution, you will be presented with 5 project files
+Within the Visual Studio solution, you will be presented with 3 project files
 
-* `DiscordRPC.Core/Discord RPC.sln` contains the Discord RPC C# library by [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp).
+* `src/DiscordRPC.Core/Discord RPC.sln` contains the Discord RPC C# library by [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp).
 
-* `DiscordRPC.Main/DiscordRPC.Main.csproj` is the main starting point of the application, as well as the MainWindow.XAML file for the user interface. 
+* `src/DiscordRPC.Main/DiscordRPC.Main.csproj` is the main starting point of the application, as well as the MainWindow.XAML file for the user interface. 
 
-* `DiscordRPC.Legacy/DiscordRPC.Legacy.csproj` contains the old codebase from the original fork before moving the codebase to the new directory `DiscordRPC.Main`. This may be removed in the future.
-
-~~`NativeHelpers` and `WpfApplication` is a library for Per Monitor DPI scaling. You can read the documentation on [Microsoft's website](https://docs.microsoft.com/en-us/windows/desktop/hidpi/declaring-managed-apps-dpi-aware). This is very useful for Windows 10 users where scaling is very problematic with non-UWP applications. Please do note that I have only tested the scaling on Windows 10 Version 1803 and later.~~ Deprecated as of version 2.1.
+* `src/DiscordRPC.Legacy/DiscordRPC.Legacy.csproj` contains the old codebase from the original fork before moving the codebase to the new directory `DiscordRPC.Main`. This may be removed in the future.
 
 ### 1 - Download solution and build.
 
