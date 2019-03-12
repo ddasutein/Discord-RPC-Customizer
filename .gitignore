@@ -1,6 +1,14 @@
 .vs/
 DiscordRpcDemo/obj/
 DiscordRpcDemo/bin/
+obj/
+bin/
+debug/
+release/
+src/DiscordRPC.Core/bin
+src/DiscordRPC.Core/obj
+src/DiscordRPC.Main/bin
+src/DiscordRPC.Main/obj
 /DiscordRPC.Main/bin
 /DiscordRPC.Main/obj/
 /DiscordRPC.Core/bin/
