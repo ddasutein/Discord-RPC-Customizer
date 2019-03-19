@@ -2,7 +2,21 @@
 
 Want to have a custom Rich Presence on your Discord profile? This simple app can do that.
 
-## Installation
+## Installation (for users)
+
+### 1 - Go to the 'Releases tab'
+
+### 2 - Look for the latest version and download the ZIP file
+
+### 3 - Create a folder on your preferred save location and extract the ZIP content to the folder
+
+### 4 - Run DiscordRPC.exe and a UAC prompt will appear.
+
+### 5 - Follow the tutorial on the first run screen OR scroll down on this README and skip to Step 2 under Installation (for developers) to configure the RPC client.
+
+### 6 - Enjoy! :) Please do submit an issue on this repository if you encounter issues
+
+## Installation (for developers)
 
 **Dependencies:**
 
