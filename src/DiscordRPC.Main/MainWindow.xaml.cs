@@ -54,7 +54,7 @@ namespace DiscordRPC.Main
             // Check Spotify process
             if (getSpotifyProcess.IsSpotifyOpened == true)
             {
-                MessageBox.Show("DiscordRPC has detected Spotify is running. Your rich presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             // Developer mode flag. Change in Properties > Settings.settings file
@@ -179,7 +179,7 @@ namespace DiscordRPC.Main
             // Show MessageBox to notify user Spotify client is running
             if (getSpotifyProcess.IsSpotifyOpened == true)
             {
-                MessageBox.Show("Spotify is running. Your custom presence or Spotify presence will not update until you shutdown this client.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             if (isTimeStampEnabled == true)
@@ -272,7 +272,7 @@ namespace DiscordRPC.Main
         private void Shutdown()
         {
 
-            if (MessageBox.Show("Are you sure you want to shutdown Discord RPC?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure you want to go offline?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 client.Dispose();
                 this.SetStatusBarMessage("Discord RPC is offline.");
