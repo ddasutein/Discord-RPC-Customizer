@@ -407,8 +407,19 @@ namespace DiscordRPC.Main
 
         private void Button_open_discord_api(object sender, RoutedEventArgs e)
         {
-            // Hyperlink to Discord API page
-            Process.Start("https://discordapp.com/developers/applications/me");
+
+            string client_id = Properties.Settings.Default.discord_client_id;
+
+            if (client_id.Length == 0)
+            {
+                MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            else
+            {
+                // Hyperlink to Discord API page
+                Process.Start("https://discordapp.com/developers/applications/me" + "/" + clientID);
+            }
         }
 
         private void Button_reset_app(object sender, RoutedEventArgs e)
