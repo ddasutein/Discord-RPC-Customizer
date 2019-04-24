@@ -15,7 +15,7 @@ namespace DiscordRPC
 	{
 		/// <summary>
 		/// The user's current <see cref="Party"/> status. For example, "Playing Solo" or "With Friends".
-		/// <para>Max 128 bytes</para>
+		/// <para>Max 512 bytes</para>
 		/// </summary>
 		[JsonProperty("state", NullValueHandling = NullValueHandling.Ignore)]
 		public string State
@@ -23,15 +23,15 @@ namespace DiscordRPC
 			get { return _state; }
 			set
 			{
-				if (!ValidateString(value, out _state, 128, Encoding.UTF8))
-					throw new StringOutOfRangeException("State", 128);
+				if (!ValidateString(value, out _state, 512, Encoding.UTF8))
+					throw new StringOutOfRangeException("State", 512);
 			}
 		}
 		private string _state;
 
 		/// <summary>
 		/// What the user is currently doing. For example, "Competitive - Total Mayhem".
-		/// <para>Max 128 bytes</para>
+		/// <para>Max 512 bytes</para>
 		/// </summary>
 		[JsonProperty("details", NullValueHandling = NullValueHandling.Ignore)]
 		public string Details
@@ -39,8 +39,8 @@ namespace DiscordRPC
 			get { return _details; }
 			set 
 			{
-				if (!ValidateString(value, out _details, 128, Encoding.UTF8))
-					throw new StringOutOfRangeException("Details", 128);
+				if (!ValidateString(value, out _details, 512, Encoding.UTF8))
+					throw new StringOutOfRangeException("Details", 512);
 			}
 		}
 		private string _details;
