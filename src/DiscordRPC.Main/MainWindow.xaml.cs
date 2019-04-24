@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace DiscordRPC.Main
 {
@@ -62,7 +63,7 @@ namespace DiscordRPC.Main
             {
                 Debug.WriteLine(TAG + "Developer mode is OFF");
 
-                if (TextBox_clientId.Text.Length == 0)
+                if (TextBox_clientId.Password.Length == 0)
                 {
                     MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     this.Button_Initialize_Discord.IsEnabled = true;
@@ -226,7 +227,7 @@ namespace DiscordRPC.Main
         {
 
 
-            this.TextBox_clientId.Text = Properties.Settings.Default.discord_client_id;
+            this.TextBox_clientId.Password = Properties.Settings.Default.discord_client_id;
             this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;
             this.TextBox_details.Text = Properties.Settings.Default.discord_details_status;
             this.TextBox_startTimestamp.Text = Properties.Settings.Default.discord_startTimeStamp;
@@ -242,7 +243,7 @@ namespace DiscordRPC.Main
 
         private void saveAllSettings()
         {
-            Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Text;
+            Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Password;
             Properties.Settings.Default.discord_status_status = this.TextBox_state.Text;
             Properties.Settings.Default.discord_details_status = this.TextBox_details.Text;
             Properties.Settings.Default.discord_startTimeStamp = this.TextBox_startTimestamp.Text;
@@ -352,7 +353,7 @@ namespace DiscordRPC.Main
 
         private void Button_Initialize_Click(object sender, RoutedEventArgs e)
         {
-            clientID = this.TextBox_clientId.Text;
+            clientID = this.TextBox_clientId.Password.ToString();
             bool isNumeric = ulong.TryParse(clientID, out ulong n);
 
             if (!isNumeric)
@@ -438,6 +439,7 @@ namespace DiscordRPC.Main
         private void buttonAbout_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
+            System.Diagnostics.Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
             aboutWindow.ShowDialog();
         }
     }
