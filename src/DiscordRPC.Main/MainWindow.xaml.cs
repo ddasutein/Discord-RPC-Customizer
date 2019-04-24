@@ -155,6 +155,7 @@ namespace DiscordRPC.Main
                     SmallImageText = Properties.Settings.Default.discord_smallImageText,
                 }
             });
+            client.Invoke();
 
             statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
             isDiscordPresenceRunning = true;
@@ -200,6 +201,7 @@ namespace DiscordRPC.Main
                     }
                 });
 
+                client.Invoke();
             }
             else if (isTimeStampEnabled == false)
             {
@@ -217,6 +219,8 @@ namespace DiscordRPC.Main
                         SmallImageText = this.TextBox_smallImageText.Text,
                     }
                 });
+
+                client.Invoke();
             }
 
             saveAllSettings();
@@ -450,7 +454,7 @@ namespace DiscordRPC.Main
         private void buttonAbout_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
-            System.Diagnostics.Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
+            //System.Diagnostics.Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
             aboutWindow.ShowDialog();
         }
     }

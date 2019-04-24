@@ -58,12 +58,13 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="11*"/>
-                            <ColumnDefinition Width="17*"/>
-                            <ColumnDefinition Width="39*"/>
-                            <ColumnDefinition Width="386*"/>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="41*"/>
+                            <ColumnDefinition Width="11*"/>
+                            <ColumnDefinition Width="389*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name= "Button_Initialize_Discord"  Content="Go online" Margin="0,35,17.6,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="3"/>
-                        <PasswordBox x:Name="TextBox_clientId" Height="42" Margin="10,35,158.6,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" Grid.ColumnSpan="4"/>
+                        <Button x:Name= "Button_Initialize_Discord"  Content="Go online" Margin="0,35,17.6,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="4"/>
+                        <PasswordBox x:Name="TextBox_clientId" Height="42" Margin="10,35,158.6,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" Grid.ColumnSpan="5"/>
 
                         <Button 
                             Click="Button_open_discord_api" 
@@ -73,7 +74,7 @@
                             VerticalAlignment="Top" 
                             Foreground="White" 
                             BorderThickness="0" 
-                            Grid.ColumnSpan="4">
+                            Grid.ColumnSpan="5">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/icons8_manage.png" Stretch="Uniform"/>
                             </Button.Background>
@@ -86,14 +87,14 @@
                             Text="Manage Discord API
                             " 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="2" TextAlignment="Center" Grid.Column="2"/>
+                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="3" TextAlignment="Center" Grid.Column="2"/>
                         <Button 
                             BorderBrush="{x:Null}"
                             Content="" 
                             Click="Button_reset_app"
-                            Grid.Column="3" 
+                            Grid.Column="4" 
                             HorizontalAlignment="Left" 
-                            Margin="98.4,100,0,0"
+                            Margin="87,100,0,0"
                             VerticalAlignment="Top" Width="97" Height="55">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/icons8_reset.png" Stretch="Uniform"/>
@@ -101,30 +102,30 @@
                         </Button>
                         <TextBlock 
                             HorizontalAlignment="Center"
-                            Margin="84.4,169,175.6,117.4" 
+                            Margin="73,169,175.6,117.4" 
                             TextWrapping="Wrap" 
                             Text="Reset application" 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="3"/>
-                        <Button x:Name="buttonAbout" Content="" Grid.Column="3" HorizontalAlignment="Left" Margin="250.4,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonAbout_Click" Height="55" BorderThickness="0">
+                            Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="4"/>
+                        <Button x:Name="buttonAbout" Content="" Grid.Column="4" HorizontalAlignment="Left" Margin="239,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonAbout_Click" Height="55" BorderThickness="0">
                             <Button.Background>
                                 <ImageBrush ImageSource="Resources/icons8_about.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <TextBlock 
                             HorizontalAlignment="Center"
-                            Margin="240.4,169,66.6,117.4" 
+                            Margin="229,169,66.6,117.4" 
                             TextWrapping="Wrap" 
                             Text="About" 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="93" TextAlignment="Center" Grid.Column="3"/>
+                            Foreground="#FF8F97A0" Width="93" TextAlignment="Center" Grid.Column="4"/>
                         <TextBlock 
                             HorizontalAlignment="Center"
                             Margin="11,14,318.6,272.4" 
                             TextWrapping="Wrap" 
                             Text="Client ID" 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="4"/>
+                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="5"/>
 
                     </Grid>
 
