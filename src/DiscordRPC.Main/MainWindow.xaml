@@ -7,17 +7,21 @@
         mc:Ignorable="d"
         Title="Discord Rich Presence Customizer" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Margin="7,7,-7,-7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="175*"/>
+            <RowDefinition Height="244*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="31*"/>
             <ColumnDefinition Width="206*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Button_RunCallbacks" Content="Run Callbacks" Margin="10,0,0,56" Click="Button_RunCallbacks_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="145" Background="#FFF57F08" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.ColumnSpan="2" FontFamily="Roboto" Visibility="Hidden"/>
-        <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8">
+        <Button x:Name="Button_RunCallbacks" Content="Run Callbacks" Margin="10,0,0,56.2" Click="Button_RunCallbacks_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="145" Background="#FFF57F08" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.ColumnSpan="2" FontFamily="Roboto" Visibility="Hidden" Grid.Row="1"/>
+        <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8.2" Grid.Row="1">
             <Image x:Name="statusIconImage" Height="25" Width="32" Source="Resources/icons8_online.png"/>
             <Label x:Name="Label_Status" Content="Enter your client ID then press the 'Go online' button in 'Settings'." Foreground="#FF72767D"/>
 
         </StatusBar>
-        <Grid HorizontalAlignment="Left" Height="287" Margin="52,40,0,0" VerticalAlignment="Top" Width="337" Grid.ColumnSpan="2">
+        <Grid HorizontalAlignment="Left" Height="287" Margin="52,40,0,0" VerticalAlignment="Top" Width="337" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <TabControl Margin="-51,-40,-71,-38" BorderBrush="{x:Null}" Background="{x:Null}">
                 <TabItem Header="Discord Presence" BorderBrush="{x:Null}" Background="#FFE5E5E5">
                     <Grid Background="#FF36393E" Margin="0,0,-16,-11">
@@ -35,18 +39,18 @@
                         <TextBox x:Name="TextBox_largeImageText" Height="23" Margin="109,123,18,0" TextWrapping="Wrap" Text="Large image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3"/>
                         <TextBox x:Name="TextBox_smallImageKey" Height="23" Margin="109,151,18,0" TextWrapping="Wrap" Text="small-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3"/>
                         <TextBox x:Name="TextBox_smallImageText" Height="23" Margin="109,179,18,0" TextWrapping="Wrap" Text="Small image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3"/>
-                        <Label Content="Detail" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="State" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto"/>
-                        <Label Content="Timestamp" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="Detail" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
+                        <Label Content="State" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto" FontWeight="Bold"/>
+                        <Label Content="Timestamp" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
                         <Label Content="endTimestamp" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto" Visibility="Collapsed"/>
-                        <Label Content="Large Image Key" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="Large Image Text" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="Small Image Key" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="Small Image Text" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="Large Image Key" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
+                        <Label Content="Large Image Text" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" Width="101" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
+                        <Label Content="Small Image Key" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
+                        <Label Content="Small Image Text" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Width="106" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
                         <CheckBox x:Name="checkBoxTimeStamp" Content="Enable" HorizontalAlignment="Left" Margin="111,72,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="95" Foreground="#FFD1D1D1" Checked="checkBoxTimeStamp_Checked" Unchecked="checkBoxTimeStamp_Unchecked"/>
                         <Button x:Name="Button_Update" Content="Update" Margin="110,0,245,28" Click="Button_Update_Click" Height="30" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Background="#FF1A71DA" Grid.ColumnSpan="3"/>
                         <Button x:Name="Button_Shutdown" Content="Offline" Margin="0,0,143,28" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.Column="2"/>
-                        <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save all" Margin="0,0,24,28" FontSize="14" HorizontalAlignment="Right" Width="109" Height="30" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2"/>
+                        <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save" Margin="0,0,24,28" FontSize="14" HorizontalAlignment="Right" Width="109" Height="30" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2"/>
 
                     </Grid>
                 </TabItem>
@@ -125,7 +129,7 @@
                             TextWrapping="Wrap" 
                             Text="Client ID" 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="5"/>
+                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="5" FontWeight="Bold"/>
 
                     </Grid>
 
