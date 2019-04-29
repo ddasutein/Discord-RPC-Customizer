@@ -8,7 +8,6 @@ namespace DiscordRPC.Main
 {
     class ResetApplication
     {
-
         public void deleteDirectory()
         {
             // Delete 'Dasutein' folder in Local directory
@@ -30,6 +29,20 @@ namespace DiscordRPC.Main
                 Debug.WriteLine(ex.ToString());
             }
 
+        }
+
+        public void deleteConfig()
+        {
+            try
+            {
+                File.Delete("pref.json");
+                Application.Current.Shutdown();
+                Debug.WriteLine("Application has shutdown");
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
     }

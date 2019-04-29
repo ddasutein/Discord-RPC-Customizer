@@ -44,7 +44,6 @@ namespace DiscordRPC.Main
             // Load most important stuff here
             InitializeComponent();
             this.Closed += ExitApplication;
-            LoadUserSettings();
             jumpListManager.LoadJumpLists();
 
             // Start threads
@@ -52,48 +51,16 @@ namespace DiscordRPC.Main
             getSpotifyThread.IsBackground = true;     
             getSpotifyThread.Start();
 
+            LoadUserSettings();
+
             // Check Spotify process
             if (getSpotifyProcess.IsSpotifyOpened == true)
             {
                 MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
-            // Developer mode flag. Change in Properties > Settings.settings file
-            if (Properties.Settings.Default.developer_mode == false)
-            {
-                Debug.WriteLine(TAG + "Developer mode is OFF");
+            StartDiscordPresence();
 
-                if (TextBox_clientId.Password.Length == 0)
-                {
-                    MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    this.Button_Initialize_Discord.IsEnabled = true;
-                    return;
-                }
-                else
-                {
-                    StartDiscordPresence();
-                }         
-
-            }
-            else if (Properties.Settings.Default.developer_mode == true)
-            {
-                MessageBox.Show("Developer mode is active.");
-                Debug.WriteLine(TAG + "Developer mode is ON");
-                this.SetStatusBarMessage("Developer mode is active.");
-            }
-
-        }
-
-        public bool isDiscordOpen(string name)
-        {
-            foreach (Process clsProcess in Process.GetProcesses())
-            {
-                if (clsProcess.ProcessName.Contains(name))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         void ExitApplication(object sender, EventArgs e)
@@ -115,7 +82,7 @@ namespace DiscordRPC.Main
         {
 
             Debug.WriteLine(TAG + "Starting Discord Presence");
-            client = new DiscordRpcClient(Properties.Settings.Default.discord_client_id);
+            client = new DiscordRpcClient(JsonConfig.settings.discordClientId);
 
             this.Button_Initialize_Discord.IsEnabled = false;
             this.Button_RunCallbacks.IsEnabled = true;
@@ -134,7 +101,8 @@ namespace DiscordRPC.Main
             };
 
             //Connect to the RPC
-            Debug.WriteLine(TAG + "Connecting to Discord Rich Presence");
+            Debug.WriteLine(TAG + "Connecting to Discord...");
+            this.SetStatusBarMessage("Connecting to Discord...");
             client.Initialize();
 
             Debug.WriteLine(TAG + "Discord RPC is online");
@@ -144,15 +112,15 @@ namespace DiscordRPC.Main
             //Set the rich presence
             client.SetPresence(new RichPresence()
             {
-                Details = Properties.Settings.Default.discord_details_status,
-                State = Properties.Settings.Default.discord_status_status,
+                Details = JsonConfig.settings.discordPresenceDetail,
+                State = JsonConfig.settings.discordPresenceState,
                 
                 Assets = new Assets()
                 {
-                    LargeImageKey = Properties.Settings.Default.discord_largeImageKey,
-                    LargeImageText = Properties.Settings.Default.discord_largeImageText,
-                    SmallImageKey = Properties.Settings.Default.discord_smallImageKey,
-                    SmallImageText = Properties.Settings.Default.discord_smallImageText,
+                    LargeImageKey = JsonConfig.settings.discordLargeImageKey,
+                    LargeImageText = JsonConfig.settings.discordLargeImageText,
+                    SmallImageKey = JsonConfig.settings.discordSmallImageKey,
+                    SmallImageText = JsonConfig.settings.discordSmallImageText,
                 }
             });
             client.Invoke();
@@ -228,36 +196,30 @@ namespace DiscordRPC.Main
         }
 
         private void LoadUserSettings()
-        {
-
-
-            this.TextBox_clientId.Password = Properties.Settings.Default.discord_client_id;
-            this.TextBox_state.Text = Properties.Settings.Default.discord_status_status;
-            this.TextBox_details.Text = Properties.Settings.Default.discord_details_status;
-            this.TextBox_startTimestamp.Text = Properties.Settings.Default.discord_startTimeStamp;
-            this.TextBox_endTimestamp.Text = Properties.Settings.Default.discord_endTimeStamp;
-            this.TextBox_largeImageKey.Text = Properties.Settings.Default.discord_largeImageKey;
-            this.TextBox_largeImageText.Text = Properties.Settings.Default.discord_largeImageText;
-            this.TextBox_smallImageKey.Text = Properties.Settings.Default.discord_smallImageKey;
-            this.TextBox_smallImageText.Text = Properties.Settings.Default.discord_smallImageText;
-            this.TextBox_startTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow).ToString();
-            //this.TextBox_endTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow.AddHours(1)).ToString();
+        {;
+            this.TextBox_clientId.Password = JsonConfig.settings.discordClientId;
+            this.TextBox_state.Text = JsonConfig.settings.discordPresenceState;
+            this.TextBox_details.Text = JsonConfig.settings.discordPresenceDetail;
+            this.TextBox_largeImageKey.Text = JsonConfig.settings.discordLargeImageKey;
+            this.TextBox_largeImageText.Text = JsonConfig.settings.discordLargeImageText;
+            this.TextBox_smallImageKey.Text = JsonConfig.settings.discordSmallImageKey;
+            this.TextBox_smallImageText.Text = JsonConfig.settings.discordSmallImageText;
 
         }
 
         private void saveAllSettings()
         {
-            Properties.Settings.Default.discord_client_id = this.TextBox_clientId.Password;
-            Properties.Settings.Default.discord_status_status = this.TextBox_state.Text;
-            Properties.Settings.Default.discord_details_status = this.TextBox_details.Text;
-            Properties.Settings.Default.discord_startTimeStamp = this.TextBox_startTimestamp.Text;
-            Properties.Settings.Default.discord_endTimeStamp = this.TextBox_endTimestamp.Text;
-            Properties.Settings.Default.discord_largeImageKey = this.TextBox_largeImageKey.Text;
-            Properties.Settings.Default.discord_largeImageText = this.TextBox_largeImageText.Text;
-            Properties.Settings.Default.discord_smallImageKey = this.TextBox_smallImageKey.Text;
-            Properties.Settings.Default.discord_smallImageText = this.TextBox_smallImageText.Text;
-            Properties.Settings.Default.Save();
+
+            JsonConfig.settings.discordClientId = this.TextBox_clientId.Password;
+            JsonConfig.settings.discordPresenceState = this.TextBox_state.Text;
+            JsonConfig.settings.discordPresenceDetail = this.TextBox_details.Text;
+            JsonConfig.settings.discordLargeImageKey = this.TextBox_largeImageKey.Text;
+            JsonConfig.settings.discordLargeImageText = this.TextBox_largeImageText.Text;
+            JsonConfig.settings.discordSmallImageKey = this.TextBox_smallImageKey.Text;
+            JsonConfig.settings.discordSmallImageText = this.TextBox_smallImageText.Text;
+            JsonConfig.SaveJson();
             Debug.WriteLine(TAG + "Settings saved");
+
         }
 
 
@@ -412,9 +374,7 @@ namespace DiscordRPC.Main
         private void Button_open_discord_api(object sender, RoutedEventArgs e)
         {
 
-            string client_id = Properties.Settings.Default.discord_client_id;
-
-            if (client_id.Length == 0)
+            if (TextBox_clientId.Password.Length < 0)
             {
                 MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
@@ -422,7 +382,7 @@ namespace DiscordRPC.Main
             else
             {
                 // Hyperlink to Discord API page
-                Process.Start("https://discordapp.com/developers/applications/me" + "/" + clientID);
+                Process.Start("https://discordapp.com/developers/applications/me" + "/" + TextBox_clientId.Password);
             }
         }
 
@@ -431,7 +391,7 @@ namespace DiscordRPC.Main
 
             if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                resetApplication.deleteDirectory();
+                resetApplication.deleteConfig();
             }
             else
             {

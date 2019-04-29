@@ -14,21 +14,10 @@ namespace DiscordRPC.Main
         // Debug only
         static string TAG = "FirstRunWindow.xaml: ";
 
-        private bool setFirstTimeOpenBool = false;
-
         public FirstRunWindow()
         {
             InitializeComponent();
             this.Closed += ExitApplication;
-
-            // If application version is updated, move user settings to new version
-            if (Properties.Settings.Default.UpgradeRequired)
-            {
-                Debug.WriteLine(TAG + "User settings upgraded");
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpgradeRequired = false;
-                Properties.Settings.Default.Save();
-            }
 
         }
 
@@ -43,8 +32,8 @@ namespace DiscordRPC.Main
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
 
-            Properties.Settings.Default.app_first_run = setFirstTimeOpenBool;
-            Properties.Settings.Default.Save();
+            JsonConfig.settings.firstRun = false;
+            JsonConfig.SaveJson();
 
             this.Hide();
         }

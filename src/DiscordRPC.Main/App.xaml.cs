@@ -23,23 +23,14 @@ namespace DiscordRPC.Main
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            // Perform initial check for Discord process
+            JsonConfig.LoadJson();
+
+            // Scan for Discord Process
             getDiscordProcess.DiscordProcessName();
 
             string app_name = "DiscordRPC.Main";
             bool createdNew;
-
             mutex = new Mutex(true, app_name, out createdNew);
-
-
-            // If application version is updated, move user settings to new version
-            if (Settings.Default.UpgradeRequired)
-            {
-                Debug.WriteLine(TAG + "User settings upgraded");
-                Settings.Default.Upgrade();
-                Settings.Default.UpgradeRequired = false;
-                Settings.Default.Save();
-            }
 
 
             if (!createdNew)
@@ -54,7 +45,7 @@ namespace DiscordRPC.Main
                 if (getDiscordProcess.IsDiscordRunning == true)
                 {
                     // If Discord process is running, start application
-                    if (Settings.Default.app_first_run == true)
+                    if (JsonConfig.settings.firstRun == true)
                     {
                         FirstRunWindow first = new FirstRunWindow();
                         first.Show();
