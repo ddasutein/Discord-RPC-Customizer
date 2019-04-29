@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
-using System.Threading.Tasks;
-using Microsoft.Win32;
 
 namespace DiscordRPC.Main
 {

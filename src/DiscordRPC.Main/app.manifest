@@ -18,7 +18,7 @@
         -->
         <!--<This application requires administrator rights to delete a folder in AppData/Local.
         Delete method is located in MainWindow.xaml.cs-->
-        <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
       <applicationRequestMinimum>
         <defaultAssemblyRequest permissionSetReference="Custom" />
