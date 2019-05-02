@@ -10,7 +10,7 @@ Want to have a custom Rich Presence on your Discord profile? This simple app can
 
 ### 3 - Create a folder on your preferred save location and extract the ZIP content to the folder
 
-### 4 - Run DiscordRPC.exe and a UAC prompt will appear.
+### 4 - Run DiscordRPC.exe.
 
 ### 5 - Follow the tutorial on the first run screen OR scroll down on this README and skip to Step 2 under Installation (for developers) to configure the RPC client.
 
@@ -24,7 +24,7 @@ Want to have a custom Rich Presence on your Discord profile? This simple app can
 
 * .NET Framework 4.7.2 (*will be upgraded to .NET Core 3.0 in the future*)
 
-* Newtonsoft.Json
+* Newtonsoft
 
 Within the Visual Studio solution, you will be presented with 3 project files
 
