@@ -29,11 +29,6 @@ namespace DiscordRPC.Main
             try
             {
 
-                if (!isSpotifyOpened)
-                {
-                    MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-
                 while (true)
                 {
                     Process[] spotifyProcess = Process.GetProcessesByName("Spotify");
@@ -51,6 +46,11 @@ namespace DiscordRPC.Main
                     }
 
                     Thread.Sleep(1500);
+                }
+
+                if (!isSpotifyOpened)
+                {
+                    MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             catch (ThreadAbortException ate)
