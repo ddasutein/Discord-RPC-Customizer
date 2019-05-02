@@ -35,7 +35,7 @@ namespace DiscordRPC.Main
         FirstRunWindow firstRunWindow = new FirstRunWindow();
 
         // Threads
-        Thread getSpotifyThread;
+        Thread spotifyProcessScanThread;
 
         public MainWindow()
         {
@@ -45,18 +45,11 @@ namespace DiscordRPC.Main
             jumpListManager.LoadJumpLists();
 
             // Start threads
-            getSpotifyThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
-            getSpotifyThread.IsBackground = true;     
-            getSpotifyThread.Start();
+            spotifyProcessScanThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
+            spotifyProcessScanThread.IsBackground = true;
+            spotifyProcessScanThread.Start();
 
             LoadUserSettings();
-
-            // Check Spotify process
-            if (getSpotifyProcess.IsSpotifyOpened == true)
-            {
-                MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-
             StartDiscordPresence();
 
         }
@@ -79,52 +72,65 @@ namespace DiscordRPC.Main
         private void StartDiscordPresence()
         {
 
-            Debug.WriteLine(TAG + "Starting Discord Presence");
-            client = new DiscordRpcClient(JsonConfig.settings.discordClientId);
-
-            this.Button_Initialize_Discord.IsEnabled = false;
-            this.Button_RunCallbacks.IsEnabled = true;
-            this.Button_Update.IsEnabled = true;
-            this.Button_Shutdown.IsEnabled = true;
-
-            //Subscribe to events
-            client.OnReady += (sender, e) =>
+            if (String.IsNullOrEmpty(TextBox_clientId.Password))
             {
-                Debug.WriteLine("Received Ready from user {0}", e.User.Username);
-            };
-
-            client.OnPresenceUpdate += (sender, e) =>
+                this.SetStatusBarMessage("Discord RPC is offline.");
+                this.Button_RunCallbacks.IsEnabled = false;
+                this.Button_Update.IsEnabled = false;
+                this.Button_Shutdown.IsEnabled = false;
+                this.Button_Initialize_Discord.IsEnabled = true;
+                statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_offline.png", UriKind.Relative));
+                return;
+            }
+            else
             {
-                Debug.WriteLine("Received Update! {0}", e.Presence);
-            };
+                Debug.WriteLine(TAG + "Starting Discord Presence");
+                client = new DiscordRpcClient(JsonConfig.settings.discordClientId);
 
-            //Connect to the RPC
-            Debug.WriteLine(TAG + "Connecting to Discord...");
-            this.SetStatusBarMessage("Connecting to Discord...");
-            client.Initialize();
-
-            Debug.WriteLine(TAG + "Discord RPC is online");
-            this.SetStatusBarMessage("Discord RPC is online");
-
-            Debug.WriteLine(TAG + "Setting client rich presence");
-            //Set the rich presence
-            client.SetPresence(new RichPresence()
-            {
-                Details = JsonConfig.settings.discordPresenceDetail,
-                State = JsonConfig.settings.discordPresenceState,
-                
-                Assets = new Assets()
+                //Subscribe to events
+                client.OnReady += (sender, e) =>
                 {
-                    LargeImageKey = JsonConfig.settings.discordLargeImageKey,
-                    LargeImageText = JsonConfig.settings.discordLargeImageText,
-                    SmallImageKey = JsonConfig.settings.discordSmallImageKey,
-                    SmallImageText = JsonConfig.settings.discordSmallImageText,
-                }
-            });
-            client.Invoke();
+                    Debug.WriteLine("Received Ready from user {0}", e.User.Username);
+                };
 
-            statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
-            isDiscordPresenceRunning = true;
+                client.OnPresenceUpdate += (sender, e) =>
+                {
+                    Debug.WriteLine("Received Update! {0}", e.Presence);
+                };
+
+                //Connect to the RPC
+                Debug.WriteLine(TAG + "Connecting to Discord...");
+                this.SetStatusBarMessage("Connecting to Discord...");
+                client.Initialize();
+
+                Debug.WriteLine(TAG + "Discord RPC is online");
+                this.SetStatusBarMessage("Discord RPC is online");
+
+                Debug.WriteLine(TAG + "Setting client rich presence");
+                //Set the rich presence
+                client.SetPresence(new RichPresence()
+                {
+                    Details = JsonConfig.settings.discordPresenceDetail,
+                    State = JsonConfig.settings.discordPresenceState,
+
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = JsonConfig.settings.discordLargeImageKey,
+                        LargeImageText = JsonConfig.settings.discordLargeImageText,
+                        SmallImageKey = JsonConfig.settings.discordSmallImageKey,
+                        SmallImageText = JsonConfig.settings.discordSmallImageText,
+                    }
+                });
+                client.Invoke();
+
+                this.Button_Initialize_Discord.IsEnabled = false;
+                this.Button_RunCallbacks.IsEnabled = true;
+                this.Button_Update.IsEnabled = true;
+                this.Button_Shutdown.IsEnabled = true;
+                this.TextBox_clientId.IsEnabled = false;
+                statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
+                isDiscordPresenceRunning = true;
+            }
         }
 
         /// <summary>
@@ -245,6 +251,7 @@ namespace DiscordRPC.Main
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
+                this.TextBox_clientId.IsEnabled = true;
                 statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_offline.png", UriKind.Relative));
             }
             else
@@ -322,7 +329,7 @@ namespace DiscordRPC.Main
 
             if (!isNumeric)
             {
-                MessageBox.Show("The client ID is either empty or not a numeric value.", "Client ID Error");
+                MessageBox.Show("The client ID is either empty or not a numeric value.", "Client ID Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             else
@@ -371,17 +378,7 @@ namespace DiscordRPC.Main
 
         private void Button_open_discord_api(object sender, RoutedEventArgs e)
         {
-
-            if (TextBox_clientId.Password.Length < 0)
-            {
-                MessageBox.Show("Client ID is empty. Please enter your 'Client ID' in Settings", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            else
-            {
-                // Hyperlink to Discord API page
-                Process.Start("https://discordapp.com/developers/applications/me" + "/" + TextBox_clientId.Password);
-            }
+            Process.Start("https://discordapp.com/developers/applications/me" + "/" + TextBox_clientId.Password);
         }
 
         private void Button_reset_app(object sender, RoutedEventArgs e)

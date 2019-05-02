@@ -51,7 +51,7 @@ namespace DiscordRPC.Main
                         first.Show();
                         Debug.WriteLine(TAG + "Launching FirstRunWindow.xaml");
                     }
-                    else if (Settings.Default.app_first_run == false)
+                    else if (JsonConfig.settings.firstRun == false)
                     {
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
