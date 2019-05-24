@@ -21,7 +21,7 @@ namespace DiscordRPC.Main
         public bool useTimeStamp { get; set; }
 
         // DiscordRPC.Core Library
-        static DiscordRpcClient client;
+        DiscordRpcClient client;
 
         // Debug only
         static string TAG = "PresenceManager: ";
