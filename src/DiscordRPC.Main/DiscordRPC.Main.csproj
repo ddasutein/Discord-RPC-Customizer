@@ -109,6 +109,7 @@
     <Compile Include="HashManager.cs" />
     <Compile Include="JsonConfig.cs" />
     <Compile Include="JumpListManager.cs" />
+    <Compile Include="PresenceManager.cs" />
     <Compile Include="ResetApplication.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>

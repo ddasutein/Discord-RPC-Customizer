@@ -30,6 +30,7 @@ namespace DiscordRPC.Main
         GetSpotifyProcess getSpotifyProcess = new GetSpotifyProcess();
         JumpListManager jumpListManager = new JumpListManager();
         ResetApplication resetApplication = new ResetApplication();
+        PresenceManager presenceManager = new PresenceManager();
 
         // XAML windows
         FirstRunWindow firstRunWindow = new FirstRunWindow();
@@ -43,13 +44,13 @@ namespace DiscordRPC.Main
             InitializeComponent();
             this.Closed += ExitApplication;
             jumpListManager.LoadJumpLists();
+            LoadUserStatePresence();
 
             // Start threads
             spotifyProcessScanThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
             spotifyProcessScanThread.IsBackground = true;
             spotifyProcessScanThread.Start();
 
-            LoadUserSettings();
             StartDiscordPresence();
 
         }
@@ -59,7 +60,7 @@ namespace DiscordRPC.Main
             // When user closes the application, the application will dispose the Discord RPC client.
             if (isDiscordPresenceRunning == true)
             {
-                client.Dispose();
+                presenceManager.ShutdownPresence();
                 Application.Current.Shutdown();
             }
             else
@@ -84,52 +85,18 @@ namespace DiscordRPC.Main
             }
             else
             {
-                Debug.WriteLine(TAG + "Starting Discord Presence");
-                client = new DiscordRpcClient(JsonConfig.settings.discordClientId);
-
-                //Subscribe to events
-                client.OnReady += (sender, e) =>
-                {
-                    Debug.WriteLine("Received Ready from user {0}", e.User.Username);
-                };
-
-                client.OnPresenceUpdate += (sender, e) =>
-                {
-                    Debug.WriteLine("Received Update! {0}", e.Presence);
-                };
-
-                //Connect to the RPC
-                Debug.WriteLine(TAG + "Connecting to Discord...");
                 this.SetStatusBarMessage("Connecting to Discord...");
-                client.Initialize();
-
-                Debug.WriteLine(TAG + "Discord RPC is online");
-                this.SetStatusBarMessage("Discord RPC is online");
-
-                Debug.WriteLine(TAG + "Setting client rich presence");
-                //Set the rich presence
-                client.SetPresence(new RichPresence()
-                {
-                    Details = JsonConfig.settings.discordPresenceDetail,
-                    State = JsonConfig.settings.discordPresenceState,
-
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = JsonConfig.settings.discordLargeImageKey,
-                        LargeImageText = JsonConfig.settings.discordLargeImageText,
-                        SmallImageKey = JsonConfig.settings.discordSmallImageKey,
-                        SmallImageText = JsonConfig.settings.discordSmallImageText,
-                    }
-                });
-                client.Invoke();
+                presenceManager.InitializeDiscordRPC();
 
                 this.Button_Initialize_Discord.IsEnabled = false;
                 this.Button_RunCallbacks.IsEnabled = true;
                 this.Button_Update.IsEnabled = true;
                 this.Button_Shutdown.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
+
                 statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
                 isDiscordPresenceRunning = true;
+                this.SetStatusBarMessage("Discord RPC is online");
             }
         }
 
@@ -156,50 +123,34 @@ namespace DiscordRPC.Main
                 MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
-            if (isTimeStampEnabled == true)
+            if (!isTimeStampEnabled)
             {
-                client.SetPresence(new RichPresence()
-                {
-                    Details = this.TextBox_details.Text,
-                    State = this.TextBox_state.Text,
-                    Timestamps = Timestamps.Now,
-
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = this.TextBox_largeImageKey.Text,
-                        LargeImageText = this.TextBox_largeImageText.Text,
-                        SmallImageKey = this.TextBox_smallImageKey.Text,
-                        SmallImageText = this.TextBox_smallImageText.Text,
-                    }
-                });
-
-                client.Invoke();
+                presenceManager.useTimeStamp = isTimeStampEnabled;
+                presenceManager.discordPresenceDetail = this.TextBox_details.Text;
+                presenceManager.discordPresenceState = this.TextBox_state.Text;
+                presenceManager.discordLargeImageKey = this.TextBox_largeImageKey.Text;
+                presenceManager.discordLargeImageText = this.TextBox_largeImageText.Text;
+                presenceManager.discordSmallImageKey = this.TextBox_smallImageKey.Text;
+                presenceManager.discordSmallImageText = this.TextBox_smallImageText.Text;
+                presenceManager.UpdatePresence();
             }
-            else if (isTimeStampEnabled == false)
+            else
             {
-                client.SetPresence(new RichPresence()
-                {
-                    Details = this.TextBox_details.Text,
-                    State = this.TextBox_state.Text,
-                    Timestamps = null,
-
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = this.TextBox_largeImageKey.Text,
-                        LargeImageText = this.TextBox_largeImageText.Text,
-                        SmallImageKey = this.TextBox_smallImageKey.Text,
-                        SmallImageText = this.TextBox_smallImageText.Text,
-                    }
-                });
-
-                client.Invoke();
+                presenceManager.useTimeStamp = isTimeStampEnabled;
+                presenceManager.discordPresenceDetail = this.TextBox_details.Text;
+                presenceManager.discordPresenceState = this.TextBox_state.Text;
+                presenceManager.discordLargeImageKey = this.TextBox_largeImageKey.Text;
+                presenceManager.discordLargeImageText = this.TextBox_largeImageText.Text;
+                presenceManager.discordSmallImageKey = this.TextBox_smallImageKey.Text;
+                presenceManager.discordSmallImageText = this.TextBox_smallImageText.Text;
+                presenceManager.UpdatePresence();
             }
 
-            saveAllSettings();
+            SaveUserStatePresence();
 
         }
 
-        private void LoadUserSettings()
+        private void LoadUserStatePresence()
         {;
             this.TextBox_clientId.Password = JsonConfig.settings.discordClientId;
             this.TextBox_state.Text = JsonConfig.settings.discordPresenceState;
@@ -211,7 +162,7 @@ namespace DiscordRPC.Main
 
         }
 
-        private void saveAllSettings()
+        private void SaveUserStatePresence()
         {
 
             JsonConfig.settings.discordClientId = this.TextBox_clientId.Password;
@@ -245,7 +196,7 @@ namespace DiscordRPC.Main
 
             if (MessageBox.Show("Are you sure you want to go offline?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                client.Dispose();
+                presenceManager.ShutdownPresence();
                 this.SetStatusBarMessage("Discord RPC is offline.");
                 this.Button_RunCallbacks.IsEnabled = false;
                 this.Button_Update.IsEnabled = false;
@@ -334,14 +285,14 @@ namespace DiscordRPC.Main
             }
             else
             {
-                saveAllSettings();
+                SaveUserStatePresence();
                 StartDiscordPresence();
             }
         }
 
         private void Button_save_settings_Click(object sender, RoutedEventArgs e)
         {
-            saveAllSettings();
+            SaveUserStatePresence();
         }
 
         /// <summary>
