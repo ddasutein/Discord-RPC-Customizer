@@ -41,7 +41,11 @@ namespace DiscordRPC.Main
             }
             else
             {
-
+#if DEBUG
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Debug.WriteLine(TAG + "Launching MainWindow.xaml (Debug)");
+#else
                 if (getDiscordProcess.IsDiscordRunning == true)
                 {
                     // If Discord process is running, start application
@@ -49,13 +53,13 @@ namespace DiscordRPC.Main
                     {
                         FirstRunWindow first = new FirstRunWindow();
                         first.Show();
-                        Debug.WriteLine(TAG + "Launching FirstRunWindow.xaml");
+                        Debug.WriteLine(TAG + "Launching FirstRunWindow.xaml (Release)");
                     }
                     else if (JsonConfig.settings.firstRun == false)
                     {
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
-                        Debug.WriteLine(TAG + "Launching MainWindow.xaml");
+                        Debug.WriteLine(TAG + "Launching MainWindow.xaml (Release)");
                     }
                 }
                 else if (getDiscordProcess.IsDiscordRunning == false)
@@ -67,6 +71,7 @@ namespace DiscordRPC.Main
                 }
 
                 base.OnStartup(e);
+#endif
             }
 
         }
