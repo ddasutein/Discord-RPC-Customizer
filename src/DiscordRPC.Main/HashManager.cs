@@ -8,20 +8,24 @@ namespace DiscordRPC.Main
 {
     public class HashManager
     {
-
+        private PresenceManager presenceManager = new PresenceManager();
         public string discordClientId { get; set; }
-        public void HashId(string discordClientID)
+        public void HashId()
         {
             using (SHA256 sha256hash = SHA256.Create())
             {
-
-                string createHash = GetHash(sha256hash, discordClientID);
+                string createHash = GetHash(sha256hash, discordClientId);
                 VerifyClientIdHash(createHash);
-
-                // Save generated hash to JSON. This is needed to validate the hash when called.
-                JsonConfig.settings.discordClientId = createHash;
+                Console.WriteLine(createHash);
             }
         }
+
+        private void SaveHashID(string hashedId)
+        {
+            JsonConfig.settings.discordClientIdHash = hashedId;
+            JsonConfig.SaveJson();
+        }
+
 
         public void VerifyClientIdHash(string discordClientIDHash)
         {
@@ -29,11 +33,12 @@ namespace DiscordRPC.Main
             {
                 if (VerifyHash(sha256hash, discordClientId, discordClientIDHash))
                 {
-                    // If hashes match, establish connection to Discord
+                    SaveHashID(discordClientIDHash);
+                    presenceManager.InitializeDiscordRPC(discordClientId);
                 }
                 else
                 {
-                    MessageBox.Show("Discord Client ID does not match hash.", 
+                    MessageBox.Show("An error has occured while validating hash.", 
                         Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, 
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }

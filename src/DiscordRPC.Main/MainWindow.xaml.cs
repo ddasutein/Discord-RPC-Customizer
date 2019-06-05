@@ -37,6 +37,7 @@ namespace DiscordRPC.Main
 
         // Threads
         Thread spotifyProcessScanThread;
+        Thread StartHashManagerThread;
 
         public MainWindow()
         {
@@ -70,6 +71,7 @@ namespace DiscordRPC.Main
 
         }
 
+        HashManager hashManager = new HashManager();
         private void StartDiscordPresence()
         {
 
@@ -86,7 +88,12 @@ namespace DiscordRPC.Main
             else
             {
                 this.SetStatusBarMessage("Connecting to Discord...");
-                presenceManager.InitializeDiscordRPC();
+
+                hashManager.discordClientId = this.TextBox_clientId.Password;
+                StartHashManagerThread = new Thread(new ThreadStart(hashManager.HashId));
+                StartHashManagerThread.IsBackground = true;
+                StartHashManagerThread.Start();
+                //presenceManager.InitializeDiscordRPC();
 
                 this.Button_Initialize_Discord.IsEnabled = false;
                 this.Button_RunCallbacks.IsEnabled = true;
@@ -99,11 +106,6 @@ namespace DiscordRPC.Main
                 this.SetStatusBarMessage("Discord RPC is online");
             }
         }
-
-        /// <summary>
-        /// Update the presence status from what's in the UI fields.
-        /// </summary>
-        /// 
 
         private void updatePresence()
         {

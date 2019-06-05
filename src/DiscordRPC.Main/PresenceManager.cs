@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
+
 namespace DiscordRPC.Main
 {
     class PresenceManager
@@ -21,7 +22,7 @@ namespace DiscordRPC.Main
         public bool useTimeStamp { get; set; }
 
         // DiscordRPC.Core Library
-        DiscordRpcClient client;
+        static DiscordRpcClient client;
 
         // Debug only
         static string TAG = "PresenceManager: ";
@@ -30,10 +31,10 @@ namespace DiscordRPC.Main
 
         }
 
-        public void InitializeDiscordRPC()
+        public void InitializeDiscordRPC(string ClientID)
         {
             Debug.WriteLine(TAG + "Starting Discord Presence");
-            client = new DiscordRpcClient(JsonConfig.settings.discordClientId);
+            client = new DiscordRpcClient(ClientID);
 
             //Subscribe to events
             client.OnReady += (sender, e) =>
@@ -70,6 +71,7 @@ namespace DiscordRPC.Main
                 }
             });
             client.Invoke();
+
         }
         public void UpdatePresence()
         {

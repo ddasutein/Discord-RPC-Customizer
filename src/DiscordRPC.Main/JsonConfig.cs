@@ -1,13 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DiscordRPC.Main
 {
     public class AppConfig
     {
         public string discordClientId { get; set; }
+        public string discordClientIdHash { get; set; }
         public string discordPresenceState { get; set; }
         public string discordPresenceDetail { get; set; }
         public string discordLargeImageKey { get; set; }
@@ -45,8 +48,18 @@ namespace DiscordRPC.Main
         {
             await Task.Run(() =>
             {
-                string jsonText = JsonConvert.SerializeObject(settings);
-                File.WriteAllText(fileName, jsonText);
+                try
+                {
+                    string jsonText = JsonConvert.SerializeObject(settings);
+                    File.WriteAllText(fileName, jsonText);
+                }
+                catch(IOException e)
+                {
+                    MessageBox.Show(e.ToString(),
+                    Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title,
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             });
 
         }
