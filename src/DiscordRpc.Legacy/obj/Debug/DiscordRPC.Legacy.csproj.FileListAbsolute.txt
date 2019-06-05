@@ -1,3 +1,0 @@
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRpc.Legacy\obj\Debug\DiscordRPC.Legacy.csprojAssemblyReference.cache
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRpc.Legacy\obj\Debug\App.g.cs
-F:\Software Development Projects\C# and .NET\Discord-RPC-csharp\DiscordRpc.Legacy\obj\Debug\DiscordRpc_MarkupCompile.cache
