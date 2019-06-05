@@ -15,7 +15,6 @@
             <ColumnDefinition Width="31*"/>
             <ColumnDefinition Width="206*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Button_RunCallbacks" Content="Run Callbacks" Margin="10,0,0,56.2" Click="Button_RunCallbacks_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="145" Background="#FFF57F08" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.ColumnSpan="2" FontFamily="Roboto" Visibility="Hidden" Grid.Row="1"/>
         <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8.2" Grid.Row="1">
             <Image x:Name="statusIconImage" Height="25" Width="32" Source="Resources/icons8_online.png"/>
             <Label x:Name="Label_Status" Content="Enter your client ID then press the 'Go online' button in 'Settings'." Foreground="#FF72767D"/>

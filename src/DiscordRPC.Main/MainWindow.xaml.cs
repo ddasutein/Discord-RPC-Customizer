@@ -70,8 +70,7 @@ namespace DiscordRPC.Main
 
             if (String.IsNullOrEmpty(TextBox_clientId.Password))
             {
-                this.SetStatusBarMessage("Discord RPC is offline.");
-                this.Button_RunCallbacks.IsEnabled = false;
+                this.SetStatusBarMessage("Discord RPC is offline.");;
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
@@ -89,7 +88,6 @@ namespace DiscordRPC.Main
                 //presenceManager.InitializeDiscordRPC();
 
                 this.Button_Initialize_Discord.IsEnabled = false;
-                this.Button_RunCallbacks.IsEnabled = true;
                 this.Button_Update.IsEnabled = true;
                 this.Button_Shutdown.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
@@ -103,7 +101,7 @@ namespace DiscordRPC.Main
         private void updatePresence()
         {
 
-            // Debug only
+#if DEBUG
             Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
             Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
             Debug.WriteLine(TAG + "LargeImageKey: " + TextBox_largeImageKey.Text);
@@ -111,7 +109,7 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "SmallImageKey: " + TextBox_smallImageKey.Text);
             Debug.WriteLine(TAG + "SmallImageText: " + TextBox_smallImageText.Text);
             Debug.WriteLine(TAG + "Updated presence and settings");
-
+#endif
             // Show MessageBox to notify user Spotify client is running
             if (getSpotifyProcess.IsSpotifyOpened == true)
             {
@@ -172,17 +170,6 @@ namespace DiscordRPC.Main
 
         }
 
-
-        /// <summary>
-        /// Calls ReadyCallback(), DisconnectedCallback(), ErrorCallback().
-        /// </summary>
-        private void RunCallbacks()
-        {
-            //DiscordRpc.RunCallbacks();
-
-            this.SetStatusBarMessage("Callbacks run.");
-        }
-
         /// <summary>
         /// Stop RPC.
         /// </summary>
@@ -193,7 +180,6 @@ namespace DiscordRPC.Main
             {
                 presenceManager.ShutdownPresence();
                 this.SetStatusBarMessage("Discord RPC is offline.");
-                this.Button_RunCallbacks.IsEnabled = false;
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
@@ -209,34 +195,6 @@ namespace DiscordRPC.Main
         }
 
         /// <summary>
-        /// Called after RunCallbacks() when ready.
-        /// </summary>
-        private void ReadyCallback()
-        {
-            this.SetStatusBarMessage("Ready.");
-        }
-
-        /// <summary>
-        /// Called after RunCallbacks() in cause of disconnection.
-        /// </summary>
-        /// <param name="errorCode"></param>
-        /// <param name="message"></param>
-        private void DisconnectedCallback(int errorCode, string message)
-        {
-            this.SetStatusBarMessage(string.Format("Disconnect {0}: {1}", errorCode, message));
-        }
-
-        /// <summary>
-        /// Called after RunCallbacks() in cause of error.
-        /// </summary>
-        /// <param name="errorCode"></param>
-        /// <param name="message"></param>
-        private void ErrorCallback(int errorCode, string message)
-        {
-            this.SetStatusBarMessage(string.Format("Error {0}: {1}", errorCode, message));
-        }
-
-        /// <summary>
         /// Just set a message to be displayed in the status bar at the window's bottom.
         /// </summary>
         /// <param name="message"></param>
@@ -245,27 +203,6 @@ namespace DiscordRPC.Main
             this.Label_Status.Content = message;
         }
 
-        /// <summary>
-        /// Convert a DateTime object into a timestamp.
-        /// </summary>
-        /// <param name="dt"></param>
-        /// <returns></returns>
-        private long DateTimeToTimestamp(DateTime dt)
-        {
-            return (dt.Ticks - 621355968000000000) / 10000000;
-        }
-
-        /*
-		=============================================
-		Event
-		=============================================
-		*/
-
-        /// <summary>
-        /// Called by clicking on the "Initialize" button.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         String clientID;
 
         private void Button_Initialize_Click(object sender, RoutedEventArgs e)
@@ -290,33 +227,11 @@ namespace DiscordRPC.Main
             SaveUserStatePresence();
         }
 
-        /// <summary>
-        /// Called by clicking on the "Update" button.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// 
-
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
             updatePresence();
         }
 
-        /// <summary>
-        /// Called by clicking on the "RunCallbacks" button. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button_RunCallbacks_Click(object sender, RoutedEventArgs e)
-        {
-            this.RunCallbacks();
-        }
-
-        /// <summary>
-        /// Called by clicking on the "Shutdown" button.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Button_Shutdown_Click(object sender, RoutedEventArgs e)
         {
             Shutdown();

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
-
 
 namespace DiscordRPC.Main
 {
@@ -26,15 +27,13 @@ namespace DiscordRPC.Main
 
         // Debug only
         static string TAG = "PresenceManager: ";
-        public void GetHashStatus()
-        {
-
-        }
 
         public void InitializeDiscordRPC(string ClientID)
         {
             Debug.WriteLine(TAG + "Starting Discord Presence");
+            Debug.WriteLine(TAG + "Connecting to Discord...");
             client = new DiscordRpcClient(ClientID);
+            client.Initialize();
 
             //Subscribe to events
             client.OnReady += (sender, e) =>
@@ -47,32 +46,34 @@ namespace DiscordRPC.Main
                 Debug.WriteLine("Received Update! {0}", e.Presence);
             };
 
-            //Connect to the RPC
-            Debug.WriteLine(TAG + "Connecting to Discord...");
-            //mainWindow.SetStatusBarMessage("Connecting to Discord...");
-            client.Initialize();
-
-            Debug.WriteLine(TAG + "Discord RPC is online");
-            //mainWindow.SetStatusBarMessage("Discord RPC is online");
-
-            Debug.WriteLine(TAG + "Setting client rich presence");
-            //Set the rich presence
-            client.SetPresence(new RichPresence()
+            client.OnConnectionFailed += (sender, e) =>
             {
-                Details = JsonConfig.settings.discordPresenceDetail,
-                State = JsonConfig.settings.discordPresenceState,
+                MessageBox.Show("Connection to Discord has failed.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Warning);
+            };
+ 
+            client.OnConnectionEstablished += (sender, e) =>
+            {
+                Debug.WriteLine(TAG + "Discord RPC is online");
+                Debug.WriteLine(TAG + "Setting client rich presence");
 
-                Assets = new Assets()
+                client.SetPresence(new RichPresence()
                 {
-                    LargeImageKey = JsonConfig.settings.discordLargeImageKey,
-                    LargeImageText = JsonConfig.settings.discordLargeImageText,
-                    SmallImageKey = JsonConfig.settings.discordSmallImageKey,
-                    SmallImageText = JsonConfig.settings.discordSmallImageText,
-                }
-            });
-            client.Invoke();
+                    Details = JsonConfig.settings.discordPresenceDetail,
+                    State = JsonConfig.settings.discordPresenceState,
+
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = JsonConfig.settings.discordLargeImageKey,
+                        LargeImageText = JsonConfig.settings.discordLargeImageText,
+                        SmallImageKey = JsonConfig.settings.discordSmallImageKey,
+                        SmallImageText = JsonConfig.settings.discordSmallImageText,
+                    }
+                });
+                client.Invoke();
+            };
 
         }
+
         public void UpdatePresence()
         {
 
