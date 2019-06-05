@@ -23,17 +23,12 @@ namespace DiscordRPC.Main
         private bool isDiscordPresenceRunning = false;
         private bool isTimeStampEnabled = false;
 
-        // DiscordRPC.Core Library
-        static DiscordRpcClient client;
-
         // Classes
         GetSpotifyProcess getSpotifyProcess = new GetSpotifyProcess();
         JumpListManager jumpListManager = new JumpListManager();
         ResetApplication resetApplication = new ResetApplication();
         PresenceManager presenceManager = new PresenceManager();
-
-        // XAML windows
-        FirstRunWindow firstRunWindow = new FirstRunWindow();
+        HashManager hashManager = new HashManager();
 
         // Threads
         Thread spotifyProcessScanThread;
@@ -70,8 +65,6 @@ namespace DiscordRPC.Main
             }
 
         }
-
-        HashManager hashManager = new HashManager();
         private void StartDiscordPresence()
         {
 
