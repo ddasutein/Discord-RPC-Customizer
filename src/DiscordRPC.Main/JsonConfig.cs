@@ -9,6 +9,8 @@ namespace DiscordRPC.Main
 {
     public class AppConfig
     {
+        public string discordUsername { get; set; }
+        public string discordAvatarUri { get; set; }
         public string discordClientId { get; set; }
         public string discordClientIdHash { get; set; }
         public string discordPresenceState { get; set; }

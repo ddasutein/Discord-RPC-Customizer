@@ -90,11 +90,15 @@ namespace DiscordRPC.Main
                 this.Button_Initialize_Discord.IsEnabled = false;
                 this.Button_Update.IsEnabled = true;
                 this.Button_Shutdown.IsEnabled = true;
+                this.Button_afk_and_lock_pc.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
 
                 statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
                 isDiscordPresenceRunning = true;
                 this.SetStatusBarMessage("Discord RPC is online");
+
+                this.usernameLabel.Content = JsonConfig.settings.discordUsername;
+                this.discordAvatarImage.Source = new BitmapImage(new Uri(JsonConfig.settings.discordAvatarUri));
             }
         }
 
@@ -153,7 +157,6 @@ namespace DiscordRPC.Main
             this.TextBox_largeImageText.Text = JsonConfig.settings.discordLargeImageText;
             this.TextBox_smallImageKey.Text = JsonConfig.settings.discordSmallImageKey;
             this.TextBox_smallImageText.Text = JsonConfig.settings.discordSmallImageText;
-
         }
 
         private void SaveUserStatePresence()
@@ -181,10 +184,12 @@ namespace DiscordRPC.Main
             {
                 presenceManager.ShutdownPresence();
                 this.SetStatusBarMessage("Discord RPC is offline.");
+                this.usernameLabel.Content = "Not found";
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = true;
+                this.Button_afk_and_lock_pc.IsEnabled = false;
                 statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_offline.png", UriKind.Relative));
             }
             else
@@ -271,8 +276,20 @@ namespace DiscordRPC.Main
         private void buttonAbout_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
-            //System.Diagnostics.Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
             aboutWindow.ShowDialog();
+        }
+
+        private void Button_afk_and_lock_pc_Click(object sender, RoutedEventArgs e)
+        {
+            presenceManager.useTimeStamp = true;
+            presenceManager.discordPresenceDetail = JsonConfig.settings.discordUsername;
+            presenceManager.discordPresenceState = "is away from keyboard for ";
+            presenceManager.discordLargeImageKey = this.TextBox_largeImageKey.Text;
+            presenceManager.discordLargeImageText = this.TextBox_largeImageText.Text;
+            presenceManager.discordSmallImageKey = this.TextBox_smallImageKey.Text;
+            presenceManager.discordSmallImageText = this.TextBox_smallImageText.Text;
+            presenceManager.UpdatePresence();
+            Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
         }
     }
 

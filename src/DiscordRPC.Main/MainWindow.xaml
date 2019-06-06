@@ -30,27 +30,35 @@
                             <ColumnDefinition Width="308*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="TextBox_state" Height="23" Margin="109,39,18,0" TextWrapping="Wrap" Text="Playing Solo" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="2"/>
-                        <TextBox x:Name="TextBox_details" Height="23" Margin="109,11,18,0" TextWrapping="Wrap" Text="In Queue" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="1"/>
+                        <TextBox x:Name="TextBox_state" Height="23" Margin="109,119,18,0" TextWrapping="Wrap" Text="Playing Solo" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="2"/>
+                        <TextBox x:Name="TextBox_details" Height="23" Margin="109,91,18,0" TextWrapping="Wrap" Text="In Queue" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="1"/>
                         <TextBox x:Name="TextBox_startTimestamp" Height="23" Margin="109,67,18,0" TextWrapping="Wrap" Text="startTimestamp" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontFamily="Roboto" FontSize="12" Grid.ColumnSpan="3" Visibility="Hidden"/>
                         <TextBox x:Name="TextBox_endTimestamp" Height="23" Margin="109,95,18,0" TextWrapping="Wrap" Text="endTimestamp" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontFamily="Roboto" FontSize="12" Grid.ColumnSpan="3" Visibility="Collapsed"/>
-                        <TextBox x:Name="TextBox_largeImageKey" Height="23" Margin="109,95,18,0" TextWrapping="Wrap" Text="large-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="4"/>
-                        <TextBox x:Name="TextBox_largeImageText" Height="23" Margin="109,123,18,0" TextWrapping="Wrap" Text="Large image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="5"/>
-                        <TextBox x:Name="TextBox_smallImageKey" Height="23" Margin="109,151,18,0" TextWrapping="Wrap" Text="small-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="6"/>
-                        <TextBox x:Name="TextBox_smallImageText" Height="23" Margin="109,179,18,0" TextWrapping="Wrap" Text="Small image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="6"/>
-                        <Label Content="Detail" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
-                        <Label Content="State" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto" FontWeight="Bold"/>
-                        <Label Content="Timestamp" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
+                        <TextBox x:Name="TextBox_largeImageKey" Height="23" Margin="109,175,18,0" TextWrapping="Wrap" Text="large-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="4"/>
+                        <TextBox x:Name="TextBox_largeImageText" Height="23" Margin="109,203,18,0" TextWrapping="Wrap" Text="Large image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="5"/>
+                        <TextBox x:Name="TextBox_smallImageKey" Height="23" Margin="109,231,18,0" TextWrapping="Wrap" Text="small-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="6"/>
+                        <TextBox x:Name="TextBox_smallImageText" Height="23" Margin="109,259,18,0" TextWrapping="Wrap" Text="Small image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="6"/>
+                        <Label Content="Detail" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="State" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto"/>
+                        <Label Content="Timestamp" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
                         <Label Content="endTimestamp" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto" Visibility="Collapsed"/>
-                        <Label Content="Large Image Key" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
-                        <Label Content="Large Image Text" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" Width="101" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
-                        <Label Content="Small Image Key" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
-                        <Label Content="Small Image Text" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Width="106" Height="28" Foreground="#FF8F97A0" FontSize="11" FontWeight="Bold"/>
-                        <CheckBox x:Name="checkBoxTimeStamp" Content="Enable" HorizontalAlignment="Left" Margin="111,72,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="95" Foreground="#FFD1D1D1" Checked="checkBoxTimeStamp_Checked" Unchecked="checkBoxTimeStamp_Unchecked" TabIndex="3"/>
-                        <Button x:Name="Button_Update" Content="Update" Margin="110,0,245,28" Click="Button_Update_Click" Height="30" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Background="#FF1A71DA" Grid.ColumnSpan="3" TabIndex="7"/>
-                        <Button x:Name="Button_Shutdown" Content="Offline" Margin="0,0,143,28" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="14" IsEnabled="False" Grid.Column="2" TabIndex="8"/>
-                        <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save" Margin="0,0,24,28" FontSize="14" HorizontalAlignment="Right" Width="109" Height="30" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2" TabIndex="9"/>
-
+                        <Label Content="Large Image Key" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="Large Image Text" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="101" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="Small Image Key" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="Small Image Text" HorizontalAlignment="Left" Margin="10,259,0,0" VerticalAlignment="Top" Width="106" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <CheckBox x:Name="checkBoxTimeStamp" Content="Enable" HorizontalAlignment="Left" Margin="111,152,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="95" Foreground="#FFD1D1D1" Checked="checkBoxTimeStamp_Checked" Unchecked="checkBoxTimeStamp_Unchecked" TabIndex="3"/>
+                        <Button x:Name="Button_Update" Content="Update" Margin="12,0,60,18" Click="Button_Update_Click" Height="25" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Background="#FF1A71DA" TabIndex="7"/>
+                        <Button x:Name="Button_Shutdown" Content="Offline" Margin="0,0,3,18" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="66" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="12" IsEnabled="False" TabIndex="8" Grid.ColumnSpan="2"/>
+                        <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save" Margin="0,0,258,18" FontSize="12" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2" TabIndex="9"/>
+                        <Button x:Name="Button_afk_and_lock_pc" Click="Button_afk_and_lock_pc_Click" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="271,32,0,0" VerticalAlignment="Top" Width="31" Height="25" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Go AFK and Lock this PC">
+                            <Button.Background>
+                                <ImageBrush ImageSource="Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
+                            </Button.Background>
+                        </Button>
+                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="Resources/icons8_discord_100.png" Stretch="UniformToFill" StretchDirection="DownOnly">
+                        </Image>
+                        <Label Content="USERNAME" Margin="76,22,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
+                        <Label x:Name="usernameLabel" Content="Not found" Margin="76,39,183,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tabItemSettings" Header="Settings" BorderBrush="{x:Null}" TabIndex="11">
@@ -126,9 +134,9 @@
                             HorizontalAlignment="Center"
                             Margin="11,14,318.6,272.4" 
                             TextWrapping="Wrap" 
-                            Text="Client ID" 
+                            Text="CLIENT ID" 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="5" FontWeight="Bold"/>
+                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="5" FontWeight="Bold" FontSize="10"/>
 
                     </Grid>
 

@@ -200,5 +200,11 @@
   <ItemGroup>
     <Resource Include="Resources\icons8_about.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8_discord_100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8_lock_96.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

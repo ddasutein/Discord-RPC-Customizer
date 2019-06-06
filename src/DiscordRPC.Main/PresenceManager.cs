@@ -6,7 +6,7 @@ namespace DiscordRPC.Main
 {
     class PresenceManager : IDiscordPresence
     {
-        public string statusBarMessage { get; set; }
+        public string discordUsername;
         public string discordClientId { get; set; }
         public string discordPresenceState { get; set; }
         public string discordPresenceDetail { get; set; }
@@ -28,11 +28,13 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "Connecting to Discord...");
             client = new DiscordRpcClient(ClientID);
             client.Initialize();
-
             //Subscribe to events
             client.OnReady += (sender, e) =>
             {
-                Debug.WriteLine("Received Ready from user {0}", e.User.Username);
+                Debug.WriteLine("Received Ready from user {0}", e.User);
+                JsonConfig.settings.discordUsername = e.User.ToString();
+                JsonConfig.settings.discordAvatarUri = e.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
+                JsonConfig.SaveJson();
             };
 
             client.OnPresenceUpdate += (sender, e) =>
@@ -49,7 +51,7 @@ namespace DiscordRPC.Main
             {
                 Debug.WriteLine(TAG + "Discord RPC is online");
                 Debug.WriteLine(TAG + "Setting client rich presence");
-
+                
                 client.SetPresence(new RichPresence()
                 {
                     Details = JsonConfig.settings.discordPresenceDetail,
@@ -112,6 +114,12 @@ namespace DiscordRPC.Main
         public void ShutdownPresence()
         {
             client.Dispose();
+            discordPresenceDetail = null;
+            discordPresenceState = null;
+            discordLargeImageKey = null;
+            discordLargeImageText = null;
+            discordSmallImageKey = null;
+            discordSmallImageText = null;
         }
     }
 }
