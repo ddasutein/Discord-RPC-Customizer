@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace DiscordRPC.Main
 {
-    class PresenceManager
+    class PresenceManager : IDiscordPresence
     {
         public string statusBarMessage { get; set; }
         public string discordClientId { get; set; }
@@ -48,9 +42,9 @@ namespace DiscordRPC.Main
 
             client.OnConnectionFailed += (sender, e) =>
             {
-                MessageBox.Show("Connection to Discord has failed.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Connection to Discord has failed. Check if your Discord client is running.", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             };
- 
+
             client.OnConnectionEstablished += (sender, e) =>
             {
                 Debug.WriteLine(TAG + "Discord RPC is online");
