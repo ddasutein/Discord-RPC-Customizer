@@ -22,7 +22,7 @@
         </StatusBar>
         <Grid HorizontalAlignment="Left" Height="287" Margin="52,40,0,0" VerticalAlignment="Top" Width="337" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <TabControl Margin="-51,-40,-71,-38" BorderBrush="{x:Null}" Background="{x:Null}">
-                <TabItem Header="Discord Presence" BorderBrush="{x:Null}" Background="#FFE5E5E5" TabIndex="10">
+                <TabItem x:Name="tabItemDiscordPresence" Header="Discord Presence" BorderBrush="{x:Null}" Background="#FFE5E5E5" TabIndex="10">
                     <Grid Background="#FF36393E" Margin="0,0,-16,-11">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="131*"/>
@@ -53,7 +53,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="Settings" BorderBrush="{x:Null}" TabIndex="11">
+                <TabItem x:Name="tabItemSettings" Header="Settings" BorderBrush="{x:Null}" TabIndex="11">
                     <Grid Margin="0,0,-16,-16">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="6*"/>
