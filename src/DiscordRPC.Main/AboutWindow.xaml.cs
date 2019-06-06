@@ -26,8 +26,19 @@ namespace DiscordRPC.Main
 
             // Run Discord process check then display to text block
             getDiscordProcess.DiscordProcessName();
-            textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
 
+            #if DEBUG
+            if (getDiscordProcess.DiscordBuildInfo == null)
+            {
+                textBlockDiscordBuildType.Text = "(null)";
+            }
+            else
+            {
+                textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
+            }
+            #else
+                textBlockDiscordBuildType.Text = getDiscordProcess.DiscordBuildInfo.ToString();
+            #endif
         }
 
         private void buttonGitHub_Click(object sender, RoutedEventArgs e)

@@ -101,7 +101,7 @@ namespace DiscordRPC.Main
         private void updatePresence()
         {
 
-#if DEBUG
+            #if DEBUG
             Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
             Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
             Debug.WriteLine(TAG + "LargeImageKey: " + TextBox_largeImageKey.Text);
@@ -109,9 +109,10 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "SmallImageKey: " + TextBox_smallImageKey.Text);
             Debug.WriteLine(TAG + "SmallImageText: " + TextBox_smallImageText.Text);
             Debug.WriteLine(TAG + "Updated presence and settings");
-#endif
+            #endif
+
             // Show MessageBox to notify user Spotify client is running
-            if (getSpotifyProcess.IsSpotifyOpened == true)
+            if (getSpotifyProcess.IsSpotifyOpened)
             {
                 MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

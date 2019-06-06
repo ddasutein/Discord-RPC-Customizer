@@ -20,20 +20,12 @@ namespace DiscordRPC.Main
             }
         }
 
-        private void SaveHashID(string hashedId)
-        {
-            JsonConfig.settings.discordClientIdHash = hashedId;
-            JsonConfig.SaveJson();
-        }
-
-
         public void VerifyClientIdHash(string discordClientIDHash)
         {
             using (SHA256 sha256hash = SHA256.Create())
             {
                 if (VerifyHash(sha256hash, discordClientId, discordClientIDHash))
                 {
-                    SaveHashID(discordClientIDHash);
                     presenceManager.InitializeDiscordRPC(discordClientId);
                 }
                 else

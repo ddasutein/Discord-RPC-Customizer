@@ -110,6 +110,7 @@
     <Compile Include="GetDiscordProcess.cs" />
     <Compile Include="GetSpotifyProcess.cs" />
     <Compile Include="HashManager.cs" />
+    <Compile Include="IDiscordPresence.cs" />
     <Compile Include="JsonConfig.cs" />
     <Compile Include="JumpListManager.cs" />
     <Compile Include="PresenceManager.cs" />
