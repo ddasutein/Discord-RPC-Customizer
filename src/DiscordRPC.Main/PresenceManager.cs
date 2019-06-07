@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using DiscordRPC.Message;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 
@@ -28,7 +29,7 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "Connecting to Discord...");
             client = new DiscordRpcClient(ClientID);
             client.Initialize();
-            //Subscribe to events
+
             client.OnReady += (sender, e) =>
             {
                 Debug.WriteLine("Received Ready from user {0}", e.User);
@@ -47,27 +48,25 @@ namespace DiscordRPC.Main
                 MessageBox.Show("Connection to Discord has failed. Check if your Discord client is running.", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             };
 
-            client.OnConnectionEstablished += (sender, e) =>
+            client.OnConnectionEstablished += OnConnectionEstablished;
+
+        }
+        private static void OnConnectionEstablished(object sender, ConnectionEstablishedMessage args)
+        {
+            client.SetPresence(new RichPresence()
             {
-                Debug.WriteLine(TAG + "Discord RPC is online");
-                Debug.WriteLine(TAG + "Setting client rich presence");
-                
-                client.SetPresence(new RichPresence()
+                Details = JsonConfig.settings.discordPresenceDetail,
+                State = JsonConfig.settings.discordPresenceState,
+
+                Assets = new Assets()
                 {
-                    Details = JsonConfig.settings.discordPresenceDetail,
-                    State = JsonConfig.settings.discordPresenceState,
-
-                    Assets = new Assets()
-                    {
-                        LargeImageKey = JsonConfig.settings.discordLargeImageKey,
-                        LargeImageText = JsonConfig.settings.discordLargeImageText,
-                        SmallImageKey = JsonConfig.settings.discordSmallImageKey,
-                        SmallImageText = JsonConfig.settings.discordSmallImageText,
-                    }
-                });
-                client.Invoke();
-            };
-
+                    LargeImageKey = JsonConfig.settings.discordLargeImageKey,
+                    LargeImageText = JsonConfig.settings.discordLargeImageText,
+                    SmallImageKey = JsonConfig.settings.discordSmallImageKey,
+                    SmallImageText = JsonConfig.settings.discordSmallImageText,
+                }
+            });
+            client.Invoke();
         }
 
         public void UpdatePresence()
