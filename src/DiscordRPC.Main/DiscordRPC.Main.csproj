@@ -53,7 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\discord.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\RikoRPC_logo_48px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -205,6 +205,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icons8_lock_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RikoRPC_logo_48px.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RikoRPC_logo_128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RikoRPC_logo_256px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
