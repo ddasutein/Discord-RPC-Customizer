@@ -16,7 +16,7 @@
             <ColumnDefinition Width="206*"/>
         </Grid.ColumnDefinitions>
         <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8.2" Grid.Row="1">
-            <Image x:Name="statusIconImage" Height="25" Width="32" Source="Resources/icons8_online.png"/>
+            <Image x:Name="statusIconImage" Height="25" Width="32" Source="/DiscordRPCMain;component/Resources/icons8_offline.png"/>
             <Label x:Name="Label_Status" Content="Enter your client ID then press the 'Go online' button in 'Settings'." Foreground="#FF72767D"/>
 
         </StatusBar>
@@ -52,10 +52,10 @@
                         <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save" Margin="0,0,258,18" FontSize="12" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2" TabIndex="9"/>
                         <Button x:Name="Button_afk_and_lock_pc" Click="Button_afk_and_lock_pc_Click" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="271,32,0,0" VerticalAlignment="Top" Width="31" Height="25" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Go AFK and Lock this PC">
                             <Button.Background>
-                                <ImageBrush ImageSource="Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
+                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
-                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="Resources/icons8_discord_100.png" Stretch="UniformToFill" StretchDirection="DownOnly">
+                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="/DiscordRPCMain;component/Resources/icons8_discord_100.png" Stretch="UniformToFill" StretchDirection="DownOnly">
                         </Image>
                         <Label Content="USERNAME" Margin="76,22,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
                         <Label x:Name="usernameLabel" Content="Not found" Margin="76,39,183,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
@@ -87,7 +87,7 @@
                             BorderThickness="0" 
                             Grid.ColumnSpan="5" TabIndex="13">
                             <Button.Background>
-                                <ImageBrush ImageSource="Resources/icons8_manage.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_manage.png" Stretch="Uniform"/>
                             </Button.Background>
 
                         </Button>
@@ -108,7 +108,7 @@
                             Margin="87,100,0,0"
                             VerticalAlignment="Top" Width="97" Height="55" TabIndex="14">
                             <Button.Background>
-                                <ImageBrush ImageSource="Resources/icons8_reset.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_reset.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <TextBlock 
@@ -120,7 +120,7 @@
                             Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="4"/>
                         <Button x:Name="buttonAbout" Content="" Grid.Column="4" HorizontalAlignment="Left" Margin="239,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonAbout_Click" Height="55" BorderThickness="0" TabIndex="15">
                             <Button.Background>
-                                <ImageBrush ImageSource="Resources/icons8_about.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_about.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <TextBlock 

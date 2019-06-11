@@ -15,7 +15,7 @@
             <ColumnDefinition Width="140*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="buttonGitHub" Content="Contribute on GitHub" Margin="0,0,10,10" Grid.Column="3" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133" Click="buttonGitHub_Click" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Grid.ColumnSpan="2"/>
-        <Image HorizontalAlignment="Left" Height="50" Margin="5,15,0,0" VerticalAlignment="Top" Width="50" Source="Resources/RikoRPC_logo_128px.png" Grid.Column="2" Stretch="Fill" StretchDirection="DownOnly"/>
+        <Image HorizontalAlignment="Left" Height="50" Margin="5,15,0,0" VerticalAlignment="Top" Width="50" Source="/DiscordRPCMain;component/Resources/RikoRPC_logo_128px.png" Grid.Column="2" Stretch="Fill" StretchDirection="DownOnly"/>
         <Label Content="Discord Rich Presence Customizer for Windows" HorizontalAlignment="Left" Margin="70,15,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25" FontWeight="Bold"/>
         <Label Content="Developed by Dasutein" HorizontalAlignment="Left" Margin="70,35,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25"/>
         <TextBlock Foreground="#FF72767D" HorizontalAlignment="Right" Margin="0,115,46,0" TextWrapping="Wrap" Text="Discord build channel:" VerticalAlignment="Top" TextAlignment="Center" Grid.Column="2"/>

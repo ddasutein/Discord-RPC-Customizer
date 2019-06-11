@@ -183,9 +183,9 @@ namespace DiscordRPC.Main.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon RikoRPC_logo_48px {
+        internal static System.Drawing.Icon RikoRPC_logo_ico_256px {
             get {
-                object obj = ResourceManager.GetObject("RikoRPC_logo_48px", resourceCulture);
+                object obj = ResourceManager.GetObject("RikoRPC_logo_ico_256px", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

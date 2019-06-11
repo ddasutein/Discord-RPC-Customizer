@@ -74,7 +74,7 @@ namespace DiscordRPC.Main
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
-                statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_offline.png", UriKind.Relative));
+                statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));
                 return;
             }
             else
@@ -93,7 +93,7 @@ namespace DiscordRPC.Main
                 this.Button_afk_and_lock_pc.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
 
-                statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_online.png", UriKind.Relative));
+                statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_online.png", UriKind.Relative));
                 isDiscordPresenceRunning = true;
                 this.SetStatusBarMessage("Discord RPC is online");
 
@@ -190,7 +190,7 @@ namespace DiscordRPC.Main
                 this.Button_Initialize_Discord.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = true;
                 this.Button_afk_and_lock_pc.IsEnabled = false;
-                statusIconImage.Source = new BitmapImage(new Uri("Resources/icons8_offline.png", UriKind.Relative));
+                statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));
             }
             else
             {

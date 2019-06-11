@@ -53,7 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\RikoRPC_logo_48px.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\RikoRPC_logo_256px_Windows_256x256.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -101,10 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AboutWindow.xaml.cs">
+    <Compile Include="UI\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FirstRunWindow.xaml.cs">
+    <Compile Include="UI\FirstRunWindow.xaml.cs">
       <DependentUpon>FirstRunWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GetDiscordProcess.cs" />
@@ -115,15 +115,15 @@
     <Compile Include="JumpListManager.cs" />
     <Compile Include="PresenceManager.cs" />
     <Compile Include="ResetApplication.cs" />
-    <Page Include="AboutWindow.xaml">
+    <Page Include="UI\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FirstRunWindow.xaml">
+    <Page Include="UI\FirstRunWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -131,7 +131,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -214,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\RikoRPC_logo_256px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RikoRPC_logo_256px_Windows_256x256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

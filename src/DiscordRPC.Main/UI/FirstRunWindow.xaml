@@ -11,7 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="100" Margin="30,25,0,0" VerticalAlignment="Top" Width="100" Source="Resources/discord_logo.png"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="30,25,0,0" VerticalAlignment="Top" Width="100" Source="/DiscordRPCMain;component/Resources/RikoRPC_logo_128px.png"/>
         <Label Content="Welcome to Discord Rich Presence Customizer for Windows" HorizontalAlignment="Left" Margin="150,30,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
         <Label Content="This is an open source application developed by Dasutein. " HorizontalAlignment="Left" Margin="150,66,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="40"/>
         <Label Content="How to setup?" HorizontalAlignment="Left" Margin="20,135,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
