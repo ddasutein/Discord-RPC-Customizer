@@ -36,22 +36,20 @@ namespace DiscordRPC.Main
 
         public MainWindow()
         {
-            // Load most important stuff here
             InitializeComponent();
             this.Closed += ExitApplication;
             jumpListManager.LoadJumpLists();
             LoadUserStatePresence();
 
-            // Start threads
+            // Initialize threads
             spotifyProcessScanThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
             spotifyProcessScanThread.IsBackground = true;
             spotifyProcessScanThread.Start();
 
             StartDiscordPresence();
-
         }
 
-        void ExitApplication(object sender, EventArgs e)
+        protected void ExitApplication(object sender, EventArgs e)
         {
             // When user closes the application, the application will dispose the Discord RPC client.
             if (isDiscordPresenceRunning == true)
@@ -70,7 +68,6 @@ namespace DiscordRPC.Main
 
             if (String.IsNullOrEmpty(TextBox_clientId.Password))
             {
-                this.SetStatusBarMessage("Discord RPC is offline.");;
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
@@ -79,13 +76,10 @@ namespace DiscordRPC.Main
             }
             else
             {
-                this.SetStatusBarMessage("Connecting to Discord...");
-
                 hashManager.discordClientId = this.TextBox_clientId.Password;
                 StartHashManagerThread = new Thread(new ThreadStart(hashManager.HashId));
                 StartHashManagerThread.IsBackground = true;
                 StartHashManagerThread.Start();
-                //presenceManager.InitializeDiscordRPC();
 
                 this.Button_Initialize_Discord.IsEnabled = false;
                 this.Button_Update.IsEnabled = true;
@@ -95,7 +89,6 @@ namespace DiscordRPC.Main
 
                 statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_online.png", UriKind.Relative));
                 isDiscordPresenceRunning = true;
-                this.SetStatusBarMessage("Discord RPC is online");
 
                 this.usernameLabel.Content = JsonConfig.settings.discordUsername;
                 this.discordAvatarImage.Source = new BitmapImage(new Uri(JsonConfig.settings.discordAvatarUri));
@@ -105,7 +98,7 @@ namespace DiscordRPC.Main
         private void updatePresence()
         {
 
-            #if DEBUG
+#if DEBUG
             Debug.WriteLine(TAG + "Details: " + TextBox_details.Text);
             Debug.WriteLine(TAG + "State: " + TextBox_state.Text);
             Debug.WriteLine(TAG + "LargeImageKey: " + TextBox_largeImageKey.Text);
@@ -113,7 +106,7 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "SmallImageKey: " + TextBox_smallImageKey.Text);
             Debug.WriteLine(TAG + "SmallImageText: " + TextBox_smallImageText.Text);
             Debug.WriteLine(TAG + "Updated presence and settings");
-            #endif
+#endif
 
             // Show MessageBox to notify user Spotify client is running
             if (getSpotifyProcess.IsSpotifyOpened)
@@ -174,40 +167,17 @@ namespace DiscordRPC.Main
 
         }
 
-        /// <summary>
-        /// Stop RPC.
-        /// </summary>
         private void Shutdown()
         {
-
-            if (MessageBox.Show("Are you sure you want to go offline?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                presenceManager.ShutdownPresence();
-                this.SetStatusBarMessage("Discord RPC is offline.");
-                this.usernameLabel.Content = "Not found";
-                this.Button_Update.IsEnabled = false;
-                this.Button_Shutdown.IsEnabled = false;
-                this.Button_Initialize_Discord.IsEnabled = true;
-                this.TextBox_clientId.IsEnabled = true;
-                this.Button_afk_and_lock_pc.IsEnabled = false;
-                statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));
-            }
-            else
-            {
-                // Do nothing
-                return;
-            }
-
-        }
-
-        /// <summary>
-        /// Just set a message to be displayed in the status bar at the window's bottom.
-        /// </summary>
-        /// <param name="message"></param>
-        private void SetStatusBarMessage(string message)
-        {
-            this.Label_Status.Content = message;
-        }
+            presenceManager.ShutdownPresence();
+            this.usernameLabel.Content = "Not found";
+            this.Button_Update.IsEnabled = false;
+            this.Button_Shutdown.IsEnabled = false;
+            this.Button_Initialize_Discord.IsEnabled = true;
+            this.TextBox_clientId.IsEnabled = true;
+            this.Button_afk_and_lock_pc.IsEnabled = false;
+            statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));      
+    }
 
         String clientID;
 
@@ -240,7 +210,15 @@ namespace DiscordRPC.Main
 
         private void Button_Shutdown_Click(object sender, RoutedEventArgs e)
         {
-            Shutdown();
+            if (MessageBox.Show("Are you sure you want to go offline?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                StartHashManagerThread.Abort();
+                Shutdown();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void Button_open_discord_api(object sender, RoutedEventArgs e)

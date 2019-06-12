@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscordRPC.Main"
+        
         mc:Ignorable="d"
         Title="Discord Rich Presence Customizer" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
-    <Grid Margin="7,7,-7,-7">
+    
+<Grid Margin="7,7,-7,-7">
         <Grid.RowDefinitions>
             <RowDefinition Height="175*"/>
             <RowDefinition Height="244*"/>
@@ -17,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8.2" Grid.Row="1">
             <Image x:Name="statusIconImage" Height="25" Width="32" Source="/DiscordRPCMain;component/Resources/icons8_offline.png"/>
-            <Label x:Name="Label_Status" Content="Enter your client ID then press the 'Go online' button in 'Settings'." Foreground="#FF72767D"/>
+            <Label x:Name="Label_Status" Content="{Binding discordConnectionStatusViewModel.Status, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF72767D"/>
 
         </StatusBar>
         <Grid HorizontalAlignment="Left" Height="287" Margin="52,40,0,0" VerticalAlignment="Top" Width="337" Grid.ColumnSpan="2" Grid.RowSpan="2">
@@ -144,4 +146,8 @@
             </TabControl>
         </Grid>
     </Grid>
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
 </Window>
+

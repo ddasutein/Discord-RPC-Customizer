@@ -101,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DiscordConnectionStatusObserveable.cs" />
     <Compile Include="UI\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -115,6 +116,8 @@
     <Compile Include="JumpListManager.cs" />
     <Compile Include="PresenceManager.cs" />
     <Compile Include="ResetApplication.cs" />
+    <Compile Include="ViewModels\DiscordConnectionStatusViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="UI\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
