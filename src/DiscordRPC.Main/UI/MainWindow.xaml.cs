@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace DiscordRPC.Main
 {
@@ -51,7 +52,7 @@ namespace DiscordRPC.Main
 
         protected void ExitApplication(object sender, EventArgs e)
         {
-            // When user closes the application, the application will dispose the Discord RPC client.
+            // Dispose RPC when user exits application
             if (isDiscordPresenceRunning == true)
             {
                 presenceManager.ShutdownPresence();
@@ -72,13 +73,13 @@ namespace DiscordRPC.Main
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
                 statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));
+                this.SetCurrentStatus("Offline");
                 return;
             }
             else
             {
                 hashManager.discordClientId = this.TextBox_clientId.Password;
                 StartHashManagerThread = new Thread(new ThreadStart(hashManager.HashId));
-                StartHashManagerThread.IsBackground = true;
                 StartHashManagerThread.Start();
 
                 this.Button_Initialize_Discord.IsEnabled = false;
@@ -86,15 +87,13 @@ namespace DiscordRPC.Main
                 this.Button_Shutdown.IsEnabled = true;
                 this.Button_afk_and_lock_pc.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
-
                 statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_online.png", UriKind.Relative));
-                isDiscordPresenceRunning = true;
+                this.SetCurrentStatus("Online");
 
-                this.usernameLabel.Content = JsonConfig.settings.discordUsername;
-                this.discordAvatarImage.Source = new BitmapImage(new Uri(JsonConfig.settings.discordAvatarUri));
+                // Used for checking if Discord presence is running before closing the app
+                isDiscordPresenceRunning = true;
             }
         }
-
         private void updatePresence()
         {
 
@@ -108,6 +107,7 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "Updated presence and settings");
 #endif
 
+            this.SetCurrentStatus("Online");
             // Show MessageBox to notify user Spotify client is running
             if (getSpotifyProcess.IsSpotifyOpened)
             {
@@ -170,12 +170,12 @@ namespace DiscordRPC.Main
         private void Shutdown()
         {
             presenceManager.ShutdownPresence();
-            this.usernameLabel.Content = "Not found";
             this.Button_Update.IsEnabled = false;
             this.Button_Shutdown.IsEnabled = false;
             this.Button_Initialize_Discord.IsEnabled = true;
             this.TextBox_clientId.IsEnabled = true;
             this.Button_afk_and_lock_pc.IsEnabled = false;
+            this.SetCurrentStatus("Offline");
             statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));      
     }
 
@@ -198,6 +198,10 @@ namespace DiscordRPC.Main
             }
         }
 
+        private void SetCurrentStatus(string status)
+        {
+            this.currentStatusLabel.Content = status;
+        }
         private void Button_save_settings_Click(object sender, RoutedEventArgs e)
         {
             SaveUserStatePresence();
@@ -259,6 +263,7 @@ namespace DiscordRPC.Main
 
         private void Button_afk_and_lock_pc_Click(object sender, RoutedEventArgs e)
         {
+            this.SetCurrentStatus("AFK (Last updated on " + DateTime.Now + ")");
             presenceManager.useTimeStamp = true;
             presenceManager.discordPresenceDetail = JsonConfig.settings.discordUsername;
             presenceManager.discordPresenceState = "is away from keyboard for ";
@@ -269,6 +274,7 @@ namespace DiscordRPC.Main
             presenceManager.UpdatePresence();
             Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
         }
+
     }
 
 }

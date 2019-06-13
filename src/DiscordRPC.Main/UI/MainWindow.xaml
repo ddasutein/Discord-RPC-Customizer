@@ -7,8 +7,8 @@
         
         mc:Ignorable="d"
         Title="Discord Rich Presence Customizer" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
-    
-<Grid Margin="7,7,-7,-7">
+
+    <Grid Margin="7,7,-7,-7">
         <Grid.RowDefinitions>
             <RowDefinition Height="175*"/>
             <RowDefinition Height="244*"/>
@@ -57,10 +57,12 @@
                                 <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
-                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="/DiscordRPCMain;component/Resources/icons8_discord_100.png" Stretch="UniformToFill" StretchDirection="DownOnly">
+                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="{Binding discordProfileInfoViewModel.DiscordAvatarUri, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" StretchDirection="DownOnly">
                         </Image>
-                        <Label Content="USERNAME" Margin="76,22,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
-                        <Label x:Name="usernameLabel" Content="Not found" Margin="76,39,183,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
+                        <Label Content="USERNAME" Margin="76,12,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
+                        <Label x:Name="usernameLabel" Content="{Binding discordProfileInfoViewModel.DiscordUsername, UpdateSourceTrigger=PropertyChanged}" Margin="76,29,183,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
+                        <Label Content="STATUS" Margin="76,50,13,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="10"/>
+                        <Label x:Name="currentStatusLabel" Content="Online" Margin="120,50,139,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="10" FontWeight="Normal" Grid.ColumnSpan="3"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tabItemSettings" Header="Settings" BorderBrush="{x:Null}" TabIndex="11">
