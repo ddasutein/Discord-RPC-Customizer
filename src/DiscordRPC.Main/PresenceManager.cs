@@ -52,11 +52,9 @@ namespace DiscordRPC.Main
             JsonConfig.settings.discordUsername = args.User.ToString();
             JsonConfig.settings.discordAvatarUri = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
             JsonConfig.SaveJson();
-
-            Application.Current.Dispatcher.Invoke(delegate
-            {
-                mainViewModel.discordConnectionStatusViewModel.Status = "Discord RPC is online";
-            });
+            mainViewModel.discordConnectionStatusViewModel.Status = "Discord RPC is online";
+            mainViewModel.discordProfileInfoViewModel.DiscordUsername = args.User.ToString();
+            mainViewModel.discordProfileInfoViewModel.DiscordAvatarUri = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
 
         }
         private void OnConnectionFailed(object sender, ConnectionFailedMessage args)
@@ -121,13 +119,6 @@ namespace DiscordRPC.Main
                 });
                 client.Invoke();
             }
-
-            Application.Current.Dispatcher.Invoke(delegate
-            {
-                Window mainWindow = Application.Current.MainWindow;
-                mainWindow.DataContext = mainViewModel;
-            });
-            mainViewModel.discordConnectionStatusViewModel.Status = "Discord Presence Updated";
         }
 
         public void ShutdownPresence()
@@ -136,8 +127,10 @@ namespace DiscordRPC.Main
             {
                 Window mainWindow = Application.Current.MainWindow;
                 mainWindow.DataContext = mainViewModel;
+                mainViewModel.discordConnectionStatusViewModel.Status = string.Empty;
+                mainViewModel.discordProfileInfoViewModel.DiscordUsername = string.Empty;
+                mainViewModel.discordProfileInfoViewModel.DiscordAvatarUri = string.Empty;
             });
-            mainViewModel.discordConnectionStatusViewModel.Status = string.Empty;
 
             client.Dispose();
             discordPresenceDetail = string.Empty;

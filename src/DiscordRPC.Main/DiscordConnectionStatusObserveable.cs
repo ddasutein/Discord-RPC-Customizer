@@ -8,10 +8,7 @@ namespace DiscordRPC.Main
 
         protected void OnPropertyChanged(string status)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(status));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(status));
 
         }
 

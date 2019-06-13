@@ -117,6 +117,7 @@
     <Compile Include="PresenceManager.cs" />
     <Compile Include="ResetApplication.cs" />
     <Compile Include="ViewModels\DiscordConnectionStatusViewModel.cs" />
+    <Compile Include="ViewModels\DiscordProfileInfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="UI\AboutWindow.xaml">
       <SubType>Designer</SubType>
