@@ -161,6 +161,16 @@ namespace DiscordRPC.Main.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon rikorpc_logo {
+            get {
+                object obj = ResourceManager.GetObject("rikorpc_logo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap RikoRPC_logo_128px {
@@ -177,16 +187,6 @@ namespace DiscordRPC.Main.Properties {
             get {
                 object obj = ResourceManager.GetObject("RikoRPC_logo_256px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon RikoRPC_logo_ico_256px {
-            get {
-                object obj = ResourceManager.GetObject("RikoRPC_logo_ico_256px", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
     }

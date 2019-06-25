@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscordRPC.Main"
         mc:Ignorable="d"
-        Title="Discord Rich Presence Customizer" Height="450" Width="800" Background="#FF36393E" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Discord Rich Presence Customizer" Height="401.4" Width="800" Background="#FF36393E" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid RenderTransformOrigin="0.674,0.546" HorizontalAlignment="Left" Width="794" Height="421" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="100" Margin="30,25,0,0" VerticalAlignment="Top" Width="100" Source="/DiscordRPCMain;component/Resources/RikoRPC_logo_128px.png"/>
-        <Label Content="Welcome to Discord Rich Presence Customizer for Windows" HorizontalAlignment="Left" Margin="150,30,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
-        <Label Content="This is an open source application developed by Dasutein. " HorizontalAlignment="Left" Margin="150,66,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="40"/>
-        <Label Content="How to setup?" HorizontalAlignment="Left" Margin="20,135,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
-        <Label Content="Step 1: Add this program 'Discord Rich Presence' in your Game Activity menu on your Discord client.&#xD;&#xA;&#xD;&#xA;Step 2: Go to the Discord Developer Portal and Create your Application. Your application name will reflect as your&#xD;&#xA;status &quot;Playing -your app name here-&quot;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Step 3: Copy 'Client ID' and paste it in this application's Settings page. DO NOT SHARE YOUR CLIENT ID.&#xD;&#xA;&#xD;&#xA;Step 4: Update your Presence! :)&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,170,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="185" Width="750"/>
-        <Button x:Name="buttonDiscordDeveloperPortal" Content="Discord Developer Portal" Margin="23,256,606,140" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Click="ButtonDiscordDeveloperPortal_Click"/>
-        <Button x:Name="buttonEndTutorial" Content="End tutorial" Margin="645,360,0,0" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" HorizontalAlignment="Left" Width="125" Height="45" VerticalAlignment="Top" Click="ButtonEndTutorial_Click"/>
+        <Image HorizontalAlignment="Left" Height="65" Margin="30,25,0,0" VerticalAlignment="Top" Width="65" Source="/DiscordRPCMain;component/Resources/RikoRPC_logo_128px.png"/>
+        <Label Content="Welcome to Discord Rich Presence Customizer for Windows" HorizontalAlignment="Left" Margin="110,30,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
+        <Label Content="This is an open source application developed by Dasutein. " HorizontalAlignment="Left" Margin="112,63,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="40"/>
+        <Label Content="How to setup?" HorizontalAlignment="Left" Margin="20,115,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFECECEC" FontWeight="Bold" Height="40"/>
+        <Label Content="Step 1: Go to the Discord Developer Portal and Create your Application. Your application name will reflect as your&#xA;status &quot;Playing -your app name here-&quot;&#xA;&#xA;Step 2: Copy 'Client ID' and paste it in this application's Settings page. DO NOT SHARE YOUR CLIENT ID.&#xA;&#xA;Step 3: Update your Presence! :)&#xA;" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FFECECEC" Height="130" Width="750"/>
+        <Button x:Name="buttonDiscordDeveloperPortal" Content="Discord Developer Portal" Margin="460,0,168.6,76" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Click="ButtonDiscordDeveloperPortal_Click" Height="45" VerticalAlignment="Bottom"/>
+        <Button x:Name="buttonEndTutorial" Content="End tutorial" Margin="640,300,0,0" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" HorizontalAlignment="Left" Width="125" Height="45" VerticalAlignment="Top" Click="ButtonEndTutorial_Click"/>
     </Grid>
 </Window>

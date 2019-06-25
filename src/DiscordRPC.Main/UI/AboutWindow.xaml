@@ -22,7 +22,7 @@
         <TextBlock                           
             x:Name="textBlockDiscordBuildType"
             x:FieldModifier="public"
-            Foreground="#FF72767D" Margin="0,115,87,0" TextWrapping="Wrap" Text="Stable/PTB" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="57"/>
+            Foreground="#FF72767D" Margin="0,115,27.4,-0.6" TextWrapping="Wrap" Text="Stable/PTB" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="117"/>
         <TextBlock x:Name="textBlockVersionNumber" Margin="0,97,67,0" TextWrapping="Wrap" Text="Version: 1.0.0                                    " Foreground="#FF72767D" Grid.Column="2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Right" Width="96"/>
 
     </Grid>
