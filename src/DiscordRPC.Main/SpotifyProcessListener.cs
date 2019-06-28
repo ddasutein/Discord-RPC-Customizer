@@ -5,11 +5,11 @@ using System.Windows;
 
 namespace DiscordRPC.Main
 {
-    class GetSpotifyProcess
+    class SpotifyProcessListener
     {
 
         // Debug only
-        private string TAG = "GetSpotifyProcess: ";
+        private readonly string TAG = "GetSpotifyProcess: ";
 
         // Global variables
         private bool isSpotifyOpened = false;
@@ -35,28 +35,30 @@ namespace DiscordRPC.Main
 
                     if (spotifyProcess.Length > 0)
                     {
+#if DEBUG
                         Debug.WriteLine(TAG + "Spotify process detected");
+#endif
                         isSpotifyOpened = true;
                         
                     }
                     else if (spotifyProcess != null)
                     {
+#if DEBUG
                         Debug.WriteLine(TAG + "Spotify process closed");
+#endif
                         isSpotifyOpened = false;
                     }
 
                     Thread.Sleep(1500);
                 }
 
-                if (!isSpotifyOpened)
-                {
-                    MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
             }
-            catch (ThreadAbortException ate)
+            catch (ThreadAbortException e)
             {
-                MessageBox.Show(ate.ToString(), Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title);
-                Debug.WriteLine(TAG + ate.ToString());
+                MessageBox.Show(e.ToString(), Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title);
+#if DEBUG
+                Debug.WriteLine(TAG + e.ToString());
+#endif
             }
         }
 

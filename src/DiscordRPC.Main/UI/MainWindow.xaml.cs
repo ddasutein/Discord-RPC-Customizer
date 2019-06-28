@@ -25,7 +25,7 @@ namespace DiscordRPC.Main
         private bool isTimeStampEnabled = false;
 
         // Classes
-        GetSpotifyProcess getSpotifyProcess = new GetSpotifyProcess();
+        SpotifyProcessListener getSpotifyProcess = new SpotifyProcessListener();
         JumpListManager jumpListManager = new JumpListManager();
         ResetApplication resetApplication = new ResetApplication();
         PresenceManager presenceManager = new PresenceManager();
