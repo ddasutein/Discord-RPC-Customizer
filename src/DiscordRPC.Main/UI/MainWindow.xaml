@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DiscordRPC.Main"
         
         mc:Ignorable="d"
-        Title="Discord Rich Presence Customizer" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="RikoRPC" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
 
     <Grid Margin="7,7,-7,-7">
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
             <ColumnDefinition Width="206*"/>
         </Grid.ColumnDefinitions>
         <StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136" Grid.ColumnSpan="2" Margin="-6,0,6,8.2" Grid.Row="1">
-            <Image x:Name="statusIconImage" Height="25" Width="32" Source="/DiscordRPCMain;component/Resources/icons8_offline.png"/>
+            <Image x:Name="statusIconImage" Height="25" Width="32" Source="/RikoRPC;component/Resources/icons8_offline.png"/>
             <Label x:Name="Label_Status" Content="{Binding discordConnectionStatusViewModel.Status, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF72767D"/>
 
         </StatusBar>
@@ -54,7 +54,7 @@
                         <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save" Margin="0,0,258,18" FontSize="12" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2" TabIndex="9"/>
                         <Button x:Name="Button_afk_and_lock_pc" Click="Button_afk_and_lock_pc_Click" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="271,32,0,0" VerticalAlignment="Top" Width="31" Height="25" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Go AFK and Lock this PC">
                             <Button.Background>
-                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
+                                <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
                         <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="{Binding discordProfileInfoViewModel.DiscordAvatarUri, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" StretchDirection="DownOnly">
@@ -91,7 +91,7 @@
                             BorderThickness="0" 
                             Grid.ColumnSpan="5" TabIndex="13">
                             <Button.Background>
-                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_manage.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_manage.png" Stretch="Uniform"/>
                             </Button.Background>
 
                         </Button>
@@ -112,7 +112,7 @@
                             Margin="87,100,0,0"
                             VerticalAlignment="Top" Width="97" Height="55" TabIndex="14">
                             <Button.Background>
-                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_reset.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_reset.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <TextBlock 
@@ -124,7 +124,7 @@
                             Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="4"/>
                         <Button x:Name="buttonAbout" Content="" Grid.Column="4" HorizontalAlignment="Left" Margin="239,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonAbout_Click" Height="55" BorderThickness="0" TabIndex="15">
                             <Button.Background>
-                                <ImageBrush ImageSource="/DiscordRPCMain;component/Resources/icons8_about.png" Stretch="Uniform"/>
+                                <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_about.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
                         <TextBlock 

@@ -9,7 +9,7 @@
             {
                 if (string.IsNullOrEmpty(_Status))
                 {
-                    return "Discord RPC is offline. Go to Settings and Click 'Go online'";
+                    return "RikoRPC is offline. Go to Settings and Click 'Go online'";
                 }
                 else
                 {

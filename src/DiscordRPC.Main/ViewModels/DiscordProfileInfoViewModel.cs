@@ -13,7 +13,7 @@ namespace DiscordRPC.Main.ViewModels
             {
                 if (string.IsNullOrEmpty(_DiscordAvatarUri))
                 {
-                    var fallbackImage = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_discord_100.png", UriKind.Relative));
+                    var fallbackImage = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_discord_100.png", UriKind.Relative));
                     return fallbackImage.ToString();
                 }
                 else

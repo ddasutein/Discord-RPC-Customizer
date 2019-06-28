@@ -72,7 +72,7 @@ namespace DiscordRPC.Main
                 this.Button_Update.IsEnabled = false;
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
-                statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));
+                statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_offline.png", UriKind.Relative));
                 this.SetCurrentStatus("Offline");
                 return;
             }
@@ -87,7 +87,7 @@ namespace DiscordRPC.Main
                 this.Button_Shutdown.IsEnabled = true;
                 this.Button_afk_and_lock_pc.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
-                statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_online.png", UriKind.Relative));
+                statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_online.png", UriKind.Relative));
                 this.SetCurrentStatus("Online");
 
                 // Used for checking if Discord presence is running before closing the app
@@ -176,7 +176,7 @@ namespace DiscordRPC.Main
             this.TextBox_clientId.IsEnabled = true;
             this.Button_afk_and_lock_pc.IsEnabled = false;
             this.SetCurrentStatus("Offline");
-            statusIconImage.Source = new BitmapImage(new Uri("/DiscordRPCMain;component/Resources/icons8_offline.png", UriKind.Relative));      
+            statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_offline.png", UriKind.Relative));      
     }
 
         String clientID;

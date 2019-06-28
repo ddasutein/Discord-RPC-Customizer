@@ -17,7 +17,7 @@ namespace DiscordRPC.Main
         static string TAG = "App.xaml.cs: ";
 
         // Classes
-        GetDiscordProcess getDiscordProcess = new GetDiscordProcess();
+        DiscordProcessListener discordProcessListener = new DiscordProcessListener();
 
         private static Mutex mutex = null;
 
@@ -26,7 +26,7 @@ namespace DiscordRPC.Main
             JsonConfig.LoadJson();
 
             // Scan for Discord Process
-            getDiscordProcess.DiscordProcessName();
+            discordProcessListener.DiscordProcessName();
 
             string app_name = "DiscordRPC.Main";
             bool createdNew;
@@ -46,7 +46,7 @@ namespace DiscordRPC.Main
                 mainWindow.Show();
                 Debug.WriteLine(TAG + "Launching MainWindow.xaml (Debug)");
 #else
-                if (getDiscordProcess.IsDiscordRunning == true)
+                if (discordProcessListener.IsDiscordRunning == true)
                 {
                     // If Discord process is running, start application
                     if (JsonConfig.settings.firstRun == true)
@@ -62,7 +62,7 @@ namespace DiscordRPC.Main
                         Debug.WriteLine(TAG + "Launching MainWindow.xaml (Release)");
                     }
                 }
-                else if (getDiscordProcess.IsDiscordRunning == false)
+                else if (discordProcessListener.IsDiscordRunning == false)
                 {
                     // Shutdown application if Discord process is not running
                     MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
