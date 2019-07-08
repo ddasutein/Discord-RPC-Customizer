@@ -110,7 +110,7 @@
       <DependentUpon>FirstRunWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DiscordProcessListener.cs" />
-    <Compile Include="GetSpotifyProcess.cs" />
+    <Compile Include="SpotifyProcessListener.cs" />
     <Compile Include="HashManager.cs" />
     <Compile Include="IDiscordPresence.cs" />
     <Compile Include="JsonConfig.cs" />

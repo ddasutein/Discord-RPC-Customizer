@@ -27,9 +27,9 @@
                 <TabItem x:Name="tabItemDiscordPresence" Header="Discord Presence" BorderBrush="{x:Null}" Background="#FFE5E5E5" TabIndex="10">
                     <Grid Background="#FF36393E" Margin="0,0,-16,-11">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="131*"/>
-                            <ColumnDefinition Width="14*"/>
-                            <ColumnDefinition Width="308*"/>
+                            <ColumnDefinition Width="136*"/>
+                            <ColumnDefinition Width="14.4"/>
+                            <ColumnDefinition Width="319*"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBox x:Name="TextBox_state" Height="23" Margin="109,119,18,0" TextWrapping="Wrap" Text="Playing Solo" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="2"/>
@@ -57,8 +57,7 @@
                                 <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
-                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="{Binding discordProfileInfoViewModel.DiscordAvatarUri, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" StretchDirection="DownOnly">
-                        </Image>
+                        <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="{Binding discordProfileInfoViewModel.DiscordAvatarUri, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" StretchDirection="DownOnly" MouseDown="DiscordAvatarImage_MouseDown"></Image>
                         <Label Content="USERNAME" Margin="76,12,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
                         <Label x:Name="usernameLabel" Content="{Binding discordProfileInfoViewModel.DiscordUsername, UpdateSourceTrigger=PropertyChanged}" Margin="76,29,183,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
                         <Label Content="STATUS" Margin="76,50,13,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="10"/>
@@ -75,7 +74,7 @@
                             <ColumnDefinition Width="11*"/>
                             <ColumnDefinition Width="18*"/>
                             <ColumnDefinition Width="41*"/>
-                            <ColumnDefinition Width="11*"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="389*"/>
                         </Grid.ColumnDefinitions>
                         <Button x:Name= "Button_Initialize_Discord"  Content="Go online" Margin="0,35,17.6,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="4" TabIndex="12"/>
