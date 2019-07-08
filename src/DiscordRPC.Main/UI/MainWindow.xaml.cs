@@ -275,6 +275,14 @@ namespace DiscordRPC.Main
             Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
         }
 
+        private void DiscordAvatarImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                Process.Start(JsonConfig.settings.discordAvatarUri);
+            }
+            
+        }
     }
 
 }
