@@ -10,7 +10,9 @@ namespace DiscordRPC.Main
     public class AppConfig
     {
         public string discordUsername { get; set; }
-        public string discordAvatarUri { get; set; }
+        public string discordAvatarSmall { get; set; }
+        public string discordAvatarMedium { get; set; }
+        public string discordAvatarLarge { get; set; }
         public string discordClientId { get; set; }
         public string discordClientIdHash { get; set; }
         public string discordPresenceState { get; set; }
@@ -40,7 +42,7 @@ namespace DiscordRPC.Main
             else
             {
                 // Create empty JSON file 
-                string jsonFormat = JsonConvert.SerializeObject(settings);
+                string jsonFormat = JsonConvert.SerializeObject(settings, Formatting.Indented);
                 File.WriteAllText(fileName, jsonFormat);
             }
 
@@ -52,7 +54,7 @@ namespace DiscordRPC.Main
             {
                 try
                 {
-                    string jsonText = JsonConvert.SerializeObject(settings);
+                    string jsonText = JsonConvert.SerializeObject(settings, Formatting.Indented);
                     File.WriteAllText(fileName, jsonText);
                 }
                 catch(IOException e)
