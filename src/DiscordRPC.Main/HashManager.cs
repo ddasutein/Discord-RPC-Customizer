@@ -16,6 +16,7 @@ namespace DiscordRPC.Main
             {
                 string createHash = GetHash(sha256hash, discordClientId);
                 VerifyClientIdHash(createHash);
+                JsonConfig.settings.discordClientIdHash = createHash;
                 Console.WriteLine(createHash);
             }
         }
