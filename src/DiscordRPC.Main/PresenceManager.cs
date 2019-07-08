@@ -50,7 +50,9 @@ namespace DiscordRPC.Main
 #else
 #endif
             JsonConfig.settings.discordUsername = args.User.ToString();
-            JsonConfig.settings.discordAvatarUri = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
+            JsonConfig.settings.discordAvatarSmall = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
+            JsonConfig.settings.discordAvatarMedium = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x512);
+            JsonConfig.settings.discordAvatarLarge = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x1024);
             JsonConfig.SaveJson();
             mainViewModel.discordConnectionStatusViewModel.Status = "RikoRPC is online";
             mainViewModel.discordProfileInfoViewModel.DiscordUsername = args.User.ToString();

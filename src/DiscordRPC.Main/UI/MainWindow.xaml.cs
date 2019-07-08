@@ -30,6 +30,7 @@ namespace DiscordRPC.Main
         ResetApplication resetApplication = new ResetApplication();
         PresenceManager presenceManager = new PresenceManager();
         HashManager hashManager = new HashManager();
+        DiscordAvatarManager discordAvatar = new DiscordAvatarManager();
 
         // Threads
         Thread spotifyProcessScanThread;
@@ -73,7 +74,12 @@ namespace DiscordRPC.Main
                 this.Button_Shutdown.IsEnabled = false;
                 this.Button_Initialize_Discord.IsEnabled = true;
                 statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_offline.png", UriKind.Relative));
+                this.ImageContextItem0.IsEnabled = false;
+                this.ImageContextItem1.IsEnabled = false;
+                this.ImageContextItem2.IsEnabled = false;
+                this.ImageContextItem2.IsEnabled = false;
                 this.SetCurrentStatus("Offline");
+
                 return;
             }
             else
@@ -88,6 +94,10 @@ namespace DiscordRPC.Main
                 this.Button_afk_and_lock_pc.IsEnabled = true;
                 this.TextBox_clientId.IsEnabled = false;
                 statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_online.png", UriKind.Relative));
+                this.ImageContextItem0.IsEnabled = true;
+                this.ImageContextItem1.IsEnabled = true;
+                this.ImageContextItem2.IsEnabled = true;
+                this.ImageContextItem2.IsEnabled = true;
                 this.SetCurrentStatus("Online");
 
                 // Used for checking if Discord presence is running before closing the app
@@ -175,6 +185,10 @@ namespace DiscordRPC.Main
             this.Button_Initialize_Discord.IsEnabled = true;
             this.TextBox_clientId.IsEnabled = true;
             this.Button_afk_and_lock_pc.IsEnabled = false;
+            this.ImageContextItem0.IsEnabled = false;
+            this.ImageContextItem1.IsEnabled = false;
+            this.ImageContextItem2.IsEnabled = false;
+            this.ImageContextItem3.IsEnabled = false;
             this.SetCurrentStatus("Offline");
             statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_offline.png", UriKind.Relative));      
     }
@@ -279,9 +293,24 @@ namespace DiscordRPC.Main
         {
             if (e.ClickCount == 2)
             {
-                Process.Start(JsonConfig.settings.discordAvatarUri);
+                discordAvatar.DiscordAvatar128();
             }
             
+        }
+
+        private void ImageContextMenuItem128Click(object sender, RoutedEventArgs e)
+        {
+            discordAvatar.DiscordAvatar128();
+        }
+
+        private void ImageContextMenuItem256Click(object sender, RoutedEventArgs e)
+        {
+            discordAvatar.DiscordAvatar256();
+        }
+
+        private void ImageContextMenuItem1024Click(object sender, RoutedEventArgs e)
+        {
+            discordAvatar.DiscordAvatar1024();
         }
     }
 
