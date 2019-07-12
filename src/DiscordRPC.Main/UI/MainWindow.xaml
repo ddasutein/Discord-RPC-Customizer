@@ -52,7 +52,7 @@
                         <Button x:Name="Button_Update" Content="Update" Margin="12,0,60,18" Click="Button_Update_Click" Height="25" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Background="#FF1A71DA" TabIndex="7"/>
                         <Button x:Name="Button_Shutdown" Content="Offline" Margin="0,0,3,18" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="66" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="12" IsEnabled="False" TabIndex="8" Grid.ColumnSpan="2"/>
                         <Button x:Name="Button_save_settings" Click="Button_save_settings_Click" Content="Save" Margin="0,0,258,18" FontSize="12" HorizontalAlignment="Right" Width="60" Height="25" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Grid.Column="2" TabIndex="9"/>
-                        <Button x:Name="Button_afk_and_lock_pc" Click="Button_afk_and_lock_pc_Click" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="271,32,0,0" VerticalAlignment="Top" Width="31" Height="25" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Go AFK and Lock this PC">
+                        <Button x:Name="Button_afk_and_lock_pc" Click="Button_afk_and_lock_pc_Click" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="275,5,0,0" VerticalAlignment="Top" Width="32" Height="32" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Go AFK and Lock this PC">
                             <Button.Background>
                                 <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_lock_96.png" Stretch="UniformToFill"/>
                             </Button.Background>
@@ -69,9 +69,14 @@
                             </Image.ContextMenu>
                         </Image>
                         <Label Content="USERNAME" Margin="76,12,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
-                        <Label x:Name="usernameLabel" Content="{Binding discordProfileInfoViewModel.DiscordUsername, UpdateSourceTrigger=PropertyChanged}" Margin="76,29,183,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
+                        <Label x:Name="usernameLabel" Content="{Binding discordProfileInfoViewModel.DiscordUsername, UpdateSourceTrigger=PropertyChanged}" Margin="76,29,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
                         <Label Content="STATUS" Margin="76,50,13,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="10"/>
-                        <Label x:Name="currentStatusLabel" Content="Online" Margin="120,50,139,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="10" FontWeight="Normal" Grid.ColumnSpan="3"/>
+                        <Label x:Name="currentStatusLabel" Content="Online" Margin="120,50,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="10" FontWeight="Normal" Grid.ColumnSpan="3"/>
+                        <Button x:Name="Button_Download_Update" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="235,5,0,0" VerticalAlignment="Top" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.2,0.25" Height="32" Click="Button_Download_Update_Click" ToolTip="An update is available">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_refresh_shield_96.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="tabItemSettings" Header="Settings" BorderBrush="{x:Null}" TabIndex="11">
