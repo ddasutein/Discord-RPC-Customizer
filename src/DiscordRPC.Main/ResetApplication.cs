@@ -8,7 +8,7 @@ namespace DiscordRPC.Main
 {
     class ResetApplication
     {
-        public void deleteDirectory()
+        public static void DeleteDirectory()
         {
             // Delete 'Dasutein' folder in Local directory
             string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -31,7 +31,7 @@ namespace DiscordRPC.Main
 
         }
 
-        public void deleteConfig()
+        public static void DeleteConfig()
         {
             try
             {

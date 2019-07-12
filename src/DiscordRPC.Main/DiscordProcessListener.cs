@@ -1,15 +1,16 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DiscordRPC.Main
 {
     class DiscordProcessListener
     {
-        private readonly string TAG = "DiscordProcessListener.cs: ";
-        public bool IsDiscordRunning { get; private set; } = false;
+        private readonly static string TAG = "DiscordProcessListener.cs: ";
+        public static bool IsDiscordRunning { get; private set; } = false;
 
-        public string DiscordBuildInfo { get; set; }
+        public static string DiscordBuildType { get; set; }
 
-        public void DiscordProcessName()
+        public static void DiscordProcessName()
         {
             Process[] localAll = Process.GetProcesses();
             foreach (Process process in localAll)
@@ -21,11 +22,11 @@ namespace DiscordRPC.Main
                 switch (process.ProcessName)
                 {
                     case "Discord":
-                        DiscordBuildInfo = "Stable";
+                        DiscordBuildType = "Stable";
                         IsDiscordRunning = true;
                         break;
                     case "DiscordPTB":
-                        DiscordBuildInfo = "Public Test Beta (PTB)";
+                        DiscordBuildType = "Public Test Beta (PTB)";
                         IsDiscordRunning = true;
                         break;
                     default:
@@ -33,5 +34,6 @@ namespace DiscordRPC.Main
                 }
             }
         }
+
     }
 }

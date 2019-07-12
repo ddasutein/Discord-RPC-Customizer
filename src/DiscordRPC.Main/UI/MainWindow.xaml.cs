@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;
 
 namespace DiscordRPC.Main
 {
@@ -16,9 +15,8 @@ namespace DiscordRPC.Main
 
     public partial class MainWindow : Window 
     {
-
         // Debug only
-        static string TAG = "MainWindow.xaml: ";
+        private readonly static string TAG = "MainWindow.xaml: ";
 
         // Global Variables
         private bool isDiscordPresenceRunning = false;
@@ -27,10 +25,8 @@ namespace DiscordRPC.Main
         // Classes
         SpotifyProcessListener getSpotifyProcess = new SpotifyProcessListener();
         JumpListManager jumpListManager = new JumpListManager();
-        ResetApplication resetApplication = new ResetApplication();
         PresenceManager presenceManager = new PresenceManager();
         HashManager hashManager = new HashManager();
-        DiscordAvatarManager discordAvatar = new DiscordAvatarManager();
 
         // Threads
         Thread spotifyProcessScanThread;
@@ -42,12 +38,8 @@ namespace DiscordRPC.Main
             this.Closed += ExitApplication;
             jumpListManager.LoadJumpLists();
             LoadUserStatePresence();
-
-            // Initialize threads
-            spotifyProcessScanThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
-            spotifyProcessScanThread.IsBackground = true;
-            spotifyProcessScanThread.Start();
-
+            CheckForUpdates();
+            StartThreads();
             StartDiscordPresence();
         }
 
@@ -64,6 +56,24 @@ namespace DiscordRPC.Main
                 Application.Current.Shutdown();
             }
 
+        }
+        private void CheckForUpdates()
+        {
+            if (!AppUpdateChecker.IsUpdateAvailable)
+            {
+                this.Button_Download_Update.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                this.Button_Download_Update.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void StartThreads()
+        {
+            spotifyProcessScanThread = new Thread(new ThreadStart(getSpotifyProcess.SpotifyProcess));
+            spotifyProcessScanThread.IsBackground = true;
+            spotifyProcessScanThread.Start();
         }
         private void StartDiscordPresence()
         {
@@ -249,7 +259,7 @@ namespace DiscordRPC.Main
 
             if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                resetApplication.deleteConfig();
+                ResetApplication.DeleteConfig();
             }
             else
             {
@@ -293,24 +303,29 @@ namespace DiscordRPC.Main
         {
             if (e.ClickCount == 2)
             {
-                discordAvatar.DiscordAvatar128();
+                DiscordAvatarManager.DiscordAvatar128();
             }
             
         }
 
         private void ImageContextMenuItem128Click(object sender, RoutedEventArgs e)
         {
-            discordAvatar.DiscordAvatar128();
+            DiscordAvatarManager.DiscordAvatar128();
         }
 
         private void ImageContextMenuItem256Click(object sender, RoutedEventArgs e)
         {
-            discordAvatar.DiscordAvatar256();
+            DiscordAvatarManager.DiscordAvatar256();
         }
 
         private void ImageContextMenuItem1024Click(object sender, RoutedEventArgs e)
         {
-            discordAvatar.DiscordAvatar1024();
+            DiscordAvatarManager.DiscordAvatar1024();
+        }
+
+        private void Button_Download_Update_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/ddasutein/Discord-RPC-csharp/releases");
         }
     }
 

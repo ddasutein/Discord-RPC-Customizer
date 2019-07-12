@@ -6,32 +6,22 @@ using DiscordRPC.Main.Properties;
 
 namespace DiscordRPC.Main
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    /// 
-
     public partial class App : Application
     {
         // Debug only
         static string TAG = "App.xaml.cs: ";
-
-        // Classes
-        DiscordProcessListener discordProcessListener = new DiscordProcessListener();
 
         private static Mutex mutex = null;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             JsonConfig.LoadJson();
-
-            // Scan for Discord Process
-            discordProcessListener.DiscordProcessName();
+            AppUpdateChecker.CheckVersion();
+            DiscordProcessListener.DiscordProcessName();
 
             string app_name = "DiscordRPC.Main";
             bool createdNew;
             mutex = new Mutex(true, app_name, out createdNew);
-
 
             if (!createdNew)
             {       
@@ -46,7 +36,7 @@ namespace DiscordRPC.Main
                 mainWindow.Show();
                 Debug.WriteLine(TAG + "Launching MainWindow.xaml (Debug)");
 #else
-                if (discordProcessListener.IsDiscordRunning == true)
+                if (DiscordProcessListener.IsDiscordRunning == true)
                 {
                     // If Discord process is running, start application
                     if (JsonConfig.settings.firstRun == true)
@@ -62,7 +52,7 @@ namespace DiscordRPC.Main
                         Debug.WriteLine(TAG + "Launching MainWindow.xaml (Release)");
                     }
                 }
-                else if (discordProcessListener.IsDiscordRunning == false)
+                else if (DiscordProcessListener.IsDiscordRunning == false)
                 {
                     // Shutdown application if Discord process is not running
                     MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
