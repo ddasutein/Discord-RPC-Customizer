@@ -1,5 +1,7 @@
 ﻿using DiscordRPC.Message;
+using System;
 using System.Diagnostics;
+using System.Timers;
 using System.Windows;
 
 namespace DiscordRPC.Main
@@ -15,36 +17,69 @@ namespace DiscordRPC.Main
         public string discordSmallImageText { get; set; }
         public bool useTimeStamp { get; set; }
 
-        // DiscordRPC.Core Library
+        // Debug only
+        private readonly string TAG = "PresenceManager: ";
+
+        // DiscordRichPresence Library
         static DiscordRpcClient client;
 
-        // Debug only
-        static string TAG = "PresenceManager: ";
-
-        // Classes
+        // ViewModel
         MainViewModel mainViewModel = new MainViewModel();
+
+        /// <summary> StartTimeOutTimer method starts alongside Presence initialization
+        /// Timer will run for 10 seconds and stop when it establishes a connection to Discord.
+        /// If it fails to make a connection within 10 seconds, it will prompt a MessageBox dialog and loop until
+        /// a connection is re-established. Note that this method is different from the 
+        /// "OnConnectionFailed" event, which only checks the Discord client. 
+        /// </summary>
+        private static Timer TimeOutTimer;
+        private void StartTimeOutTimer()
+        {
+            int timeout_value = 10000; // Every 10 seconds
+
+            TimeOutTimer = new Timer(timeout_value);
+            TimeOutTimer.Elapsed += OnTimedEvent;
+            TimeOutTimer.AutoReset = true;
+            TimeOutTimer.Enabled = true;
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            TimeOutTimer.Stop();
+            MessageBoxResult result = MessageBox.Show("Failed to connect to Discord. No internet connection. Please check your connection and try again.", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            
+            if (result == MessageBoxResult.OK)
+            {
+                TimeOutTimer.Start();
+            }
+
+        }
+
         public void InitializeDiscordRPC(string ClientID)
         {
 #if DEBUG
             Debug.WriteLine(TAG + "Starting Discord Presence");
 #else
 #endif
+
             Application.Current.Dispatcher.Invoke(delegate
             {
                 Window mainWindow = Application.Current.MainWindow;
                 mainWindow.DataContext = mainViewModel;
             });
-
-            client = new DiscordRpcClient(ClientID);
-            client.Initialize();
             mainViewModel.discordConnectionStatusViewModel.Status = "Starting Discord Presence....";
 
+            StartTimeOutTimer();
+            client = new DiscordRpcClient(ClientID);
+            client.Initialize();
             client.OnReady += OnClientReady;
             client.OnConnectionFailed += OnConnectionFailed;
             client.OnConnectionEstablished += OnConnectionEstablished;
         }
         private void OnClientReady(object sender, ReadyMessage args)
         {
+            TimeOutTimer.Stop();
+            TimeOutTimer.Dispose();
 #if DEBUG
             Debug.WriteLine("Received Ready from user {0}", args.User);
 #else
