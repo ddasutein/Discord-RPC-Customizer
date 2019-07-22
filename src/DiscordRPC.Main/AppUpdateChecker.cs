@@ -21,33 +21,44 @@ namespace DiscordRPC.Main
 
         public static void CheckVersion()
         {
-            Version latest_version = new Version(GetLatestRelease());
-            Version current_version = new Version(GetCurrentApplicationVersion());
-
-            if (current_version > latest_version)
+            try
             {
-                IsUpdateAvailable = true;
-                MessageBoxResult result = MessageBox.Show(
-                    "A new version of " + AppTitle + " is available. Do you want to download the update now?",
-                    "Update available!",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Information);
-                if (result == MessageBoxResult.Yes)
+                Version latest_version = new Version(GetLatestRelease());
+                Version current_version = new Version(GetCurrentApplicationVersion());
+
+                if (current_version > latest_version)
                 {
-                    Process.Start("https://github.com/ddasutein/Discord-RPC-csharp/releases");
+                    IsUpdateAvailable = true;
+                    MessageBoxResult result = MessageBox.Show(
+                        "A new version of " + AppTitle + " is available. Do you want to download the update now?",
+                        "Update available!",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Information);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Process.Start("https://github.com/ddasutein/Discord-RPC-csharp/releases");
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else
                 {
-                    return;
+                    IsUpdateAvailable = false;
+#if DEBUG
+                    Debug.WriteLine(TAG + "Application is using the latest version");
+#endif
                 }
             }
-            else
+            catch (Exception e)
             {
-                IsUpdateAvailable = false;
-#if DEBUG
-                Debug.WriteLine(TAG + "Application is using the latest version");
-#endif
+                MessageBox.Show("Unable to check for updates. No internet connection.",
+                    "Connection Error", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
             }
+
         }
         private static string GetLatestRelease()
         {
@@ -65,7 +76,7 @@ namespace DiscordRPC.Main
         }
         public static string GetCurrentApplicationVersion()
         {
-            return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         public static void ManualCheckVersion()
