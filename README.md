@@ -1,22 +1,35 @@
-# C# Discord Rich Presence Customizer 
+<h1 align="center">
+<sub>
+<img  src="https://raw.githubusercontent.com/ddasutein/Discord-RPC-csharp/master/src/DiscordRPC.Main/Resources/RikoRPC_logo_128px.png"
+      height="35"
+      width="35">
+</sub>
+RikoRPC for Discord
+</h1>
+<p align="center">Create a custom Discord Rich Presence
+<br>
+Download now
+<br>
+<a href="https://github.com/ddasutein/Discord-RPC-csharp/releases">GitHub (Portable Version)</a>
+| Microsoft Store (coming soon)
+<h1></h1>
+</p>
 
-Want to have a custom Rich Presence on your Discord profile? This simple app can do that.
+## Installation (Users)
 
-## Installation (for users)
+1. Go to the 'Releases tab'
 
-### 1 - Go to the 'Releases tab'
+2. Get the latest version and download the ZIP file
 
-### 2 - Look for the latest version and download the ZIP file
+3. Create a folder on your preferred save location and extract the ZIP content to the folder
 
-### 3 - Create a folder on your preferred save location and extract the ZIP content to the folder
+4. Run RikoRPC.exe (Add to your Anti-Virus Exclusion List in case it flags this as malware)
 
-### 4 - Run DiscordRPC.exe.
+5. Follow Tutorial Screen
 
-### 5 - Follow the tutorial on the first run screen OR scroll down on this README and skip to Step 2 under Installation (for developers) to configure the RPC client.
+6. Please do submit an issue on this repository if you encounter issues or want to suggest new features! Enjoy! 😊
 
-### 6 - Enjoy! :) Please do submit an issue on this repository if you encounter issues
-
-## Installation (for developers)
+## Installation (Developers)
 
 **Dependencies:**
 
@@ -26,48 +39,92 @@ Want to have a custom Rich Presence on your Discord profile? This simple app can
 
 * Newtonsoft
 
-Within the Visual Studio solution, you will be presented with 3 project files
+* DiscordRichPresence by [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp)
 
-* `src/DiscordRPC.Core/Discord RPC.sln` contains the Discord RPC C# library by [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp).
+* RestSharp
 
-* `src/DiscordRPC.Main/DiscordRPC.Main.csproj` is the main starting point of the application, as well as the MainWindow.XAML file for the user interface. 
+* (Not in this build yet) DesktopHelpers
 
-* `src/DiscordRPC.Legacy/DiscordRPC.Legacy.csproj` contains the old codebase from the original fork before moving the codebase to the new directory `DiscordRPC.Main`. This may be removed in the future.
+* (Not in this build yet) Microsoft.Windows.SDK.Contracts
 
-### 1 - Download solution and build.
+**Installation:**
 
-Download this solution by cloning this repo then open "DiscordRPC.csproj" and then build the project. Run the DiscordRPC.exe which can be found in bin/debug/DiscordRPC.exe. Also before launching the app, copy the 'discord-rpc-w32.dll' from the /lib/ folder and paste it in /bin/debug directory where the .exe file is located.
+1. Download solution and build.
 
-***Note:** As of Version 2.0.0, the application will no longer require the 'discord-rpc-w32' DLL file. If you are downloading an older release such as 1.13 or 1.12.1, you must have the DLL file in the same directory as the .exe file*
+    In the Visual Studio solution, you will be presented with 2 projects:
+    
+    - `src/DiscordRPC.Core/Discord RPC.sln` contains the Discord RPC C# library by [Lachee/discord-rpc-csharp](https://github.com/Lachee/discord-rpc-csharp). *Deprecated as of version 2.3.0. Replaced with Nuget Package.*
 
-![Main window](https://raw.githubusercontent.com/ddasutein/Discord-RPC-csharp/master/screenshots/discord-rpc.png)
+    - `src/DiscordRPC.Main/DiscordRPC.Main.csproj` is the main starting point of the application, as well as the MainWindow.XAML file for the user interface. 
 
-### 2 - Add it as a game in Discord
+2. Create a Discord Application
 
-Open the settings panel in the Discord Desktop app, go to **Games**, click "**Add it!**" and select the app ("Discord RPC").
+    Go to [the Discord developer applications panel](https://discordapp.com/developers/applications/me) and click create a new application. After creating your application, copy the Client ID.
 
-### 3 - Obtain a Client ID
+3. Start and Update Discord Rich Presence
 
-Now you will need a Client ID. To obtain it just go to [the Discord developer applications panel](https://discordapp.com/developers/applications/me) and click "**New App**".
-Give it a nice App name, click the "**Create app**" button, then the "**Enable Rich Presence**" button.
+    Build application then copy the **Client ID** from the Discord Application Portal and Paste in Settings > **Client ID** field in the RikoRPC app. Click "**Go online**" to initialize Discord Presence.
 
-### 4 - Update your presence
+    ![Main window](https://raw.githubusercontent.com/ddasutein/Discord-RPC-csharp/master/screenshots/discord-rpc.png)
 
-Copy the **Client ID** at the top of the page and paste it in the **Client ID** field in the app.
-Click "**Initialize**" then "**Update**" and you should see this below your username and in your Discord profile:
+    ![Discord Profile](https://raw.githubusercontent.com/ddasutein/Discord-RPC-csharp/master/screenshots/discord-profile.png)
 
-![Discord Profile](https://raw.githubusercontent.com/ddasutein/Discord-RPC-csharp/master/screenshots/discord-profile.png)
+## Privacy Policy
 
-Of couse you can change what's in each fields, press "**Update**" and you'll see it changed on Discord after a few seconds.
+*Last updated: July 22, 2019*
 
-Version 1.13 and older: Hitting **RunCallbacks** should tells you about errors or disconnections if any.
+All right, I know most people don't bother reading Terms of Service or Privacy Policy, so I'll keep this short and simple. Because the entire source code is open source, you can see everything for yourself.
+
+**What data does this application collect/process?**
+
+Please note that no information from this application is sent to any third-party services except Discord and GitHub.
+
+1. Discord Profile and Application Data
+
+    RikoRPC will use Discord's servers to send or pull the following data:
+
+    - Username
+    
+    - User avatar
+
+    - Discord Application API data (Client ID and Rich Presence Art Assets)
+
+    - RikoRPC application data including; Client ID, Detail, State, and Image Keys
+
+    - [Other data transmission subject to Discord's Privacy Policy](https://discordapp.com/privacy)    
+
+2. Processing of running applications on user's machine
+
+    RikoRPC will scan for processes, specifically looking for the Discord Client (Stable, PTB, or Canary) and Spotify Desktop client as part of the application's functionality. This processing is done locally on the user's machine and does not send them to any third-party.
+
+3. GitHub
+
+    RikoRPC will access GitHub to query for a new version of this application by comparing the current application version to the latest version on GitHub.
 
 ## Credits
 
-Icon made by [freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+User Interface
 
-* Official documentation: https://discordapp.com/developers/docs/rich-presence/how-to
-* Official SDK repository: https://github.com/discordapp/discord-rpc
+- Discord Wumpus Logo by [Discord](https://discordapp.com/branding)
 
-All UI icons by [icon8.com]
+- UI Icons by [icon8.com](https://icons8.com)
+
+Source Code
+
+- Original fork by [nostrenz/cshap-discord-rpc-demo](https://github.com/nostrenz/cshap-discord-rpc-demo)
+
+- Official documentation: https://discordapp.com/developers/docs/rich-presence/how-to
+
+- Official SDK repository: https://github.com/discordapp/discord-rpc
+
+
+## MIT License
+
+Copyright 2019 Dasutein
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
