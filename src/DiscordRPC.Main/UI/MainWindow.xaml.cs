@@ -131,7 +131,9 @@ namespace DiscordRPC.Main
             // Show MessageBox to notify user Spotify client is running
             if (getSpotifyProcess.IsSpotifyOpened)
             {
-                MessageBox.Show("Discord RPC has detected Spotify is running. Your rich presence or Spotify presence will not update until your RPC client or Spotify client is offline.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show((string)Application.Current.FindResource("app_info_spotify_process_detected"), 
+                    Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, 
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             if (!isTimeStampEnabled)
@@ -212,8 +214,9 @@ namespace DiscordRPC.Main
 
             if (!isNumeric)
             {
-                MessageBox.Show("The client ID is either empty or not a numeric value.", "Client ID Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                MessageBox.Show((string)Application.Current.FindResource("app_error_client_id_empty"),
+                    Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title,
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -238,7 +241,9 @@ namespace DiscordRPC.Main
 
         private void Button_Shutdown_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to go offline?", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show((string)Application.Current.FindResource("app_info_shutdown_rpc"), 
+                Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, 
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 StartHashManagerThread.Abort();
                 Shutdown();
@@ -257,7 +262,9 @@ namespace DiscordRPC.Main
         private void Button_reset_app(object sender, RoutedEventArgs e)
         {
 
-            if (MessageBox.Show("Do you want to reset this application? Application will close after a reset.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show((string)Application.Current.FindResource("app_info_reset_application"), 
+                Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 ResetApplication.DeleteConfig();
             }
@@ -287,16 +294,16 @@ namespace DiscordRPC.Main
 
         private void Button_afk_and_lock_pc_Click(object sender, RoutedEventArgs e)
         {
-            this.SetCurrentStatus("AFK (Last updated on " + DateTime.Now + ")");
+            this.SetCurrentStatus("AFK (" + (string)Application.Current.FindResource("mw_label_status_afk") + "" + DateTime.Now + ")");
             presenceManager.useTimeStamp = true;
             presenceManager.discordPresenceDetail = JsonConfig.settings.discordUsername;
-            presenceManager.discordPresenceState = "is away from keyboard for ";
+            presenceManager.discordPresenceState = (string)Application.Current.FindResource("discord_status_afk");
             presenceManager.discordLargeImageKey = this.TextBox_largeImageKey.Text;
             presenceManager.discordLargeImageText = this.TextBox_largeImageText.Text;
             presenceManager.discordSmallImageKey = this.TextBox_smallImageKey.Text;
             presenceManager.discordSmallImageText = this.TextBox_smallImageText.Text;
             presenceManager.UpdatePresence();
-            Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
+            //Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
         }
 
         private void DiscordAvatarImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

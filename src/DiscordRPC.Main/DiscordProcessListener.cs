@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DiscordRPC.Main
 {
@@ -22,11 +23,11 @@ namespace DiscordRPC.Main
                 switch (process.ProcessName)
                 {
                     case "Discord":
-                        DiscordBuildType = "Stable";
+                        DiscordBuildType = (string)Application.Current.FindResource("discord_build_stable");
                         IsDiscordRunning = true;
                         break;
                     case "DiscordPTB":
-                        DiscordBuildType = "Public Test Beta (PTB)";
+                        DiscordBuildType = (string)Application.Current.FindResource("discord_build_ptb");
                         IsDiscordRunning = true;
                         break;
                     default:

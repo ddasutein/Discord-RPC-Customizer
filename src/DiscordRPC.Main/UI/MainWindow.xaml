@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DiscordRPC.Main"
         
         mc:Ignorable="d"
-        Title="RikoRPC" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="{DynamicResource ResourceKey=app_title}" Height="448.526" Width="494.5" MinHeight="413" MinWidth="390" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
 
     <Grid Margin="7,7,-7,-7">
         <Grid.RowDefinitions>
@@ -24,7 +24,7 @@
         </StatusBar>
         <Grid HorizontalAlignment="Left" Height="287" Margin="52,40,0,0" VerticalAlignment="Top" Width="337" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <TabControl Margin="-51,-40,-71,-38" BorderBrush="{x:Null}" Background="{x:Null}">
-                <TabItem x:Name="tabItemDiscordPresence" Header="Discord Presence" BorderBrush="{x:Null}" Background="#FFE5E5E5" TabIndex="10">
+                <TabItem x:Name="tabItemDiscordPresence" Header="{DynamicResource ResourceKey=mw_tab_discord_presence}" BorderBrush="{x:Null}" Background="#FFE5E5E5" TabIndex="10">
                     <Grid Background="#FF36393E" Margin="0,0,-16,-11">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="136*"/>
@@ -40,14 +40,14 @@
                         <TextBox x:Name="TextBox_largeImageText" Height="23" Margin="109,203,18,0" TextWrapping="Wrap" Text="Large image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="5"/>
                         <TextBox x:Name="TextBox_smallImageKey" Height="23" Margin="109,231,18,0" TextWrapping="Wrap" Text="small-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="6"/>
                         <TextBox x:Name="TextBox_smallImageText" Height="23" Margin="109,259,18,0" TextWrapping="Wrap" Text="Small image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" FontSize="12" Grid.ColumnSpan="3" TabIndex="6"/>
-                        <Label Content="Detail" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="State" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto"/>
-                        <Label Content="Timestamp" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_detail}" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_state}" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_timestamp}" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
                         <Label Content="endTimestamp" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11" FontFamily="Roboto" Visibility="Collapsed"/>
-                        <Label Content="Large Image Key" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="Large Image Text" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="101" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="Small Image Key" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
-                        <Label Content="Small Image Text" HorizontalAlignment="Left" Margin="10,259,0,0" VerticalAlignment="Top" Width="106" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_large_image_key}" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_large_image_text}" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="101" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_small_image_key}" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_small_image_text}" HorizontalAlignment="Left" Margin="10,259,0,0" VerticalAlignment="Top" Width="106" Height="28" Foreground="#FF8F97A0" FontSize="11"/>
                         <CheckBox x:Name="checkBoxTimeStamp" Content="Enable" HorizontalAlignment="Left" Margin="111,152,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="95" Foreground="#FFD1D1D1" Checked="checkBoxTimeStamp_Checked" Unchecked="checkBoxTimeStamp_Unchecked" TabIndex="3"/>
                         <Button x:Name="Button_Update" Content="Update" Margin="12,0,60,18" Click="Button_Update_Click" Height="25" VerticalAlignment="Bottom" Foreground="White" BorderBrush="{x:Null}" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Background="#FF1A71DA" TabIndex="7"/>
                         <Button x:Name="Button_Shutdown" Content="Offline" Margin="0,0,3,18" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="66" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="12" IsEnabled="False" TabIndex="8" Grid.ColumnSpan="2"/>
@@ -68,9 +68,9 @@
                                 </ContextMenu>
                             </Image.ContextMenu>
                         </Image>
-                        <Label Content="USERNAME" Margin="76,12,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
+                        <Label Content="{DynamicResource ResourceKey=mw_label_username}" Margin="76,12,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
                         <Label x:Name="usernameLabel" Content="{Binding discordProfileInfoViewModel.DiscordUsername, UpdateSourceTrigger=PropertyChanged}" Margin="76,29,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
-                        <Label Content="STATUS" Margin="76,50,13,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="10"/>
+                        <Label Content="{DynamicResource mw_label_status}" Margin="76,50,13,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="10"/>
                         <Label x:Name="currentStatusLabel" Content="Online" Margin="120,50,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="10" FontWeight="Normal" Grid.ColumnSpan="3"/>
                         <Button x:Name="Button_Download_Update" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="235,5,0,0" VerticalAlignment="Top" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.2,0.25" Height="32" Click="Button_Download_Update_Click" ToolTip="An update is available">
                             <Button.Background>
@@ -79,7 +79,7 @@
                         </Button>
                     </Grid>
                 </TabItem>
-                <TabItem x:Name="tabItemSettings" Header="Settings" BorderBrush="{x:Null}" TabIndex="11">
+                <TabItem x:Name="tabItemSettings" Header="{DynamicResource ResourceKey=mw_tab_settings}" BorderBrush="{x:Null}" TabIndex="11">
                     <Grid Margin="0,0,-16,-16">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="6*"/>
@@ -92,7 +92,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="389*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name= "Button_Initialize_Discord"  Content="Go online" Margin="0,35,17.6,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="4" TabIndex="12"/>
+                        <Button x:Name= "Button_Initialize_Discord"  Content="{DynamicResource ResourceKey=mw_button_online}" Margin="0,35,17.6,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14" Grid.Column="4" TabIndex="12"/>
                         <PasswordBox x:Name="TextBox_clientId" Height="42" Margin="10,35,158.6,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1" Grid.ColumnSpan="5" TabIndex="11"/>
 
                         <Button 
@@ -111,12 +111,11 @@
                         </Button>
                         <TextBlock 
                             HorizontalAlignment="Center"
-                            Margin="4.2,169,296.6,117.4" 
+                            Margin="1,169,317,118" 
                             TextWrapping="Wrap" 
-                            Text="Manage Discord API
-                            " 
+                            Text="{DynamicResource ResourceKey=mw_label_settings_manage_discord_api}" 
                             VerticalAlignment="Center" 
-                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="3" TextAlignment="Center" Grid.Column="2"/>
+                            Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="4" TextAlignment="Center" Grid.Column="1"/>
                         <Button 
                             BorderBrush="{x:Null}"
                             Content="" 
@@ -131,9 +130,9 @@
                         </Button>
                         <TextBlock 
                             HorizontalAlignment="Center"
-                            Margin="73,169,175.6,117.4" 
+                            Margin="69,169,189,118" 
                             TextWrapping="Wrap" 
-                            Text="Reset application" 
+                            Text="{DynamicResource ResourceKey=mw_label_settings_reset_application}" 
                             VerticalAlignment="Center" 
                             Foreground="#FF8F97A0" Width="140" TextAlignment="Center" Grid.Column="4"/>
                         <Button x:Name="buttonAbout" Content="" Grid.Column="4" HorizontalAlignment="Left" Margin="239,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonAbout_Click" Height="55" BorderThickness="0" TabIndex="15">
@@ -143,16 +142,16 @@
                         </Button>
                         <TextBlock 
                             HorizontalAlignment="Center"
-                            Margin="229,169,66.6,117.4" 
+                            Margin="230,169,75,118" 
                             TextWrapping="Wrap" 
-                            Text="About" 
+                            Text="{DynamicResource ResourceKey=mw_label_settings_about}" 
                             VerticalAlignment="Center" 
                             Foreground="#FF8F97A0" Width="93" TextAlignment="Center" Grid.Column="4"/>
                         <TextBlock 
                             HorizontalAlignment="Center"
                             Margin="11,14,318.6,272.4" 
                             TextWrapping="Wrap" 
-                            Text="CLIENT ID" 
+                            Text="{DynamicResource ResourceKey=mw_label_settings_client_id}" 
                             VerticalAlignment="Center" 
                             Foreground="#FF8F97A0" Width="140" Grid.ColumnSpan="5" FontWeight="Bold" FontSize="10"/>
 

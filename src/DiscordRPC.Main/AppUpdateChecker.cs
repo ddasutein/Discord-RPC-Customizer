@@ -30,8 +30,8 @@ namespace DiscordRPC.Main
                 {
                     IsUpdateAvailable = true;
                     MessageBoxResult result = MessageBox.Show(
-                        "A new version of " + AppTitle + " is available. Do you want to download the update now?",
-                        "Update available!",
+                        (string)Application.Current.FindResource("app_update_title_available_description"),
+                        (string)Application.Current.FindResource("app_update_title_available"),
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Information);
                     if (result == MessageBoxResult.Yes)
@@ -53,8 +53,8 @@ namespace DiscordRPC.Main
             }
             catch (Exception e)
             {
-                MessageBox.Show("Unable to check for updates. No internet connection.",
-                    "Connection Error", 
+                MessageBox.Show((string)Application.Current.FindResource("app_error_update_no_internet_connection"),
+                    (string)Application.Current.FindResource("app_error_update_no_internet_connection_title"), 
                     MessageBoxButton.OK, 
                     MessageBoxImage.Error);
             }
@@ -83,13 +83,16 @@ namespace DiscordRPC.Main
         {
             if (!IsUpdateAvailable)
             {
-                MessageBox.Show("You already have the latest version of " + AppTitle + ".", "Up to Date", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    (string)Application.Current.FindResource("app_update_title_not_available_description"),
+                    (string)Application.Current.FindResource("app_update_title_not_available"), 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
                 MessageBoxResult result = MessageBox.Show(
-                 "A new version of " + AppTitle + " is available. Do you want to download the update now?",
-                 "Update available!",
+                (string)Application.Current.FindResource("app_update_title_available_description"),
+                (string)Application.Current.FindResource("app_update_title_available"),
                  MessageBoxButton.YesNo,
                  MessageBoxImage.Information);
                 if (result == MessageBoxResult.Yes)

@@ -1,4 +1,6 @@
-﻿namespace DiscordRPC.Main.ViewModels
+﻿using System.Windows;
+
+namespace DiscordRPC.Main.ViewModels
 {
     public class DiscordConnectionStatusViewModel : DiscordConnectionStatusObserve
     {
@@ -9,7 +11,7 @@
             {
                 if (string.IsNullOrEmpty(_Status))
                 {
-                    return "RikoRPC is offline. Go to Settings and Click 'Go online'";
+                    return (string)Application.Current.FindResource("mw_status_offline");
                 }
                 else
                 {

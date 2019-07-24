@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace DiscordRPC.Main.ViewModels
@@ -35,7 +36,7 @@ namespace DiscordRPC.Main.ViewModels
             {
                 if (string.IsNullOrEmpty(_DiscordUsername))
                 {
-                    return "Not available";
+                    return (string)Application.Current.FindResource("mw_label_username_placeholder");
                 }
                 else
                 {

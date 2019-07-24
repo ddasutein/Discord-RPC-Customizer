@@ -1,0 +1,95 @@
+﻿<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- String Resources for English (United States) Language -->
+
+    <!-- ❌ DO NOT TRANSLATE APP TITLE ❌ -->
+    <system:String x:Key="app_title">RikoRPC</system:String> 
+    <system:String x:Key="app_lang_test">English</system:String>
+    
+    <!-- MainWindow.xaml (mw) Label -->
+    <system:String x:Key="mw_label_detail">Detail</system:String>
+    <system:String x:Key="mw_label_state">State</system:String>
+    <system:String x:Key="mw_label_timestamp">Timestamp</system:String>
+    <system:String x:Key="mw_label_large_image_key">Large Image Key</system:String>
+    <system:String x:Key="mw_label_large_image_text">Large Image Text</system:String>
+    <system:String x:Key="mw_label_small_image_key">Small Image Key</system:String>
+    <system:String x:Key="mw_label_small_image_text">Small Image Text</system:String>
+    <system:String x:Key="mw_label_username">Username</system:String>
+    <system:String x:Key="mw_label_username_placeholder">Not available</system:String>
+    <system:String x:Key="mw_label_status">Status</system:String>
+    <system:String x:Key="mw_label_status_placeholder">Offline</system:String>
+    <system:String x:Key="mw_label_status_afk">Last update on:</system:String>
+    <system:String x:Key="mw_label_settings_client_id">Client ID</system:String>
+    <system:String x:Key="mw_label_settings_manage_discord_api">Manage Discord API</system:String>
+    <system:String x:Key="mw_label_settings_reset_application">Reset Application</system:String>
+    <system:String x:Key="mw_label_settings_about">About</system:String>
+    <!-- MainWindow.xaml (mw) Button -->
+    <system:String x:Key="mw_button_update">Update</system:String>
+    <system:String x:Key="mw_button_offline">Offline</system:String>
+    <system:String x:Key="mw_button_online">Go online</system:String>
+    <system:String x:Key="mw_button_save">Save</system:String>
+    <system:String x:Key="mw_button_afk_lock_pc">Go AFK and Lock this PC</system:String>
+    <!-- MainWindow.xaml (mw) Tab Control -->
+    <system:String x:Key="mw_tab_discord_presence">Discord Presence</system:String>
+    <system:String x:Key="mw_tab_android_sync">Android Sync</system:String>
+    <system:String x:Key="mw_tab_settings">Settings</system:String>
+    <!-- MainWindow.xaml (mw) Context Menu Item -->
+    <system:String x:Key="mw_context_view_avatar_size_small">View Avatar Size (Small)</system:String>
+    <system:String x:Key="mw_context_view_avatar_size_medium">View Avatar Size (Medium)</system:String>
+    <system:String x:Key="mw_context_view_avatar_size_large">View Avatar Large (Large)</system:String>
+    <system:String x:Key="mw_context_afk_lock_pc">Go AFK and Lock this PC</system:String>
+    <!-- MainWindow.xaml (mw) Tooltip -->
+    <system:String x:Key="mw_tooltip_afk_lock_pc">Go AFK and Lock this PC</system:String>
+    <system:String x:Key="mw_tooltip_update_available">An update is available</system:String>
+    <!-- MainWindow.xaml (mw) Status bar -->
+    <system:String x:Key="mw_status_offline">RikoRPC is offline. Go to Settings and Click 'Go online'</system:String>
+    <system:String x:Key="mw_status_start">Starting Discord Presence...</system:String>
+    <system:String x:Key="mw_status_online">RikoRPC is online</system:String>
+    <system:String x:Key="mw_status_on_connection_failed">Unable to connect to Discord client</system:String>
+    
+    <!-- AboutWindow.xaml (aw) Label -->
+    <system:String x:Key="aw_label_version">Version</system:String>
+    <system:String x:Key="aw_label_application_build_type_win32">Win32 version</system:String>
+    <system:String x:Key="aw_label_application_build_type_uwp">Microsoft Store version (UWP)</system:String>
+    <!-- AboutWindow.xaml (aw) Button -->
+    <system:String x:Key="aw_button_check_updates">Check for updates</system:String>
+    <system:String x:Key="aw_button_github">View on GitHub</system:String>
+    
+    <!-- FirstRunWindow.xaml (frw) Label -->
+    <system:String x:Key="frw_label_welcome_msg">Welcome to RikoRPC (Discord Rich Presence)</system:String>
+    <system:String x:Key="frw_label_welcome_description">This is an open source application developed by Dasutein.</system:String>
+    <system:String x:Key="frw_label_how_to_setup">How to setup?</system:String>
+    <system:String x:Key="frw_label_setup_content_step1">Step 1: Go to the Discord Developer Portal and Create your Application.</system:String>
+    <system:String x:Key="frw_label_setup_content_step2">Step 2: Copy the client ID and paste it in RikoRPC by going to Settings > Client ID</system:String>
+    <system:String x:Key="frw_label_setup_content_step3">Step 3: Update your presence!</system:String>
+    <!-- FirstRunWindow.xaml (frw) Button -->
+    <system:String x:Key="frw_button_discord_dev_portal">Discord Developer Portal</system:String>
+    <system:String x:Key="frw_button_end_tutorial">End Tutorial</system:String>
+    
+    <!-- Discord Build Types -->
+    <system:String x:Key="discord_build_stable">Stable</system:String>
+    <system:String x:Key="discord_build_ptb">Public Test Beta (PTB)</system:String>
+    <system:String x:Key="discord_build_canary">Canary</system:String>
+    
+    <!-- Discord Presence Status -->
+    <system:String x:Key="discord_status_afk">is away from keyboard for</system:String>
+
+    <!-- Error & Information Messages -->
+    <system:String x:Key="app_update_title_available">Update available!</system:String>
+    <system:String x:Key="app_update_title_available_description">A new version is available. Do you want to download the update now?</system:String>
+    <system:String x:Key="app_update_title_not_available">Up-to-date</system:String>
+    <system:String x:Key="app_update_title_not_available_description">You already have the latest version.</system:String>
+    <system:String x:Key="app_info_spotify_process_detected">RikoRPC has detected Spotify is running in the background. Your custom presence or Spotify presence will not update until RikoRPC or Spotify is offline.</system:String>
+    <system:String x:Key="app_info_shutdown_rpc">Are you sure you want to go offline?</system:String>
+    <system:String x:Key="app_info_reset_application">Are you sure you want to reset this application? Application will close after the reset.</system:String>
+
+    <system:String x:Key="app_error_client_id_empty">The client ID is either empty or not a numeric value.</system:String>
+    <system:String x:Key="app_error_discord_not_running">Discord is not running.</system:String>
+    <system:String x:Key="app_error_application_second_instance">Another instance of this application is already running.</system:String>
+    <system:String x:Key="app_error_hash_validation_failure">An error has occured while validating hash.</system:String>
+    <system:String x:Key="app_error_update_no_internet_connection">Unable to check for updates. No internet connection.</system:String>
+    <system:String x:Key="app_error_update_no_internet_connection_title">An error has occured while validating hash.</system:String>
+</ResourceDictionary>

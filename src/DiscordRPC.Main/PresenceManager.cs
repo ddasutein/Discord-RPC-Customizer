@@ -67,7 +67,7 @@ namespace DiscordRPC.Main
                 Window mainWindow = Application.Current.MainWindow;
                 mainWindow.DataContext = mainViewModel;
             });
-            mainViewModel.discordConnectionStatusViewModel.Status = "Starting Discord Presence....";
+            mainViewModel.discordConnectionStatusViewModel.Status = (string)Application.Current.FindResource("mw_status_start");
 
             StartTimeOutTimer();
             client = new DiscordRpcClient(ClientID);
@@ -89,7 +89,7 @@ namespace DiscordRPC.Main
             JsonConfig.settings.discordAvatarMedium = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x512);
             JsonConfig.settings.discordAvatarLarge = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x1024);
             JsonConfig.SaveJson();
-            mainViewModel.discordConnectionStatusViewModel.Status = "RikoRPC is online";
+            mainViewModel.discordConnectionStatusViewModel.Status = (string)Application.Current.FindResource("mw_status_online");
             mainViewModel.discordProfileInfoViewModel.DiscordUsername = args.User.ToString();
             mainViewModel.discordProfileInfoViewModel.DiscordAvatarUri = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
 
@@ -97,7 +97,7 @@ namespace DiscordRPC.Main
         private void OnConnectionFailed(object sender, ConnectionFailedMessage args)
         {
             MessageBox.Show("Connection to Discord has failed. Check if your Discord client is running.", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            mainViewModel.discordConnectionStatusViewModel.Status = "Failed to establish connection.";
+            mainViewModel.discordConnectionStatusViewModel.Status = (string)Application.Current.FindResource("mw_status_on_connection_failed");
         }
         private void OnConnectionEstablished(object sender, ConnectionEstablishedMessage args)
         {

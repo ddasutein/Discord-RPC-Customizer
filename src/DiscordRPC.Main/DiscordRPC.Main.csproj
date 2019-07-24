@@ -109,6 +109,7 @@
     <Compile Include="AppUpdateChecker.cs" />
     <Compile Include="DiscordAvatarManager.cs" />
     <Compile Include="DiscordConnectionStatusObserveable.cs" />
+    <Compile Include="LocalizationManager.cs" />
     <Compile Include="UI\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +127,14 @@
     <Compile Include="ViewModels\DiscordConnectionStatusViewModel.cs" />
     <Compile Include="ViewModels\DiscordProfileInfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Page Include="Languages\StringResources_ja-JP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Languages\StringResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

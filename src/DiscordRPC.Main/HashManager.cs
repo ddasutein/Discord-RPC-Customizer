@@ -31,7 +31,7 @@ namespace DiscordRPC.Main
                 }
                 else
                 {
-                    MessageBox.Show("An error has occured while validating hash.", 
+                    MessageBox.Show((string)Application.Current.FindResource("app_error_hash_validation_failure"), 
                         Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, 
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }

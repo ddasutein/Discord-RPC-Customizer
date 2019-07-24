@@ -2,19 +2,19 @@
 using System.Reflection;
 using System.Threading;
 using System.Windows;
-using DiscordRPC.Main.Properties;
 
 namespace DiscordRPC.Main
 {
     public partial class App : Application
     {
         // Debug only
-        static string TAG = "App.xaml.cs: ";
+        private readonly string TAG = "App.xaml.cs: ";
 
         private static Mutex mutex = null;
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            LocalizationManager.SetApplicationLanguage();
             JsonConfig.LoadJson();
             AppUpdateChecker.CheckVersion();
             DiscordProcessListener.DiscordProcessName();
@@ -25,7 +25,9 @@ namespace DiscordRPC.Main
 
             if (!createdNew)
             {       
-                MessageBox.Show("Application is already running", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Hand);
+                MessageBox.Show((string)Application.Current.FindResource("app_error_application_second_instance"), 
+                    Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, 
+                    MessageBoxButton.OK, MessageBoxImage.Hand);
                 Debug.WriteLine(TAG + "Application is already running");
                 Application.Current.Shutdown();
             }
@@ -55,7 +57,9 @@ namespace DiscordRPC.Main
                 else if (DiscordProcessListener.IsDiscordRunning == false)
                 {
                     // Shutdown application if Discord process is not running
-                    MessageBox.Show("Discord is not running.", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show((string)Application.Current.FindResource("app_error_discord_not_running"), 
+                        Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title, 
+                        MessageBoxButton.OK, MessageBoxImage.Error);
                     Debug.WriteLine(TAG + "Discord is not running. Shutting down application");
                     Application.Current.Shutdown();
                 }
@@ -66,6 +70,5 @@ namespace DiscordRPC.Main
 
         }
 
-
+        }
     }
-}
