@@ -6,7 +6,10 @@
     <!-- String Resources for English (United States) Language -->
 
     <!-- ❌ DO NOT TRANSLATE APP TITLE ❌ -->
-    <system:String x:Key="app_title">RikoRPC</system:String> 
+    <system:String x:Key="app_title">RikoRPC</system:String>
+    <system:String x:Key="app_title_alternate">RikoRPC for Discord</system:String>
+    <system:String x:Key="app_description">Create your own custom Discord Rich Presence</system:String>
+    <system:String x:Key="app_author">Developer: Dasutein</system:String>
     <system:String x:Key="app_lang_test">English</system:String>
     
     <!-- MainWindow.xaml (mw) Label -->
@@ -51,12 +54,16 @@
     <system:String x:Key="mw_status_on_connection_failed">Unable to connect to Discord client</system:String>
     
     <!-- AboutWindow.xaml (aw) Label -->
+    <system:String x:Key="aw_window_title">About RikoRPC</system:String>
     <system:String x:Key="aw_label_version">Version</system:String>
-    <system:String x:Key="aw_label_application_build_type_win32">Win32 version</system:String>
-    <system:String x:Key="aw_label_application_build_type_uwp">Microsoft Store version (UWP)</system:String>
+    <system:String x:Key="aw_label_application_build_type_win32">Win32</system:String>
+    <system:String x:Key="aw_label_application_build_type_uwp">Microsoft Store Edition (UWP)</system:String>
+    <system:String x:Key="aw_label_platform">Platform</system:String>
+    <system:String x:Key="aw_label_discord_build">Discord Build Channel</system:String>
     <!-- AboutWindow.xaml (aw) Button -->
     <system:String x:Key="aw_button_check_updates">Check for updates</system:String>
-    <system:String x:Key="aw_button_github">View on GitHub</system:String>
+    <system:String x:Key="aw_button_github">GitHub</system:String>
+    <system:String x:Key="aw_button_close">Close</system:String>
     
     <!-- FirstRunWindow.xaml (frw) Label -->
     <system:String x:Key="frw_label_welcome_msg">Welcome to RikoRPC (Discord Rich Presence)</system:String>
