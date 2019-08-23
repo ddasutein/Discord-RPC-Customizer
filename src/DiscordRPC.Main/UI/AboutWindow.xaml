@@ -5,33 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscordRPC.Main"
         mc:Ignorable="d"
-        Title="About" Height="241" Width="429" ResizeMode="NoResize" Background="#FF36393E" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="135*"/>
-            <RowDefinition Height="82*"/>
-        </Grid.RowDefinitions>
+        Title="{DynamicResource ResourceKey=aw_window_title}" Height="252" Width="448" Background="#FF36393E" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid HorizontalAlignment="Left" Width="447" Height="221" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="169*"/>
-            <ColumnDefinition Width="104*"/>
-            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="buttonGitHub" Content="View on GitHub" Margin="95,0,16,13" Grid.Column="3" Click="buttonGitHub_Click" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Grid.ColumnSpan="2" Height="37" VerticalAlignment="Bottom" Grid.Row="1"/>
-        <Button x:Name="button_Check_For_Updates" Content="Check for Updates" Margin="5,0,13,13" Grid.Column="2" BorderBrush="{x:Null}" Background="#FF7087D7" Foreground="White" Grid.ColumnSpan="2" Click="Button_Check_For_Updates_Click" Height="37" VerticalAlignment="Bottom" Grid.Row="1"/>
-        <Image Margin="0,15,84,0" Source="/RikoRPC;component/Resources/RikoRPC_logo_128px.png" Grid.Column="2" Width="80" Height="80" Stretch="UniformToFill" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <Label Content="RikoRPC (Rich Presence Customizer for Discord)" HorizontalAlignment="Left" Margin="95,15,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25" FontWeight="Bold"/>
-        <Label Content="Developed by Dasutein" HorizontalAlignment="Left" Margin="95,40,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25"/>
-        <TextBlock Foreground="#FF72767D" HorizontalAlignment="Left" Margin="5,130,0,0" TextWrapping="Wrap" Text="Discord Build Type:" VerticalAlignment="Top" TextAlignment="Center" Grid.Column="2" Grid.RowSpan="2"/>
-        <TextBlock                           
-            x:Name="textBlockDiscordBuildType"
-            x:FieldModifier="public"
-            Foreground="#FF72767D" Margin="110,130,58,56" TextWrapping="Wrap" Text="Stable/PTB" Grid.Column="2" Grid.ColumnSpan="2" FontWeight="Bold" Grid.RowSpan="2"/>
-        <TextBlock x:Name="textBlockVersionNumber" Margin="5,110,0,0" TextWrapping="Wrap" Text="Version: 1.0.0                                    " Foreground="#FF72767D" Grid.Column="2" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
-        <Label x:Name="ProjectBuildType" Content="Microsoft Store version (UWP)" HorizontalAlignment="Left" Margin="95,65,0,0" VerticalAlignment="Top" Grid.Column="2" Foreground="White" Grid.ColumnSpan="3" Width="310" Height="25"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
 
+        </Grid.RowDefinitions>
 
+        <Image Grid.Column="1" Grid.Row="1" 
+               Source="/RikoRPC;component/Resources/RikoRPC_logo_128px.png" 
+               Height="55" HorizontalAlignment="Left"/>
 
+        <Label Grid.Column="1" Grid.Row="1" Margin="60,0,0,0"
+               Content="{DynamicResource ResourceKey=app_title_alternate}" 
+               FontWeight="Bold"
+               Foreground="White" Grid.ColumnSpan="2"/>
+
+        <Label Grid.Column="1" Grid.Row="1" Margin="60,20,0,0"
+               Content="{DynamicResource ResourceKey=app_description}" 
+               FontWeight="Regular"
+               Foreground="White" Grid.ColumnSpan="2"/>
+
+        <Label Grid.Column="1" Grid.Row="1" Margin="60,40,10,0"
+               Content="{DynamicResource ResourceKey=app_author}" 
+               FontWeight="Regular"
+               Foreground="White" Grid.ColumnSpan="2"/>
+
+        <Label Grid.Column="1" Grid.Row="2" Margin="0"
+               Content="{DynamicResource ResourceKey=aw_label_version}" 
+               FontWeight="Bold"
+               Foreground="White"/>
+
+        <Label x:Name="textBlockVersionNumber"
+               Grid.Column="2" Grid.Row="2" Margin="0,0,0,0"
+               Content="1.0.0" 
+               FontWeight="Regular"
+               Foreground="White"/>
+
+        <Label Grid.Column="1" Grid.Row="3" Margin="0"
+               Content="{DynamicResource ResourceKey=aw_label_platform}" 
+               FontWeight="Bold"
+               Foreground="White"/>
+
+        <Label x:Name="ProjectBuildType"
+               Grid.Column="2" Grid.Row="3" Margin="0,0,0,0"
+               Content="Microsoft Store Edition (UWP)" 
+               FontWeight="Regular"
+               Foreground="White"/>
+
+        <Label Grid.Column="1" Grid.Row="4" Margin="0"
+               Content="{DynamicResource ResourceKey=aw_label_discord_build}" 
+               FontWeight="Bold"
+               Foreground="White"/>
+
+        <Label x:Name="textBlockDiscordBuildType" x:FieldModifier="public"
+               Grid.Column="2" Grid.Row="4" Margin="0,0,0,0"
+               Content="Stable" 
+               FontWeight="Regular"
+               Foreground="White"/>
+
+        <Button x:Name="buttonGitHub" Click="buttonGitHub_Click"
+                Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" Margin="5"                 
+                Background="{x:Null}" BorderBrush="#FF5AC3D9" Foreground="#FF5AC3D9"
+                Content="{DynamicResource ResourceKey=aw_button_github}"/>
+
+        <Button x:Name="buttonClose" Click="ButtonClose_Click"
+                Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="1" Margin="5" 
+                Content="{DynamicResource ResourceKey=aw_button_close}" Background="#FFE82B0D" BorderBrush="{x:Null}" Foreground="White"  />
+
+        <Button x:Name="button_Check_For_Updates" Click="Button_Check_For_Updates_Click"
+                Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="1" Margin="5" 
+                Content="{DynamicResource ResourceKey=aw_button_check_updates}" Background="#FF7087D7" BorderBrush="{x:Null}" Foreground="White" />
     </Grid>
 </Window>

@@ -17,13 +17,25 @@ namespace DiscordRPC.Main
             GetDiscordBuildType();
             
             // Temporary code for the future
-            this.ProjectBuildType.Visibility = Visibility.Collapsed;
+            if (!IsRunningAsUWP)
+            {
+                this.ProjectBuildType.Content = (string)Application.Current.FindResource("aw_label_application_build_type_win32");
+            }
+            else
+            {
+                this.ProjectBuildType.Content = (string)Application.Current.FindResource("aw_label_application_build_type_uwp");
+            }
         }
 
         private void GetApplicationVersionNumber()
         {
             var version = AppUpdateChecker.GetCurrentApplicationVersion();
-            textBlockVersionNumber.Text = "Version: " + version.Remove(version.Length - 2);
+#if DEBUG
+            textBlockVersionNumber.Content = version.Remove(version.Length - 2) + "-dev_build";
+#else
+            textBlockVersionNumber.Content = version.Remove(version.Length - 2);
+#endif
+
 #if DEBUG
             Debug.WriteLine(TAG + "RikoRPC version is: " + version);
 #endif
@@ -31,7 +43,7 @@ namespace DiscordRPC.Main
 
         private void GetDiscordBuildType()
         {
-            textBlockDiscordBuildType.Text = DiscordProcessListener.DiscordBuildType;
+            textBlockDiscordBuildType.Content = DiscordProcessListener.DiscordBuildType;
         }
         private void buttonGitHub_Click(object sender, RoutedEventArgs e)
         {
@@ -48,6 +60,11 @@ namespace DiscordRPC.Main
                 Process.Start("ms-windows-store:");
             }
 
+        }
+
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
