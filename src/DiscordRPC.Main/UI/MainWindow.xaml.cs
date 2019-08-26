@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Media.Imaging;
+using DiscordRPC.Main.UI;
+using DiscordRPC.Main.ViewModels;
 
 namespace DiscordRPC.Main
 {
@@ -21,6 +23,7 @@ namespace DiscordRPC.Main
         // Global Variables
         private bool isDiscordPresenceRunning = false;
         private bool isTimeStampEnabled = false;
+        MainViewModel mainViewModel = new MainViewModel();
 
         // Classes
         SpotifyProcessListener getSpotifyProcess = new SpotifyProcessListener();
@@ -48,7 +51,7 @@ namespace DiscordRPC.Main
             // Dispose RPC when user exits application
             if (isDiscordPresenceRunning == true)
             {
-                presenceManager.ShutdownPresence();
+                PresenceManager.client.Dispose();
                 Application.Current.Shutdown();
             }
             else
@@ -88,8 +91,6 @@ namespace DiscordRPC.Main
                 this.ImageContextItem1.IsEnabled = false;
                 this.ImageContextItem2.IsEnabled = false;
                 this.ImageContextItem2.IsEnabled = false;
-                this.SetCurrentStatus("Offline");
-
                 return;
             }
             else
@@ -108,7 +109,6 @@ namespace DiscordRPC.Main
                 this.ImageContextItem1.IsEnabled = true;
                 this.ImageContextItem2.IsEnabled = true;
                 this.ImageContextItem2.IsEnabled = true;
-                this.SetCurrentStatus("Online");
 
                 // Used for checking if Discord presence is running before closing the app
                 isDiscordPresenceRunning = true;
@@ -127,7 +127,8 @@ namespace DiscordRPC.Main
             Debug.WriteLine(TAG + "Updated presence and settings");
 #endif
 
-            this.SetCurrentStatus("Online");
+            UpdateMainWindowViewModel.UpdateUserStatus((string)Application.Current.FindResource("mw_label_status_placeholder_online"));
+
             // Show MessageBox to notify user Spotify client is running
             if (getSpotifyProcess.IsSpotifyOpened)
             {
@@ -201,7 +202,6 @@ namespace DiscordRPC.Main
             this.ImageContextItem1.IsEnabled = false;
             this.ImageContextItem2.IsEnabled = false;
             this.ImageContextItem3.IsEnabled = false;
-            this.SetCurrentStatus("Offline");
             statusIconImage.Source = new BitmapImage(new Uri("/RikoRPC;component/Resources/icons8_offline.png", UriKind.Relative));      
     }
 
@@ -227,7 +227,8 @@ namespace DiscordRPC.Main
 
         private void SetCurrentStatus(string status)
         {
-            this.currentStatusLabel.Content = status;
+            this.DataContext = mainViewModel;
+            mainViewModel.userStatusChangeViewModel.Status = status;
         }
         private void Button_save_settings_Click(object sender, RoutedEventArgs e)
         {
@@ -294,16 +295,10 @@ namespace DiscordRPC.Main
 
         private void Button_afk_and_lock_pc_Click(object sender, RoutedEventArgs e)
         {
-            this.SetCurrentStatus("AFK (" + (string)Application.Current.FindResource("mw_label_status_afk") + "" + DateTime.Now + ")");
-            presenceManager.useTimeStamp = true;
-            presenceManager.discordPresenceDetail = JsonConfig.settings.discordUsername;
-            presenceManager.discordPresenceState = (string)Application.Current.FindResource("discord_status_afk");
-            presenceManager.discordLargeImageKey = this.TextBox_largeImageKey.Text;
-            presenceManager.discordLargeImageText = this.TextBox_largeImageText.Text;
-            presenceManager.discordSmallImageKey = this.TextBox_smallImageKey.Text;
-            presenceManager.discordSmallImageText = this.TextBox_smallImageText.Text;
-            presenceManager.UpdatePresence();
-            //Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
+            //this.SetCurrentStatus("AFK (" + (string)Application.Current.FindResource("mw_label_status_afk") + "" + DateTime.Now + ")");
+
+            GoAFKWindow goAFKWindow = new GoAFKWindow();
+            goAFKWindow.ShowDialog();
         }
 
         private void DiscordAvatarImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

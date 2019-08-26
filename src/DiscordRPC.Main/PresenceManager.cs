@@ -1,4 +1,5 @@
-﻿using DiscordRPC.Message;
+﻿using DiscordRPC.Main.ViewModels;
+using DiscordRPC.Message;
 using System;
 using System.Diagnostics;
 using System.Timers;
@@ -21,10 +22,7 @@ namespace DiscordRPC.Main
         private readonly string TAG = "PresenceManager: ";
 
         // DiscordRichPresence Library
-        static DiscordRpcClient client;
-
-        // ViewModel
-        MainViewModel mainViewModel = new MainViewModel();
+        public static DiscordRpcClient client;
 
         /// <summary> StartTimeOutTimer method starts alongside Presence initialization
         /// Timer will run for 10 seconds and stop when it establishes a connection to Discord.
@@ -32,6 +30,8 @@ namespace DiscordRPC.Main
         /// a connection is re-established. Note that this method is different from the 
         /// "OnConnectionFailed" event, which only checks the Discord client. 
         /// </summary>
+        /// 
+
         private static Timer TimeOutTimer;
         private void StartTimeOutTimer()
         {
@@ -62,18 +62,14 @@ namespace DiscordRPC.Main
 #else
 #endif
 
-            Application.Current.Dispatcher.Invoke(delegate
-            {
-                Window mainWindow = Application.Current.MainWindow;
-                mainWindow.DataContext = mainViewModel;
-            });
-            mainViewModel.discordConnectionStatusViewModel.Status = (string)Application.Current.FindResource("mw_status_start");
+            UpdateMainWindowViewModel.UpdateDiscordRPCConnectionStatus((string)Application.Current.FindResource("mw_status_start"));
+            UpdateMainWindowViewModel.UpdateUserStatus((string)Application.Current.FindResource("mw_label_status_placeholder_waiting"));
 
             StartTimeOutTimer();
             client = new DiscordRpcClient(ClientID);
             client.Initialize();
             client.OnReady += OnClientReady;
-            client.OnConnectionFailed += OnConnectionFailed;
+
             client.OnConnectionEstablished += OnConnectionEstablished;
         }
         private void OnClientReady(object sender, ReadyMessage args)
@@ -89,15 +85,20 @@ namespace DiscordRPC.Main
             JsonConfig.settings.discordAvatarMedium = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x512);
             JsonConfig.settings.discordAvatarLarge = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x1024);
             JsonConfig.SaveJson();
-            mainViewModel.discordConnectionStatusViewModel.Status = (string)Application.Current.FindResource("mw_status_online");
-            mainViewModel.discordProfileInfoViewModel.DiscordUsername = args.User.ToString();
-            mainViewModel.discordProfileInfoViewModel.DiscordAvatarUri = args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128);
+
+            UpdateMainWindowViewModel.UpdateDiscordRPCConnectionStatus((string)Application.Current.FindResource("mw_status_online"));
+            UpdateMainWindowViewModel.UpdateUserAvatarData(args.User.GetAvatarURL(User.AvatarFormat.PNG, User.AvatarSize.x128));
+            UpdateMainWindowViewModel.UpdateUsernameData(args.User.ToString());
+            UpdateMainWindowViewModel.UpdateUserStatus((string)Application.Current.FindResource("mw_label_status_placeholder_online"));
 
         }
         private void OnConnectionFailed(object sender, ConnectionFailedMessage args)
         {
             MessageBox.Show("Connection to Discord has failed. Check if your Discord client is running.", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            mainViewModel.discordConnectionStatusViewModel.Status = (string)Application.Current.FindResource("mw_status_on_connection_failed");
+
+            UpdateMainWindowViewModel.UpdateDiscordRPCConnectionStatus((string)Application.Current.FindResource("mw_status_on_connection_failed"));
+            UpdateMainWindowViewModel.UpdateUserStatus((string)Application.Current.FindResource("mw_label_status_placeholder_waiting"));
+
         }
         private void OnConnectionEstablished(object sender, ConnectionEstablishedMessage args)
         {
@@ -115,6 +116,8 @@ namespace DiscordRPC.Main
                 }
             });
             client.Invoke();
+
+            client.OnConnectionFailed += OnConnectionFailed;
         }
 
         public void UpdatePresence()
@@ -160,14 +163,11 @@ namespace DiscordRPC.Main
 
         public void ShutdownPresence()
         {
-            Application.Current.Dispatcher.Invoke(delegate
-            {
-                Window mainWindow = Application.Current.MainWindow;
-                mainWindow.DataContext = mainViewModel;
-                mainViewModel.discordConnectionStatusViewModel.Status = string.Empty;
-                mainViewModel.discordProfileInfoViewModel.DiscordUsername = string.Empty;
-                mainViewModel.discordProfileInfoViewModel.DiscordAvatarUri = string.Empty;
-            });
+
+            UpdateMainWindowViewModel.UpdateDiscordRPCConnectionStatus(string.Empty);
+            UpdateMainWindowViewModel.UpdateUsernameData(string.Empty);
+            UpdateMainWindowViewModel.UpdateUserAvatarData(string.Empty);
+            UpdateMainWindowViewModel.UpdateUserStatus((string)Application.Current.FindResource("mw_label_status_placeholder"));
 
             client.Dispose();
             discordPresenceDetail = string.Empty;
@@ -177,6 +177,7 @@ namespace DiscordRPC.Main
             discordSmallImageKey = string.Empty;
             discordSmallImageText = string.Empty;
         }
+
     }
 
 }
