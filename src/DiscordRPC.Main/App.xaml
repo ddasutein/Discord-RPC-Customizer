@@ -3,15 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DiscordRPC.Main"
              ShutdownMode="OnExplicitShutdown">
+    
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="UI/Styles/Styles.xaml"/>
+                <ResourceDictionary Source="UI/Styles/Colors.xaml"/>
                 <ResourceDictionary Source="Languages/StringResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-    
-    
+
 </Application>
     
     

@@ -106,6 +106,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserStatusChangeObserver.cs" />
     <Compile Include="AppUpdateChecker.cs" />
     <Compile Include="DiscordAvatarManager.cs" />
     <Compile Include="DiscordConnectionStatusObserveable.cs" />
@@ -124,9 +125,15 @@
     <Compile Include="JumpListManager.cs" />
     <Compile Include="PresenceManager.cs" />
     <Compile Include="ResetApplication.cs" />
+    <Compile Include="UI\GoAFKWindow.xaml.cs">
+      <DependentUpon>GoAFKWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Styles\LoadingIndicator.cs" />
+    <Compile Include="ViewModels\UserStatusChangeViewModel.cs" />
     <Compile Include="ViewModels\DiscordConnectionStatusViewModel.cs" />
     <Compile Include="ViewModels\DiscordProfileInfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UpdateMainWindowViewModel.cs" />
     <Page Include="Languages\StringResources_ja-JP.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,6 +150,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\GoAFKWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -155,6 +166,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\LoadingArcs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -240,6 +263,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icons8_refresh_shield_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8_external_link_96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
