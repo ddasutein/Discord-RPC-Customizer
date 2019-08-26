@@ -113,6 +113,16 @@ namespace DiscordRPC.Main.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_external_link_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_external_link_96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_lock_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8_lock_96", resourceCulture);

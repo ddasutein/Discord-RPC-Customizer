@@ -60,18 +60,40 @@
                         <Image x:Name="discordAvatarImage" HorizontalAlignment="Left" Height="62" Margin="11,12,0,0" VerticalAlignment="Top" Width="62" Source="{Binding discordProfileInfoViewModel.DiscordAvatarUri, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" StretchDirection="DownOnly" MouseDown="DiscordAvatarImage_MouseDown">
                             <Image.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem x:Name="ImageContextItem0" Header="View Avatar Size (Small)" Click="ImageContextMenuItem128Click"/>
-                                    <MenuItem x:Name="ImageContextItem1" Header="View Avatar Size (Medium)" Click="ImageContextMenuItem256Click"/>
-                                    <MenuItem x:Name="ImageContextItem2" Header="View Avatar Size (Large)" Click="ImageContextMenuItem1024Click"/>
+
+                                    <MenuItem x:Name="ImageContextItem0" Header="{DynamicResource ResourceKey=mw_context_view_avatar_size_small}" Click="ImageContextMenuItem128Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/RikoRPC;component/Resources/icons8_external_link_96.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+
+                                    <MenuItem x:Name="ImageContextItem1" Header="{DynamicResource ResourceKey=mw_context_view_avatar_size_medium}" Click="ImageContextMenuItem256Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/RikoRPC;component/Resources/icons8_external_link_96.png"/>
+                                        </MenuItem.Icon>                                        
+                                    </MenuItem>
+
+                                    <MenuItem x:Name="ImageContextItem2" Header="{DynamicResource ResourceKey=mw_context_view_avatar_size_large}" Click="ImageContextMenuItem1024Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/RikoRPC;component/Resources/icons8_external_link_96.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    
                                     <Separator/>
-                                    <MenuItem x:Name="ImageContextItem3" Header="Go AFK and Lock this PC" Click="Button_afk_and_lock_pc_Click" Icon="/RikoRPC;component/Resources/discord.ico"/>
+                                    
+                                    <MenuItem x:Name="ImageContextItem3" Header="{DynamicResource ResourceKey=mw_context_afk_lock_pc}" Click="Button_afk_and_lock_pc_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="/RikoRPC;component/Resources/icons8_lock_96.png"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    
                                 </ContextMenu>
                             </Image.ContextMenu>
                         </Image>
                         <Label Content="{DynamicResource ResourceKey=mw_label_username}" Margin="76,12,303,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" Grid.ColumnSpan="3" FontSize="10"/>
                         <Label x:Name="usernameLabel" Content="{Binding discordProfileInfoViewModel.DiscordUsername, UpdateSourceTrigger=PropertyChanged}" Margin="76,29,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="12" FontWeight="Normal" Grid.ColumnSpan="3"/>
                         <Label Content="{DynamicResource mw_label_status}" Margin="76,50,13,0" VerticalAlignment="Top" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="10"/>
-                        <Label x:Name="currentStatusLabel" Content="Online" Margin="120,50,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="10" FontWeight="Normal" Grid.ColumnSpan="3"/>
+                        <Label x:Name="currentStatusLabel" Content="{Binding userStatusChangeViewModel.Status, UpdateSourceTrigger=PropertyChanged}" Margin="120,50,128,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" FontSize="10" FontWeight="Normal" Grid.ColumnSpan="3"/>
                         <Button x:Name="Button_Download_Update" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="235,5,0,0" VerticalAlignment="Top" Width="32" BorderBrush="{x:Null}" Foreground="{x:Null}" RenderTransformOrigin="0.2,0.25" Height="32" Click="Button_Download_Update_Click" ToolTip="An update is available">
                             <Button.Background>
                                 <ImageBrush ImageSource="/RikoRPC;component/Resources/icons8_refresh_shield_96.png" Stretch="Uniform"/>
