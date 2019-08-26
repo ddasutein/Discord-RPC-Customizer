@@ -24,7 +24,9 @@
     <system:String x:Key="mw_label_username_placeholder">Not available</system:String>
     <system:String x:Key="mw_label_status">Status</system:String>
     <system:String x:Key="mw_label_status_placeholder">Offline</system:String>
-    <system:String x:Key="mw_label_status_afk">Last update on:</system:String>
+    <system:String x:Key="mw_label_status_placeholder_online">Online</system:String>
+    <system:String x:Key="mw_label_status_placeholder_afk">Last update on:</system:String>
+    <system:String x:Key="mw_label_status_placeholder_waiting">Waiting...</system:String>
     <system:String x:Key="mw_label_settings_client_id">Client ID</system:String>
     <system:String x:Key="mw_label_settings_manage_discord_api">Manage Discord API</system:String>
     <system:String x:Key="mw_label_settings_reset_application">Reset Application</system:String>
@@ -98,4 +100,5 @@
     <system:String x:Key="app_error_hash_validation_failure">An error has occured while validating hash.</system:String>
     <system:String x:Key="app_error_update_no_internet_connection">Unable to check for updates. No internet connection.</system:String>
     <system:String x:Key="app_error_update_no_internet_connection_title">An error has occured while validating hash.</system:String>
+
 </ResourceDictionary>
