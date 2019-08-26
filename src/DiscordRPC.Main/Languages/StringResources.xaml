@@ -67,7 +67,6 @@
     
     <!-- FirstRunWindow.xaml (frw) Label -->
     <system:String x:Key="frw_label_welcome_msg">Welcome to RikoRPC (Discord Rich Presence)</system:String>
-    <system:String x:Key="frw_label_welcome_description">This is an open source application developed by Dasutein.</system:String>
     <system:String x:Key="frw_label_how_to_setup">How to setup?</system:String>
     <system:String x:Key="frw_label_setup_content_step1">Step 1: Go to the Discord Developer Portal and Create your Application.</system:String>
     <system:String x:Key="frw_label_setup_content_step2">Step 2: Copy the client ID and paste it in RikoRPC by going to Settings > Client ID</system:String>
