@@ -26,7 +26,7 @@ namespace DiscordRPC.Main
                 Version latest_version = new Version(GetLatestRelease());
                 Version current_version = new Version(GetCurrentApplicationVersion());
 
-                if (current_version > latest_version)
+                if (current_version < latest_version)
                 {
                     IsUpdateAvailable = true;
                     MessageBoxResult result = MessageBox.Show(
